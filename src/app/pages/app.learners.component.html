@@ -1,0 +1,134 @@
+<div class="grid" style="margin-top: 15px;">
+    <div style="width: 100%;">
+        <div class="card">
+            <h6>Search By Employer</h6>
+
+            <h5></h5>
+            <div class="p-fluid grid">
+                <p-autoComplete class="field col-12 md:col-2" [(ngModel)]="selectedCountryAdvanced"  [suggestions]="filteredCountries" (completeMethod)="filterCountry($event)" (onSelect)="onSelectcompany($event)"  field="companyName"  [dropdown]="true">
+                </p-autoComplete>
+
+                <p-dropdown class="field col-12 md:col-2" [options]="filteredCountries" [(ngModel)]="selectedCountryAdvanced" optionLabel="levyNumber" [filter]="true" filterBy="levyNumber" (onChange)="onSelectcompany($event)"  [showClear]="true" placeholder="SDL Number">
+                    <ng-template let-country pTemplate="item">
+                        <div class="country-item">
+                            <div>{{country.levyNumber}}</div>
+                        </div>
+                    </ng-template>
+                </p-dropdown>
+
+                <p-dropdown class="field col-12 md:col-2" [options]="filteredCountries" [(ngModel)]="selectedCountryAdvanced" optionLabel="accreditationNumber" [filter]="true" filterBy="accreditationNumber" (onChange)="onSelectcompany($event)"  [showClear]="true" placeholder="Accreditation">
+                    <ng-template let-country pTemplate="item">
+                        <div class="country-item">
+                            <div>{{country.accreditationNumber}}</div>
+                        </div>
+                    </ng-template>
+                </p-dropdown>
+                <div class="field col-12 md:col-2">
+                    <p-dropdown [options]="seaarchedusers" [(ngModel)]="selectedCountry" optionLabel="firstName" [filter]="true" filterBy="firstName" (onChange)="onSelectcompany2($event)"  [showClear]="true" placeholder="Learner">
+                        <ng-template let-country pTemplate="item">
+                            <div class="country-item">
+                                <div>{{country.firstName}} {{country.lastName}}</div>
+                            </div>
+                        </ng-template>
+                    </p-dropdown>
+                </div>
+                <!-- <div class="field col-12 md:col-2">
+                    <p-dropdown [options]="seaarchedusers" [(ngModel)]="selectedCountry" optionLabel="status" [filter]="true" filterBy="status" (onChange)="onSelectcompany2($event)"  [showClear]="true" placeholder="Status">
+                        <ng-template let-country pTemplate="item">
+                            <div class="country-item">
+                                <div>{{country.status}}</div>
+                            </div>
+                        </ng-template>
+                    </p-dropdown>
+                </div> -->
+                 <div class="field col-12 md:col-2">
+                    <p-dropdown [options]="learner_achievement_status" [(ngModel)]="selectedLearner_achievement_status" optionLabel="description" [filter]="true" filterBy="description" (onChange)="onSelectlearner_achievement_status($event)"  [showClear]="true" placeholder="Status">
+                        <ng-template let-learner pTemplate="item">
+                            <div class="country-item">
+                                <div>{{learner.description}}</div>
+                            </div>
+                        </ng-template>
+                    </p-dropdown>
+                </div>
+
+                <div class="field col-12 md:col-2">
+                    <p-dropdown [options]="region" [(ngModel)]="selectedRegion" optionLabel="description" [filter]="true" filterBy="description" (onChange)="onSelectRegion($event)"  [showClear]="true" placeholder="Region">
+                        <ng-template let-country pTemplate="item">
+                            <div class="country-item">
+                                <div>{{country.description}}</div>
+                            </div>
+                        </ng-template>
+                    </p-dropdown>
+                </div>
+            </div>
+            <p-table [value]="seaarchedusers" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" responsiveLayout="scroll"
+            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]">
+            <ng-template pTemplate="header">
+                <tr>
+                    <!-- <th>Id</th> -->
+                    <th>Name</th>
+                    <th>Surname</th>
+                    <th>Id or passport number </th>
+                    <th>Email</th>
+                    <th>Program Type</th>
+                    <th>Program Title</th>
+                    <th>Employer Name</th>
+                    <th>SDL Number</th>
+                            <!-- <th>Program Title </th>
+                            <th>Employer Name</th>
+                            <th>SDL Number</th> -->
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-use>
+                        <tr>
+                            <!-- <td><a href="learnerdetails/{{use.id}}/{{compid}}" class="text-truncate h-100 d-flex align-items-center"><span class="p-text-Primary">{{use.id}}</span></a></td> -->
+                            <td>{{use.firstName}}</td>
+                            <td>{{use.lastName}}</td>
+                            <td>{{use.rsaIdNumber}}</td>
+                            <td>{{use.email}}</td>
+                            <td>Learnership</td>
+                            <td>{{selectedCountryAdvanced}}</td>
+                            <td>{{selectedCountryAdvanced.companyName}} </td>
+                            <td>{{selectedCountryAdvanced.levyNumber}}</td>
+                            <!-- <td>{{use.firstName}}</td>
+                            <td>{{use.firstName}}h</td>
+                            <td>{{use.firstName}}</td> -->
+                            <td>
+                                <button pButton pRipple icon="pi pi-eye" class="p-button-rounded  mr-2" (click)="viewleaner(use.id)" pTooltip="View {{use.firstName}} Details"></button>
+                            </td>
+                            <td >
+                                <button pButton pRipple icon="pi pi-user-edit" class="p-button-rounded  mr-2"
+                                (click)="editleanerDetail(use.id)"
+                                pTooltip="Edit {{use.firstName}} Details"></button>
+                            </td>
+                            <td>
+                                <button pButton pRipple icon="pi pi-check" class="p-button-rounded  mr-2"
+                                (click)="updatelearnerstatus(use.id)"
+                                pTooltip="Update {{use.firstName}} Status"></button>
+                            </td>
+                            <!--<td>
+                                 <button pButton pRipple icon="pi pi-thumbs-up" class="p-button-rounded  mr-2"
+                                    (click)="editleaner(use.id)"
+                                    pTooltip="{{use.firstName}}'s Recomandation and Approval"></button>
+                                </td> -->
+                                <td>
+                                    <button pButton pRipple icon="pi pi-thumbs-up" class="p-button-rounded  mr-2"
+                                    (click)="recomendapprove(use.id)"
+                                    pTooltip="{{use.firstName}}'s Recomandation and Approval"></button>
+                                </td>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="paginatorleft">
+                            <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+                        </ng-template>
+                        <ng-template pTemplate="paginatorright">
+                            <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+                        </ng-template>
+                    </p-table>
+                    <div class="progress-spinner" *ngIf="loaderService.isLoader | async">
+                        <p-progressSpinner [style]="{width: '50px', height: '50px'}" styleClass="custom-spinner" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"></p-progressSpinner>
+                    </div>
+                </div>
+            </div>
+
+        </div>

@@ -1,0 +1,110 @@
+<div class="grid">
+    <div class="card">
+        <h5>Learner Information</h5>
+        <div class="flex grid flex-column">
+            <!-- <p-tabView> -->
+                <!--  <p-tabPanel></p-tabPanel> -->
+                <div>
+                    <ng-template pTemplate = "header">
+                        <i class="pi pi-user"></i>
+                        <span>Learner Details</span>
+                    </ng-template>
+                    <!-- <form [formGroup]="registrationForm" class="p-fluid grid"> -->
+                    <form class="p-fluid grid">
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <!-- <input type="text" id="username" pInputText [(ngModel)]="username">  -->
+                                <input type="text" id="username" pInputText> 
+                                <label for="username">Username (*)</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <!-- <input type="text" id="firstName" pInputText [(ngModel)]="firstName">  -->
+                                <input type="text" id="firstName" pInputText> 
+                                <label fsor="firstName">First Name (*)</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <!-- <input type="text" id="lastName" pInputText [(ngModel)]="lastName">  -->
+                                <input type="text" id="lastName" pInputText>  
+                                <label for="lastName">Last Name (*)</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <!-- <input type="text" id="passportNumber" pInputText [(ngModel)]="passportNumber">  -->
+                                <input type="text" id="passportNumber" pInputText > 
+                                <label for="passportNumber">Passport Number (*)</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <!-- <input type="text" id="rsaIdNumber" pInputText [(ngModel)]="rsaIdNumber">  -->
+                                <input type="text" id="rsaIdNumber" pInputText> 
+                                <label for="rsaIdNumber">ID Number (*)</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <!-- <input type="text" id="dateofbirth" pInputText [(ngModel)]="dateofbirth">  -->
+                                <input type="text" id="dateofbirth" pInputText> 
+                                <label for="dateofbirth">Date of Birth (*)</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <!-- <input type="text" id="email" pInputText [(ngModel)]="email">  -->
+                                <input type="text" id="email" pInputText> 
+                                <label for="email">Email (*)</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <!-- <input type="text" id="faxNumber" pInputText [(ngModel)]="faxNumber">  -->
+                                <input type="text" id="faxNumber" pInputText> 
+                                <label for="faxNumber">Fax Number (*)</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <!-- <input type="text" id="telNumber" pInputText [(ngModel)]="telNumber">  -->
+                                <input type="text" id="telNumber" pInputText> 
+                                <label for="telNumber">Telephone Number (*)</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <!-- <input type="text" id="dateOfBirth" disabled pInputText [(ngModel)]="dateOfBirth">  -->
+                                <input type="text" id="dateOfBirth" pInputText > 
+                                <label for="dateOfBirth">Date Of Birth (*)</label>
+                            </span>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <span class="p-float-label">
+                                <!-- <input type="text" id="password" formControl="password" disabled pInputText [(ngModel)]="password"> -->
+                                <input type="text" id="password" formControl="password" pInputText> 
+                                <label for="password">Password (*)</label>
+                            </span>
+                        </div>
+                    </form> 
+                </div>
+
+            <!-- </p-tabView> -->
+        </div>
+        <div class="col-12">
+            <div class="grid">
+                <button pButton pRipple class="continue-button" type="button" label="Register" ></button> 
+            </div>
+        </div>
+
+        <button class="p-element p-ripple mr-2 mb-2 p-button p-component"  (click)="register()">Register</button>
+            <div class="input-panel flex flex-column px-3">
+                <a href="#" routerLink="/forgot-password">Forgot Password?</a>
+            </div>
+    </div>
+</div>
+
+
+

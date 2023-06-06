@@ -1,0 +1,1268 @@
+<div class="grid" style="margin-top: 15px;">
+        <p><span class="p-text-Primary" style="font-size: 13px;" id="userdetails"></span>
+            <span class="p-text-Primary" style="font-size: 13px;">Application Status : </span>
+            <span class="p-text-Warning" style="font-size: 13px;" id="applicationstatus"></span>
+       </p>
+</div>
+
+
+<!-- ////////////////////////////////////////////////////////////////////RECOMMENDATION AND APPROVAL FORM////////////////////////////////////////////// -->
+<div class="grid" style="margin-top: 5px;">
+    <div class="card">
+        <h5>Learner Information</h5>
+        <p-tabView styleClass="tabview-custom">
+
+
+            <!-- ////////////////////////////////////////////////////////////////////LEARNER DETAILS TAB////////////////////////////////////////////// -->
+            <p-tabPanel>
+                <ng-template pTemplate = "header">
+                    <i class="pi pi-user"></i>
+                    <span>Learner Details</span>
+                </ng-template>
+                <div class="p-fluid grid">
+                    <div class="field col-12 md:col-4">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" disabled pInputText [(ngModel)]="Tittle"> 
+                            <label for="inputtext">Title (*)</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" disabled pInputText [(ngModel)]="firstName"> 
+                            <label fsor="inputtext">First Name (*)</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" disabled pInputText [(ngModel)]="lasttName"> 
+                            <label for="inputtext">Last Name (*)</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" disabled pInputText [(ngModel)]="middlename"> 
+                            <label for="inputtext">Middle Name (*)</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-4" *ngIf="this.maidenname">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" disabled pInputText [(ngModel)]="maidenname"> 
+                            <label for="inputtext">Maiden Name (*)</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" disabled pInputText [(ngModel)]="Nationality"> 
+                            <label for="inputtext">Nationality (*)</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-4" *ngIf="this.idenumber">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" disabled pInputText [(ngModel)]="idenumber"> 
+                            <label for="inputtext">ID Number (*)</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-4" *ngIf="this.alternativeIdNumber">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" disabled pInputText [(ngModel)]="alternativeIdNumber"> 
+                            <label for="inputtext">Alternative ID Number </label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" disabled pInputText [(ngModel)]="Dateofbirth"> 
+                            <label for="inputtext">Date of Birth (*)</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" disabled pInputText [(ngModel)]="email"> 
+                            <label for="inputtext">Email (*)</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-4" *ngIf="this.secondemail">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" disabled pInputText [(ngModel)]="secondemail"> 
+                            <label for="inputtext">Secondary Email Address (*)</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" disabled pInputText [(ngModel)]="cellnumber"> 
+                            <label for="inputtext">Cell Number (*)</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" disabled pInputText [(ngModel)]="gender"> 
+                            <label for="inputtext">Gender (*)</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" disabled pInputText [(ngModel)]="disability"> 
+                            <label for="inputtext">Disability (*)</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" disabled pInputText [(ngModel)]="urbanruraldata"> 
+                            <label for="inputtext">Urban/Rural (*)</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <span class="p-float-label">
+                            <input [style.visibility]="isdisableview" type="text" id="inputtext" disabled pInputText [(ngModel)]="disabilitytype"> 
+                            <label [style.visibility]="isdisableview" for="inputtext">Disability Type (*)</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <span class="p-float-label">
+                            <input [style.visibility]="isdisableview" type="text" id="inputtext" disabled pInputText [(ngModel)]="disabilitylevel"> 
+                            <label [style.visibility]="isdisableview" for="inputtext">Disability Level (*)</label>
+                        </span>
+                    </div>
+                </div> 
+                <p-accordion>
+                    <p-accordionTab header="Languages" [selected]="false">
+                        <p-table [value]="founduserlanguages" responsiveLayout="scroll">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th>Language</th>
+                                    <th>Home Language</th>
+                                    <th>Read</th>
+                                    <th>Write</th>
+                                    <th>Speak</th>
+                                </tr>
+                                <div *ngFor="userlanguages">{{userlanguages.languageId}}</div>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-val >
+                                <tr >
+                                    <td>{{val.name}}</td>
+                                    <td>{{val.homelanguage}}</td>
+                                    <td>{{val.read}}</td>
+                                    <td>{{val.write}}</td>
+                                    <td>{{val.speak}}</td>
+                                </tr>
+                            </ng-template>
+                        </p-table>                        
+                    </p-accordionTab>
+                    <p-accordionTab header="Home Address">
+                        <div class="p-fluid grid">
+                            <div class="field col-12 md:col-4">
+                                <span class="p-float-label">
+                                    <input type="text"  id="inputtext" disabled pInputText [(ngModel)]="Addresss"> 
+                                    <label for="inputtext">Address 1 (*)</label>
+                                </span>
+                            </div>
+                            <div class="field col-12 md:col-4">
+                                <span class="p-float-label">
+                                    <input type="text" id="inputtext" disabled pInputText [(ngModel)]="Address1"> 
+                                    <label fsor="inputtext">Address 2 (*)</label>
+                                </span>
+                            </div>
+                            <div class="field col-12 md:col-4">
+                                <span class="p-float-label">
+                                    <input type="text" id="inputtext" disabled pInputText [(ngModel)]="Address2"> 
+                                    <label for="inputtext">Address 3 (*)</label>
+                                </span>
+                            </div>
+                            <div class="field col-12 md:col-4">
+                                <span class="p-float-label">
+                                    <input type="text" id="inputtext" disabled pInputText [(ngModel)]="Postalcode"> 
+                                    <label for="inputtext">Postal Code (*)</label>
+                                </span>
+                            </div>
+                            <div class="field col-12 md:col-4">
+                                <span class="p-float-label">
+                                    <input type="text" id="inputtext" disabled pInputText [(ngModel)]="Area"> 
+                                    <label for="inputtext">Stats SA Area Code (*)</label>
+                                </span>
+                            </div>
+                            <div class="field col-12 md:col-4">
+                                <span class="p-float-label">
+                                    <input type="text" id="inputtext" disabled pInputText [(ngModel)]="Pronvince"> 
+                                    <label for="inputtext">Pronvince (*)</label>
+                                </span>
+                            </div>
+                            <div class="field col-12 md:col-4">
+                                <span class="p-float-label">
+                                    <input type="text" id="inputtext" disabled pInputText [(ngModel)]="Municipality"> 
+                                    <label for="inputtext">Municipality (*)</label>
+                                </span>
+                            </div>
+                            <div class="field col-12 md:col-4">
+                                <span class="p-float-label">
+                                    <input type="text" id="inputtext" disabled pInputText [(ngModel)]="Distritrict"> 
+                                    <label for="inputtext">Distritrict (*)</label>
+                                </span>
+                            </div>
+                            <div class="field col-12 md:col-4">
+                                <span class="p-float-label">
+                                    <input type="text" id="inputtext" disabled pInputText [(ngModel)]="Town"> 
+                                    <label for="inputtext">Town (*)</label>
+                                </span>
+                            </div>
+                        </div> 
+                    </p-accordionTab>
+                    <p-accordionTab header="Guardian/NextofKin" *ngIf="isguardianornextofkin">
+                        <div class="p-fluid grid">
+                            <div class="field col-12 md:col-6">
+                                <span class="p-float-label">
+                                    <input type="text" id="inputtext" disabled pInputText [(ngModel)]="nextofkinname"> 
+                                    <label for="inputtext">Next of Kin Name</label>
+                                </span>
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <span class="p-float-label">
+                                    <input type="text" id="inputtext" disabled pInputText [(ngModel)]="nextofkintelephone"> 
+                                    <label for="inputtext">Next of Kin Telephone</label>
+                                </span>
+                            </div>
+                        </div>
+                    </p-accordionTab>
+                    <p-accordionTab header="Postal Address">
+                        <div class="p-fluid grid">
+                            <div class="field col-12 md:col-4">
+                                <span class="p-float-label">
+                                    <input type="text" id="inputtext" disabled pInputText [(ngModel)]="pAddress"> 
+                                    <label for="inputtext">Address 1 (*)</label>
+                                </span>
+                            </div>
+                            <div class="field col-12 md:col-4">
+                                <span class="p-float-label">
+                                    <input type="text" id="inputtext" disabled pInputText [(ngModel)]="Address1"> 
+                                    <label fsor="inputtext">Address 2 (*)</label>
+                                </span>
+                            </div>
+                            <div class="field col-12 md:col-4">
+                                <span class="p-float-label">
+                                    <input type="text" id="inputtext" disabled pInputText [(ngModel)]="pAddress2"> 
+                                    <label for="inputtext">Address 3 (*)</label>
+                                </span>
+                            </div>
+                            <div class="field col-12 md:col-4">
+                                <span class="p-float-label">
+                                    <input type="text" id="inputtext" disabled pInputText [(ngModel)]="pPostalcode"> 
+                                    <label for="inputtext">Postal Code (*)</label>
+                                </span>
+                            </div>
+                            <div class="field col-12 md:col-4">
+                                <span class="p-float-label">
+                                    <input type="text" id="inputtext" disabled pInputText [(ngModel)]="pArea"> 
+                                    <label for="inputtext">Stats SA Area Code (*)</label>
+                                </span>
+                            </div>
+                            <div class="field col-12 md:col-4">
+                                <span class="p-float-label">
+                                    <input type="text" id="inputtext" disabled pInputText [(ngModel)]="pPronvince"> 
+                                    <label for="inputtext">Pronvince (*)</label>
+                                </span>
+                            </div>
+                            <div class="field col-12 md:col-4">
+                                <span class="p-float-label">
+                                    <input type="text" id="inputtext" disabled pInputText [(ngModel)]="pMunicipality"> 
+                                    <label for="inputtext">Municipality (*)</label>
+                                </span>
+                            </div>
+                            <div class="field col-12 md:col-4">
+                                <span class="p-float-label">
+                                    <input type="text" id="inputtext" disabled pInputText [(ngModel)]="pDistritrict"> 
+                                    <label for="inputtext">Distritrict (*)</label>
+                                </span>
+                            </div>
+                            <div class="field col-12 md:col-4">
+                                <span class="p-float-label">
+                                    <input type="text" id="inputtext" disabled pInputText [(ngModel)]="pTown"> 
+                                    <label for="inputtext">Town (*)</label>
+                                </span>
+                            </div>
+                        </div> 
+                    </p-accordionTab>
+                    <p-accordionTab header="Learner Qualification">
+                        <div class="p-fluid grid">
+                            <div class="field col-12 md:col-6">
+                                <span class="p-float-label">
+                                    <input type="text" id="inputtext" disabled pInputText [(ngModel)]="hihgesteducationlevel"> 
+                                    <label for="inputtext">Highest Education level (*)</label>
+                                </span>
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <span class="p-float-label">
+                                    <input type="text" id="inputtext" disabled pInputText [(ngModel)]="lastschoolattended"> 
+                                    <label for="inputtext">Last School Attended (*)</label>
+                                </span>
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <span class="p-float-label">
+                                    <input type="text" id="inputtext" disabled pInputText [(ngModel)]="lastschoolyeardate"> 
+                                    <label for="inputtext">Last school year date (*)</label>
+                                </span>
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <span class="p-float-label">
+                                    <input type="text" id="inputtext" disabled pInputText [(ngModel)]="tvetqualification"> 
+                                    <label for="inputtext">TVET/FET Qualification  (*)</label>
+                                </span>
+                            </div>
+                        </div>
+                    </p-accordionTab>
+                    <!-- <p-accordionTab header="WBL Document">
+                        <button pButton pRipple class="continue-button" type="button"  label="Get WBL" (click)="getWBL();"></button>
+                    </p-accordionTab> -->
+                </p-accordion>
+            </p-tabPanel>
+
+            <!-- ////////////////////////////////////////////////////////////////////TRAINING INFORMATION DETAILS TAB////////////////////////////////////////////// -->
+            <p-tabPanel header="Header I">
+                <ng-template pTemplate = "header">
+                    <i class="pi pi-book"></i>
+                    <span>Learning Program</span>
+                </ng-template>
+                <div class="p-fluid grid">
+                    <div class="field col-12 md:col-4">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" disabled pInputText [(ngModel)]="programtype"> 
+                            <label for="inputtext">Program Type (*)</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" disabled pInputText [(ngModel)]="pivnonpivtraining"> 
+                            <label fsor="inputtext">PIVOTAL/Non-PIVOTAL Training (*)</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" disabled pInputText [(ngModel)]="nqlaligned"> 
+                            <label for="inputtext">NQL Aligned  (*)</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" disabled pInputText [(ngModel)]="saqaid"> 
+                            <label for="inputtext">SAQA ID (*)</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" disabled pInputText [(ngModel)]="commencedate"> 
+                            <label for="inputtext">Enrolment Date (*)</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" disabled pInputText [(ngModel)]="projenddate"> 
+                            <label for="inputtext">Project End Date (*)</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" disabled pInputText [(ngModel)]="isleanermersetafunded"> 
+                            <label for="inputtext">Is Learner merSETA Funded? (*)</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" disabled pInputText [(ngModel)]="sourcefund"> 
+                            <label for="inputtext">Source of funding (*)</label>
+                        </span>
+                    </div>
+                </div> 
+            </p-tabPanel>
+
+            <p-tabPanel header="Employment Status">
+                <p-messages></p-messages>
+                  <div class="grid">
+                      <div class="col-12">
+                          <h6>Employment Status</h6>
+                          <br/>
+                          <div class="p-fluid grid">
+                              <div class="field col-12 md:col-4">
+                                <label>Employment status (*)</label>
+                                <br/>
+                                <div class="">
+                                    <div class="field-radiobutton">
+                                        <p-radioButton name="city" [disabled]="true" value="1" [(ngModel)]="checkedEmployment" id="city1"></p-radioButton>
+                                        <label for="city1">Employed</label>
+                                    </div>
+                                </div>
+                                <!-- <div class="">
+                                    <div class="field-radiobutton" *ngIf="this.changedProgramTest != 'Show'">
+                                        <p-radioButton name="city" value="No" [(ngModel)]="checkedEmployment" [(ngModel)]="valRadio"  id="city2"></p-radioButton>
+                                        <label for="city2">Employed For The Purpose of The Agreement</label>
+                                    </div>
+                                </div> -->
+                            </div>
+                            <div class="field col-12 md:col-4">
+                                <label>Is the learner's contract of employment specific to the purpose of agreement? (*)</label>
+                              <div class="col-12">
+                                <div class="">
+                                    <div class="field-radiobutton">
+                                        <p-radioButton name="city" [disabled]="true" value="1" [(ngModel)]="checkedeContractofEmploymen" id="city1"></p-radioButton>
+                                        <label for="city1">Yes</label>
+                                    </div>
+                                </div>
+                                <div class="">
+                                    <div class="field-radiobutton">
+                                        <p-radioButton name="city" [disabled]="true" value="0" [(ngModel)]="checkedeContractofEmploymen" id="city2"></p-radioButton>
+                                        <label for="city2">No</label>
+                                    </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <!-- <div class="field col-12 md:col-4" *ngIf="this.changedProgramTest != 'Show'">
+                                <label>Does the learner have a copy of the contract of employment? (*)</label>
+                              <div class="col-12">
+                                <div class="">
+                                    <div class="field-radiobutton">
+                                        <p-radioButton name="city" value="Yes" [(ngModel)]="checkecopyofcontract" (ngModelChange)="modifycopyofcontract()" id="city1"></p-radioButton>
+                                        <label for="city1">Yes</label>
+                                    </div>
+                                </div>
+                                <div class="">
+                                    <div class="field-radiobutton">
+                                        <p-radioButton name="city" value="No" [(ngModel)]="checkecopyofcontract" (ngModelChange)="modifycopyofcontract()"  id="city2"></p-radioButton>
+                                        <label for="city2">No</label>
+                                    </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="field col-12 md:col-4" *ngIf="this.changedProgramTest != 'Show'">
+                              <label>Were you employed by your employer before concluding this form (*)</label>
+                              <div class="col-12">
+                                  <div class="">
+                                      <div class="field-radiobutton">
+                                          <p-radioButton name="city" value="Yes" [(ngModel)]="checkedemployment" (ngModelChange)="modifyEmployed()" id="city1"></p-radioButton>
+                                          <label for="city1">Yes</label>
+                                      </div>
+                                  </div>
+                                  <div class="">
+                                      <div class="field-radiobutton">
+                                          <p-radioButton name="city" value="No" [(ngModel)]="checkedemployment" (ngModelChange)="modifyEmployed()"  id="city2"></p-radioButton>
+                                          <label for="city2">No</label>
+                                      </div>
+                                  </div>
+                              </div>
+                            </div>
+                            <div class="field col-12 md:col-4" *ngIf="this.changedProgramTest != 'Show'">
+                              <label>Were you party to a workplace-based learning program agreement at any time in the past before concluding this agreement? (*)</label>
+                              <div class="col-12">
+                                  <div class="">
+                                      <div class="field-radiobutton">
+                                          <p-radioButton name="city" value="Yes" [(ngModel)]="checkedagreement" (ngModelChange)="modifyagreement()" id="city1"></p-radioButton>
+                                          <label for="city1">Yes</label>
+                                      </div>
+                                  </div>
+                                  <div class="">
+                                      <div class="field-radiobutton">
+                                          <p-radioButton name="city" value="No" [(ngModel)]="checkedagreement" (ngModelChange)="modifyagreement()"  id="city2"></p-radioButton>
+                                          <label for="city2">No</label>
+                                      </div>
+                                  </div>
+                              </div>
+                           </div> -->
+                          </div>
+                      </div>
+                  </div>
+              </p-tabPanel>
+
+            <!-- ////////////////////////////////////////////////////////////////////EMPLOYER DETAILS TAB////////////////////////////////////////////// -->
+            <p-tabPanel header="Header II">
+                <ng-template pTemplate = "header">
+                    <i class="pi pi-id-card"></i>
+                    <span>Employer</span>
+                </ng-template>
+                <div class="p-fluid grid">
+                    <div class="field col-12 md:col-4">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" disabled pInputText [(ngModel)]="employerName"> 
+                            <label for="inputtext">Employer Name (*)</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" disabled pInputText [(ngModel)]="entityId"> 
+                            <label fsor="inputtext">Entity ID (*)</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" disabled pInputText [(ngModel)]="contactFirstName"> 
+                            <label for="inputtext">Contact Person First Name (*)</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" disabled pInputText [(ngModel)]="contactLastName"> 
+                            <label for="inputtext">Contact Person Last Name (*)</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" disabled pInputText [(ngModel)]="telephone"> 
+                            <label for="inputtext">Telephone (*)</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" disabled pInputText [(ngModel)]="celnumber"> 
+                            <label for="inputtext">Cell Number (*)</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" disabled pInputText [(ngModel)]="faxnumber"> 
+                            <label for="inputtext">Fax Number </label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" disabled pInputText [(ngModel)]="emailAddress"> 
+                            <label for="inputtext">Email Address (*)</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" disabled pInputText [(ngModel)]="regNumber"> 
+                            <label for="inputtext">Employer Registration Number (*)</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" disabled pInputText [(ngModel)]="empsiccode"> 
+                            <label for="inputtext">SIC Code (*)</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" disabled pInputText [(ngModel)]="emporgtpe"> 
+                            <label for="inputtext">Organization Type (*)</label>
+                        </span>
+                    </div>
+                    <!-- <div class="field col-12 md:col-12">
+                        <label for="inputtext">What is the Standard Industrial Classification (SIC) code that applies to you core business? (*)</label>
+                        <input type="text" id="inputtext" disabled pInputText [(ngModel)]="sicCode">    
+                    </div> -->
+                </div>
+                <p-accordion>
+                    <p-accordionTab header="Physical Address" [selected]="false">
+                        <div class="p-fluid grid">
+                            <div class="field col-12 md:col-4">
+                                <span class="p-float-label">
+                                    <input type="text" id="inputtext" disabled pInputText [(ngModel)]="eAddresss"> 
+                                    <label for="inputtext">Address 1 (*)</label>
+                                </span>
+                            </div>
+                            <div class="field col-12 md:col-4">
+                                <span class="p-float-label">
+                                    <input type="text" id="inputtext" disabled pInputText [(ngModel)]="eAddress1"> 
+                                    <label fsor="inputtext">Address 2 (*)</label>
+                                </span>
+                            </div>
+                            <div class="field col-12 md:col-4">
+                                <span class="p-float-label">
+                                    <input type="text" id="inputtext" disabled pInputText [(ngModel)]="eAddress2"> 
+                                    <label for="inputtext">Address 3 (*)</label>
+                                </span>
+                            </div>
+                            <div class="field col-12 md:col-4">
+                                <span class="p-float-label">
+                                    <input type="text" id="inputtext" disabled pInputText [(ngModel)]="ePostalcode"> 
+                                    <label for="inputtext">Postal Code (*)</label>
+                                </span>
+                            </div>
+                            <div class="field col-12 md:col-4">
+                                <span class="p-float-label">
+                                    <input type="text" id="inputtext" disabled pInputText [(ngModel)]="ePronvince"> 
+                                    <label for="inputtext">Pronvince (*)</label>
+                                </span>
+                            </div>
+                            <div class="field col-12 md:col-4">
+                                <span class="p-float-label">
+                                    <input type="text" id="inputtext" disabled pInputText [(ngModel)]="eTown"> 
+                                    <label for="inputtext">Town (*)</label>
+                                </span>
+                            </div>
+                        </div> 
+                    </p-accordionTab>
+                    <p-accordionTab header="Postal Address">
+                        <div class="p-fluid grid">
+                            <div class="field col-12 md:col-4">
+                                <span class="p-float-label">
+                                    <input type="text" id="inputtext" disabled pInputText [(ngModel)]="epAddresss"> 
+                                    <label for="inputtext">Address 1 (*)</label>
+                                </span>
+                            </div>
+                            <div class="field col-12 md:col-4">
+                                <span class="p-float-label">
+                                    <input type="text" id="inputtext" disabled pInputText [(ngModel)]="epAddress1"> 
+                                    <label fsor="inputtext">Address 2 (*)</label>
+                                </span>
+                            </div>
+                            <div class="field col-12 md:col-4">
+                                <span class="p-float-label">
+                                    <input type="text" id="inputtext" disabled pInputText [(ngModel)]="epAddress2"> 
+                                    <label for="inputtext">Address 3 (*)</label>
+                                </span>
+                            </div>
+                            <div class="field col-12 md:col-4">
+                                <span class="p-float-label">
+                                    <input type="text" id="inputtext" disabled pInputText [(ngModel)]="epPostalcode"> 
+                                    <label for="inputtext">Postal Code (*)</label>
+                                </span>
+                            </div>
+                            <div class="field col-12 md:col-4">
+                                <span class="p-float-label">
+                                    <input type="text" id="inputtext" disabled pInputText [(ngModel)]="epPronvince"> 
+                                    <label for="inputtext">Pronvince (*)</label>
+                                </span>
+                            </div>
+                            <div class="field col-12 md:col-4">
+                                <span class="p-float-label">
+                                    <input type="text" id="inputtext" disabled pInputText [(ngModel)]="epTown"> 
+                                    <label for="inputtext">Town (*)</label>
+                                </span>
+                            </div>
+                        </div> 
+                    </p-accordionTab>
+                    
+                    
+                </p-accordion>
+            </p-tabPanel>
+
+            <!-- ////////////////////////////////////////////////////////////////////PROVIDER DETAILS TAB////////////////////////////////////////////// -->
+            <p-tabPanel header="Header III">
+                <ng-template pTemplate = "header">
+                    <i class="pi pi-id-card"></i>
+                    <span>Provider</span>
+                </ng-template>
+                <div class="p-fluid grid">
+                    <div class="field col-12 md:col-4">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" disabled pInputText [(ngModel)]="providerName"> 
+                            <label for="inputtext">Provider Name (*)</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" disabled pInputText [(ngModel)]="accType"> 
+                            <label fsor="inputtext">Accreditation Type (*)</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" disabled pInputText [(ngModel)]="accNumber"> 
+                            <label for="inputtext">Accreditation Number (*)</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" disabled pInputText [(ngModel)]="accStatus"> 
+                            <label for="inputtext">Accreditation Status (*)</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" disabled pInputText [(ngModel)]="setaRegistarion"> 
+                            <label for="inputtext">SETA Registration (*)</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" disabled pInputText [(ngModel)]="dateReview"> 
+                            <label for="inputtext">Review Date (*)</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" disabled pInputText [(ngModel)]="contactsLastName"> 
+                            <label for="inputtext">Contact Person Last Name (*)</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" disabled pInputText [(ngModel)]="contactsfirstName"> 
+                            <label for="inputtext">Contact Person First Name (*)</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" disabled pInputText [(ngModel)]="telphone"> 
+                            <label for="inputtext">Telephone (*)</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" disabled pInputText [(ngModel)]="cellnumb"> 
+                            <label for="inputtext">Cell Number (*)</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" disabled pInputText [(ngModel)]="faxnum"> 
+                            <label for="inputtext">Fax Number </label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" disabled pInputText [(ngModel)]="emailAdd"> 
+                            <label for="inputtext">Email Address (*)</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" disabled pInputText [(ngModel)]="providersiccode"> 
+                            <label for="inputtext">SIC Code (*)</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" disabled pInputText [(ngModel)]="provideremporgtpe"> 
+                            <label for="inputtext">Organization Type (*)</label>
+                        </span>
+                    </div>
+                    <!-- <div class="field col-12 md:col-12">
+                        <label for="inputtext">What is the Standard Industrial Classification (SIC) code that applies to you core business ? (*)</label>
+                        <input type="text" id="inputtext" disabled pInputText [(ngModel)]="sicCod">    
+                    </div> -->
+                </div>
+                <p-accordion>
+                    <p-accordionTab header="Physical Address" [selected]="false">
+                        <div class="p-fluid grid">
+                            <div class="field col-12 md:col-4">
+                                <span class="p-float-label">
+                                    <input type="text" id="inputtext" disabled pInputText [(ngModel)]="providerAddresss"> 
+                                    <label for="inputtext">Address 1 (*)</label>
+                                </span>
+                            </div>
+                            <div class="field col-12 md:col-4">
+                                <span class="p-float-label">
+                                    <input type="text" id="inputtext" disabled pInputText [(ngModel)]="providerAddress1"> 
+                                    <label fsor="inputtext">Address 2 (*)</label>
+                                </span>
+                            </div>
+                            <div class="field col-12 md:col-4">
+                                <span class="p-float-label">
+                                    <input type="text" id="inputtext" disabled pInputText [(ngModel)]="providerAddress2"> 
+                                    <label for="inputtext">Address 3 (*)</label>
+                                </span>
+                            </div>
+                            <div class="field col-12 md:col-4">
+                                <span class="p-float-label">
+                                    <input type="text" id="inputtext" disabled pInputText [(ngModel)]="providerPostalcode"> 
+                                    <label for="inputtext">Postal Code (*)</label>
+                                </span>
+                            </div>
+                            <div class="field col-12 md:col-4">
+                                <span class="p-float-label">
+                                    <input type="text" id="inputtext" disabled pInputText [(ngModel)]="providerPronvince"> 
+                                    <label for="inputtext">Pronvince (*)</label>
+                                </span>
+                            </div>
+                            <div class="field col-12 md:col-4">
+                                <span class="p-float-label">
+                                    <input type="text" id="inputtext" disabled pInputText [(ngModel)]="providerTown"> 
+                                    <label for="inputtext">Town (*)</label>
+                                </span>
+                            </div>
+                        </div> 
+                    </p-accordionTab>
+                    <p-accordionTab header="Postal Address">
+                        <div class="p-fluid grid">
+                            <div class="field col-12 md:col-4">
+                                <span class="p-float-label">
+                                    <input type="text" id="inputtext" disabled pInputText [(ngModel)]="proAddresss"> 
+                                    <label for="inputtext">Address 1 (*)</label>
+                                </span>
+                            </div>
+                            <div class="field col-12 md:col-4">
+                                <span class="p-float-label">
+                                    <input type="text" id="inputtext" disabled pInputText [(ngModel)]="proAddress1"> 
+                                    <label fsor="inputtext">Address 2 (*)</label>
+                                </span>
+                            </div>
+                            <div class="field col-12 md:col-4">
+                                <span class="p-float-label">
+                                    <input type="text" id="inputtext" disabled pInputText [(ngModel)]="proAddress2"> 
+                                    <label for="inputtext">Address 3 (*)</label>
+                                </span>
+                            </div>
+                            <div class="field col-12 md:col-4">
+                                <span class="p-float-label">
+                                    <input type="text" id="inputtext" disabled pInputText [(ngModel)]="proPostalcode"> 
+                                    <label for="inputtext">Postal Code (*)</label>
+                                </span>
+                            </div>
+                            <div class="field col-12 md:col-4">
+                                <span class="p-float-label">
+                                    <input type="text" id="inputtext" disabled pInputText [(ngModel)]="proPronvince"> 
+                                    <label for="inputtext">Pronvince (*)</label>
+                                </span>
+                            </div>
+                            <div class="field col-12 md:col-4">
+                                <span class="p-float-label">
+                                    <input type="text" id="inputtext" disabled pInputText [(ngModel)]="proTown"> 
+                                    <label for="inputtext">Town (*)</label>
+                                </span>
+                            </div>
+                        </div> 
+                    </p-accordionTab>
+                </p-accordion>
+            </p-tabPanel>
+
+            <!-- ////////////////////////////////////////////////////////////////////DOCUMENTS TAB////////////////////////////////////////////// -->
+            <p-tabPanel header="Header IV">
+                <ng-template pTemplate = "header">
+                    <i class="pi pi-file-pdf"></i>
+                    <span>Documents</span>
+                </ng-template>
+                <p-table [value]="Documents" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" responsiveLayout="scroll"
+                currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th></th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-use>
+                    <tr>
+                        <td>
+                             <i class="pi pi-file-pdf"></i>
+                            <span class="p-text-Primary">{{use.docname}}</span>
+                        </td>                     
+                        <td>{{use.docdescription}}</td>
+                        <td>
+                            <button pButton pRipple icon="pi pi-eye" class="p-button-rounded  mr-2" (click)="viewDocument(use.Id)" pTooltip="View {{use.docname}} Details"></button>
+                        </td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="paginatorleft">
+                    <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+                </ng-template>
+                <ng-template pTemplate="paginatorright">
+                    <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+                </ng-template>
+            </p-table>
+            </p-tabPanel>
+
+            <!-- ////////////////////////////////////////////////////////////////////EVENTS TAB////////////////////////////////////////////// -->
+            <p-tabPanel header="Header VI" *ngIf="isvisiblevents">
+                <ng-template pTemplate = "header">
+                    <i class="pi pi-exclamation-circle"></i>
+                    <span>Events</span>
+                </ng-template>
+                <!-- <div class="card-body" >
+                    <div class="row">
+                        <div class="col-md-6">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" disabled pInputText [(ngModel)]="comment_u_name">
+                            <label for="inputtext">Name</label>
+                        </span>
+                        </div>
+                    </div>
+                    <br>
+                    <p>2022.08.05</p>  -->
+                    <!-- <div class="row">
+                        <div class="col-md-12">
+                            <span class="p-float-label">
+                                <textarea id="float-input" rows="3" cols="50" [(ngModel)]="comment_message" pInputTextarea></textarea>
+                                <label for="float-input">Message</label>
+                            </span>
+                        </div>
+                    </div>
+
+                    <br>
+                    <p-toast position="top-center" key="tc1"></p-toast> -->
+                    <!--<button pButton pRipple class="continue-button" type="button"  label="Cancel"></button>-->
+                    <!-- <button pButton pRipple class="continue-button" type="button"  label="Submit" (click)="Addcomment(); "></button> -->
+                    <ul class="widget-list" *ngFor="let com of rcomments">
+
+                        <li class="flex align-items-center py-3">
+                            <div class="person-item flex align-items-center">
+                                <img style="margin-bottom: 70px;" src="assets/demo/images/avatar/user.png">
+                                <div [ngClass]="{'ml-2': !app.isRTL, 'mr-2': app.isRTL}">
+                                    <div>{{com.name}}</div>
+                                    <small style="margin-bottom: 10px;" class="muted-text">{{com.email}}</small>
+                                    <br/>
+                                    <br/>
+                                    <p-card>
+                                        <p style="font-size:14px;">{{com.comment}}</p>
+                                        <p style="font-size:14px;">{{com.createDate}}</p>
+
+                                    </p-card>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                <!-- </div> -->
+            </p-tabPanel>
+
+
+            <p-tabPanel header="Header VI" *ngIf="isvisiblepanel">
+                <ng-template pTemplate = "header">
+                    <i class="pi pi-user"></i>
+                    <span>Review</span>
+                </ng-template>
+                <div class="p-fluid grid">
+                    <div class="col-6">
+                        <div class="field">
+                        <span class="p-float-label">
+                            <!--<p-dropdown [options]="cities" [(ngModel)]="selectedCity1" placeholder="Select a City" optionLabel="name" [showClear]="true"></p-dropdown>-->
+                            <p-dropdown id="ultimat" [options]="learnerprogramIndicator"
+                            [(ngModel)]="learnerprogramIndicatorSelected" [showClear]="true" optionLabel="name"
+                            [showClear]="true" [style]="{'margin-bottom':'5px'}"
+                            (ngModelChange)="onChangedIndicatortype()"></p-dropdown>
+                            <!--<p-dropdown id="ultiman" optionLabel="label" optionValue="value"  [options]="" [(ngModel)]="" [autoDisplayFirst]="" [style]="{'margin-bottom':'5px'}"></p-dropdown>-->
+                            <label for="ultimat" style="font-size:12px;">Indicator (*)</label>
+                        </span>
+                        </div>
+                    </div>
+
+
+                    <div class="col-12">
+                        <div class="field">
+                            <label for="ultiman" style="font-size:12px;">Select Recommendation (*)</label>
+                        </div>
+                    </div>
+                
+
+                <div class="col-12">
+                    <p-radioButton name="city" value="Chicago" [(ngModel)]="valRadioqual1" id="city1"></p-radioButton>
+                    <label for="city1">Recommend</label>
+                </div> <br/>
+
+                <p-accordion>
+                    <div class="col-md-3">
+                        <p-accordionTab header="Recommendation Sign-Off" *ngIf="valRadioqual1 == 'Chicago'">
+                            <p-messages></p-messages>
+                            <!-- <p-toast key="tst" [baseZIndex]="99999"></p-toast> -->
+                            <div class="card-body" >
+                                <div class="row">
+                                    <div class="col-md-6">
+                                    <span class="p-float-label">
+                                        <input type="text" id="inputtext" disabled pInputText [(ngModel)]="comment_u_name">
+                                        <label for="inputtext">Name</label>
+                                    </span>
+                                    </div>
+                                </div>
+                                <br>
+                                <!-- <p>2022.08.05</p>  -->
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <span class="p-float-label">
+                                            <textarea id="float-input" rows="3" cols="50" [(ngModel)]="comment_message" pInputTextarea></textarea>
+                                            <label for="float-input">Message</label>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <br>
+                                <p-toast position="top-center" key="tc1"></p-toast>
+                                <!--<button pButton pRipple class="continue-button" type="button"  label="Cancel"></button>-->
+                                <button pButton pRipple class="continue-button" type="button"  label="Submit" (click)="Addcomment(); "></button>
+                                <ul class="widget-list" *ngFor="let com of rcomments">
+
+                                    <li class="flex align-items-center py-3">
+                                        <div class="person-item flex align-items-center">
+                                            <img style="margin-bottom: 70px;" src="assets/demo/images/avatar/user.png">
+                                            <div [ngClass]="{'ml-2': !app.isRTL, 'mr-2': app.isRTL}">
+                                                <div>{{com.name}}</div>
+                                                <small style="margin-bottom: 10px;" class="muted-text">{{com.email}}</small>
+                                                <br/>
+                                                <br/>
+                                                <p-card>
+                                                    <p style="font-size:14px;">{{com.comment}}</p>
+                                                    <p style="font-size:14px;">{{com.createDate}}</p>
+
+                                                </p-card>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                    </p-accordionTab>
+                    </div>
+                </p-accordion> <br/>
+
+                <div class="col-12">
+                    <div class="field-radiobutton">
+                        <p-radioButton name="city" value="Los Angeles" [(ngModel)]="valRadioqual1"  id="city2"></p-radioButton>
+                        <label for="city2">Reject</label>
+                    </div>
+                </div>
+
+                <p-accordion>
+                    <p-accordionTab header="Rejection Reasons" *ngIf="valRadioqual1 == 'Los Angeles'">
+                        <p-messages></p-messages>
+                        <div class="col-12">
+                            <div class="field col-12 class= p-inputgroup" >
+                                <span class="p-float-label">
+                                    <p-multiSelect id="ultimat" class=" p-inputgroup" [options]="rejectionReason" [(ngModel)]="rejectionSelected" [autoDisplayFirst]="false"
+                                    optionLabel="description" optionValue="description" [dropdown]="true" selectedItemsLabel="{0} Reasons selected" [style]="{'margin-bottom':'5px'}"
+                                    [panelStyle]="{'margin-bottom':'5px'}"></p-multiSelect>
+                                    <label for="ultimat"  style="font-size:12px;">Select Reject Reasons</label>
+                                </span>
+                            </div>
+
+                            <div class="field col-12 md:col-4">
+                                <span class="p-float-label" *ngIf="rejectionSelected == 'Other'">
+                                    <input id="name" type="text" pInputText/>
+                                    <label for="inputtext">Capture Other Reason</label>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                         <div class="card-body" >
+                             <div class="row">
+                                 <div class="col-md-6">
+                                 <span class="p-float-label">
+                                     <input type="text" id="inputtext" disabled pInputText [(ngModel)]="comment_u_name">
+                                     <label for="inputtext">Name</label>
+                                 </span>
+                                 </div>
+                             </div>
+                             <br>
+                             <p>2022-08-05</p>
+                             <div class="row">
+                                 <div class="col-md-12">
+                                     <span class="p-float-label">
+                                         <textarea id="float-input" rows="3" cols="50" [(ngModel)]="comment_message" pInputTextarea></textarea>
+                                         <label for="float-input">Message</label>
+                                     </span>
+                                 </div>
+                             </div>
+                             <br>
+                             <p-toast position="top-center" key="tc2"></p-toast>
+                             <!--<button pButton pRipple class="continue-button" type="button"  label="Cancel"></button>-->
+                             <button pButton pRipple class="continue-button" type="button"  label="Submit" (click)="Addcomment1(); "></button>
+                             <ul class="widget-list" *ngFor="let com of rcomments">
+
+                                 <li class="flex align-items-center py-3">
+                                     <div class="person-item flex align-items-center">
+                                         <img style="margin-bottom: 70px;" src="assets/demo/images/avatar/user.png">
+                                         <div [ngClass]="{'ml-2': !app.isRTL, 'mr-2': app.isRTL}">
+                                             <div>{{com.name}}</div>
+                                             <small style="margin-bottom: 10px;" class="muted-text">{{com.email}}</small>
+                                             <br/>
+                                             <br/>
+                                             <p-card>
+                                                 <p style="font-size:14px;">{{com.comment}}</p>
+                                                 <p style="font-size:14px;">{{com.createDate}}</p>
+
+                                             </p-card>
+                                         </div>
+                                     </div>
+                                 </li>
+                             </ul>
+                         </div>
+                     </div>
+                    </p-accordionTab>
+                </p-accordion>
+                </div>
+            </p-tabPanel>
+
+
+            <p-tabPanel header="Header VI" *ngIf="isvisiblepanel">
+                <p-messages></p-messages>
+                <ng-template pTemplate = "header">
+                    <i class="pi pi-user"></i>
+                    <span>Approval</span>
+                </ng-template>
+                <div class="field col-12 md:col-12">
+                    <div class="field">
+                        <label for="ultiman" style="font-size:12px;">Select Recommendation (*)</label>
+                   </div>
+        
+                    <div class="col-12 row">
+                      <div class="field-radiobutton md:col-2">
+                          <p-radioButton name="city" value="SA" [(ngModel)]="valRadioqual2"  id="addressCheck"></p-radioButton>
+                          <label for="addressCheck">Approval</label>
+                      </div>
+                      <div class="field-radiobutton md:col-2">
+                          <p-radioButton name="city" value="LA" [(ngModel)]="valRadioqual2"  id="addressCheck1"></p-radioButton>
+                          <label for="addressCheck1">Reject</label>
+                      </div>
+                      <br/><br/>
+                   <div>
+                        <p-accordion>
+                        <p-accordionTab header="Approval" *ngIf="valRadioqual2 == 'SA'">
+                            <div class="card">
+                                <div class="card-header card-header-danger">
+                                <h5>Approval</h5>
+                            </div>
+                            <div class="card-body" >
+                                <div class="row">
+                                    <div class="col-md-6">
+                                    <span class="p-float-label">
+                                        <input type="text" id="inputtext" disabled pInputText [(ngModel)]="comment_u_name">
+                                        <label for="inputtext">Name</label>
+                                    </span>
+                                    </div>
+                                </div>
+                                <br>
+                                <p>2022-08-05</p>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <span class="p-float-label">
+                                            <textarea id="float-input" rows="3" cols="50" [(ngModel)]="comment_message" pInputTextarea></textarea>
+                                            <label for="float-input">Message</label>
+                                        </span>
+                                    </div>
+                                </div>
+            
+                                <br>
+                                <p-toast position="top-center" key="tc3"></p-toast>
+                                <!--<button pButton pRipple class="continue-button" type="button"  label="Cancel"></button>-->
+                                <button pButton pRipple class="continue-button" type="button"  label="Submit" (click)="Addcomment2(); "></button>
+                                <ul class="widget-list" *ngFor="let com of rcomments">
+            
+                                    <li class="flex align-items-center py-3">
+                                        <div class="person-item flex align-items-center">
+                                            <img style="margin-bottom: 70px;" src="assets/demo/images/avatar/user.png">
+                                            <div [ngClass]="{'ml-2': !app.isRTL, 'mr-2': app.isRTL}">
+                                                <div>{{com.name}}</div>
+                                                <small style="margin-bottom: 10px;" class="muted-text">{{com.email}}</small>
+                                                <br/>
+                                                <br/>
+                                                <p-card>
+                                                    <p style="font-size:14px;">{{com.comment}}</p>
+                                                    <p style="font-size:14px;">{{com.createDate}}</p>
+                                                </p-card>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            </div>
+                        </p-accordionTab>
+                    </p-accordion>
+                    <br>
+                    
+                    <br>
+                    <p-accordion>
+                            <p-accordionTab header="Rejection Reasons" *ngIf="valRadioqual2 == 'LA'">
+                                <p-messages></p-messages>
+                                <div class="col-12">
+                                    <div class="field col-12 p-inputgroup" >
+                                        <span class="p-float-label" >
+                                            <p-multiSelect id="ultimat" class=" p-inputgroup"  [options]="rejectionReason" [(ngModel)]="rejectionSelected" [autoDisplayFirst]="false"
+                                            optionLabel="description" optionValue="description" [style]="{'margin-bottom':'5px'}"
+                                            [panelStyle]="{'margin-bottom':'5px'}" [dropdown]="true" selectedItemsLabel="{0} Reasons selected" ></p-multiSelect>
+                                            <label for="ultimat" class=" p-inputgroup" style="font-size:12px;">Select Reject Reasons</label>
+                                        </span>
+                                    </div>
+            
+                                        <div class="field col-12 md:col-4" class="col-md-12">
+                                            <span class="p-float-label" *ngIf="rejectionSelected == 'Other'">
+                                                <input type="text" [(ngModel)]="reasonsRejectcapture"
+                                                pInputText/>
+                                                <label for="inputtext">Capture Reason</label>
+                                            </span>
+            
+                                        <!--{{reasonsRejectcapture | json}}-->
+                                    </div>
+                                </div>
+            
+                                <div class="card">
+                                    <div class="card-header card-header-danger">
+                                    <h5>Comment</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                        <span class="p-float-label">
+                                            <input type="text" id="inputtext" disabled pInputText [(ngModel)]="comment_u_name">
+                                            <label for="inputtext">Name</label>
+                                        </span>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <p>2022-08-05</p>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <span class="p-float-label">
+                                                <textarea id="float-input" rows="3" cols="50" [(ngModel)]="comment_message" pInputTextarea></textarea>
+                                                <label for="float-input">Message</label>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <p-toast position="top-center" key="tc4"></p-toast>
+                                    <!--<button pButton pRipple class="continue-button" type="button"  label="Cancel"></button>-->
+                                    <button pButton pRipple class="continue-button" type="button"  label="Comment" (click)="Addcomment()"></button>
+                                </div>
+                                <ul class="widget-list" *ngFor="let com of ucomments">
+                                    <li class="flex align-items-center py-3">
+                                        <div class="person-item flex align-items-center">
+                                            <img style="margin-bottom: 70px;" src="assets/demo/images/avatar/user.png">
+                                            <div [ngClass]="{'ml-2': !app.isRTL, 'mr-2': app.isRTL}">
+                                                <div>{{com.name}}</div>
+                                                <small style="margin-bottom: 10px;" class="muted-text">{{com.email}}</small>
+                                                <br/>
+                                                <small style="margin-bottom: 10px;" class="muted-text">{{com.createDate}}</small>
+                                                <br/>
+                                                <p-card>
+                                                    <p style="font-size:14px;">{{com.comment}}</p>
+                                                    <p style="font-size:14px;">{{com.createDate}}</p>
+                                                </p-card>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                                </div>
+                            </p-accordionTab>
+                    </p-accordion>
+                   </div>
+                   
+                    </div>
+                </div>
+            </p-tabPanel>
+
+            <!-- ////////////////////////////////////////////////////////////////////LIFE CYCLE TAB////////////////////////////////////////////// -->
+           <p-tabPanel header="Header IIIIi"> 
+                    <ng-template pTemplate = "header">
+                        <i class="pi pi-spinner"></i>
+                        <span>Life Cycle</span>
+                    </ng-template>
+                        <h5>Customized</h5>
+                        <!-- <p-timeline [value]="events1" align="alternate" styleClass="customized-timeline">
+                            <ng-template pTemplate="marker" let-rev>
+                                <span class="custom-marker shadow-2" [style.backgroundColor]="rev.color">
+                                    <i [ngClass]="rev.icon"></i>
+                                </span>
+                            </ng-template>
+                            <ng-template pTemplate="content" let-rev>
+                                <p-card [header]="rev.status" [subheader]="rev.date">
+                                    <img *ngIf="rev.image" [src]="'assets/showcase/images/demo/product/' + rev.image" [alt]="rev.name" width="200" class="shadow-2" />
+                                    <p>{{rev.data}}</p>
+                                    <button pButton label="Read more" class="p-button-text"></button>
+                                </p-card>
+                            </ng-template>
+                        </p-timeline> -->
+                        <p-timeline [value]="events3" align="alternate" styleClass="customized-timeline">
+                            <ng-template pTemplate="marker" let-rev>
+                                <span class="custom-marker shadow-2" [style.backgroundColor]="rev.color">
+                                    <i [ngClass]="rev.icon"></i>
+                                </span>
+                            </ng-template>
+                            <ng-template pTemplate="content" let-rev>
+                                <p-card [header]="rev.status" [subheader]="this.createDateLearner">
+                                    <img *ngIf="rev.image" [src]="'assets/showcase/images/demo/product/' + rev.image" [alt]="rev.name" width="200" class="shadow-2" />
+                                    <p>{{rev.data}}</p>
+                                    <button pButton label="Read more" class="p-button-text"></button>
+                                </p-card>
+                            </ng-template>
+                        </p-timeline>
+            </p-tabPanel>
+        </p-tabView>
+        <div class="col-12">
+            <div class="grid">
+                   <button pButton pRipple class="continue-button" type="button" label="Back"  (click)="goBack()"></button> 
+            </div>
+        </div>
+        </div>
+</div>

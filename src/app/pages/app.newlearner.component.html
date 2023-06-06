@@ -1,0 +1,1359 @@
+<body class="wizard-body">
+    <div class="wizard-wrapper">
+
+        <div class="wizard-content">
+            <div class="wizard-card">
+                <div class="wizard-card-header">
+                    <div class="grid col">
+                        <div class="col-2 tab register-tab" [ngClass]="{'selected-tab': activeTab == 'register'}" (click)="clickNext('register')">
+
+                            <div class="title">START APPLICATION</div>
+                        </div>
+                        <div class="col-2 tab tier-tab" [ngClass]="{'selected-tab': activeTab === 'tier'}" (click)="clickNext('tier')">
+
+                            <div class="title">NATIONALITY</div>
+                        </div>
+                        <div class="col-2 tab learner-tab" [ngClass]="{'selected-tab': activeTab === 'learner'}" (click)="clickNext('learner')">
+
+                            <div class="title">LEARNER DETAILS</div>
+                        </div>
+                        <div class="col-2 tab employmentstatus-tab" [ngClass]="{'selected-tab': activeTab === 'employmentstatus'}" (click)="clickNext('employmentstatus')">
+
+                            <div class="title">EMPLOYEMENT STATUS</div>
+                        </div>
+                        <div class="col-2 tab employerdetails-tab" [ngClass]="{'selected-tab': activeTab === 'employerdetails'}" (click)="clickNext('employerdetails')">
+
+                            <div class="title">EMPLOYER DETAILS</div>
+                        </div>
+
+                        <div class="col-2 tab provdetails-tab" [ngClass]="{'selected-tab': activeTab === 'provdetails'}" (click)="clickNext('provdetails')">
+
+                            <div class="title">PROVIDER DETAILS</div>
+                        </div>
+                        <div class="col-2 tab learnprogram-tab" [ngClass]="{'selected-tab': activeTab === 'learnprogram'}" (click)="clickNext('learnprogram')">
+
+                            <div class="title">LEARNING PROGRAM</div>
+                        </div>
+                        <div class="col-2 tab appdocuments-tab" [ngClass]="{'selected-tab': activeTab === 'appdocuments'}" (click)="clickNext('appdocuments')">
+
+                            <div class="title">APPLICATION DOCUMENTS</div>
+                        </div>
+                        <div class="tab-bar" [@tabBar]="activeTab==='register'?'register':activeTab==='tier'?'tier':'appdocuments'"></div>
+                    </div>
+                </div>
+                <div class="wizard-card-content register" [ngClass]="{'active-content': activeTab === 'register'}">
+                    <div class="col-12">
+                        <button pButton pRipple class="continue-button" type="button"  [disabled]="isDisabled"  label="START APPLICATION" (click)="StartRegistration()"></button>
+                    </div>
+                </div>
+                <div class="wizard-card-content tier" [ngClass]="{'active-content': activeTab === 'tier'}">
+                    <div class="grid">
+                        <div class="col-12 lg:col-6">
+                            <h1>NATIONALITY</h1>
+                            <div class="forms">
+                                <div class="field">
+                                    <span class="p-float-label">
+                                        <p-dropdown id="ultiman" optionLabel="label" optionValue="value"  [options]="dropdownOptions2" [(ngModel)]="selectDropdownOptionsNationality" [autoDisplayFirst]="false" (onChange)="onChange()"  [style]="{'margin-bottom':'5px'}"></p-dropdown>
+                                       <label for="ultiman" style="font-size:12px;">Nationality (*)</label>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="forms">
+                                <form [formGroup]="IdentificationFormGroupd" id="form1">
+                                <div class="p-inputgroup">
+                                <span class="p-float-label">
+                            <input id="name" formControlName="Identificationid" type="text" pInputText/>
+                            <label for="name">Identification (*)</label>
+                                </span>
+                            </div>
+                            <br/>
+                            <div class="col-md-12" style="color:red"
+                            *ngIf="IdentificationFormGroupd.get('Identificationid').hasError('required')">
+                            Identification is <strong>required</strong>
+                          </div>
+                        </form>
+                            </div>
+
+                        </div>
+                        <div class="col-12">
+                            <div id="Nation_html"></div>
+                            <br>
+                            <button pButton pRipple class="continue-button" type="button" [disabled]="isDisabledNat" label="SUBMIT NATIONALITY" (click)="submitdetails()"></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="wizard-card-content payment" [ngClass]="{'active-content': activeTab === 'payment'}">
+                    <div class="grid">
+                        <div class="col-12 lg:col-6">
+                            <h1>IDENTIFICATION</h1>
+
+
+
+                        </div>
+                        <div class="col-12">
+                            <div id="Identif_html"></div>
+                            <br>
+                            <button pButton pRipple class="continue-button" type="button" [disabled]="isDisabledIde" label="Submit Identification" (click)="submitIdentification()"></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="wizard-card-content learner" [ngClass]="{'active-content': activeTab === 'learner'}">
+                    <div class="grid">
+                        <p-accordion>
+                            <p-accordionTab header="Learner Details">
+                                <div class="col-12">
+                                    <h1>LEARNER</h1>
+                                    <div class="forms">
+                                        <form [formGroup]="LearnerdetailsnFormGroupd">
+                                        <div class="field">
+                                            <span class="p-float-label">
+                                                <p-dropdown id="ultimat" formControlName="tittle" [options]="dropdownOptions3" [(ngModel)]="selectDropdownOptions2" [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}"></p-dropdown>
+                                               <label for="ultimat" style="font-size:12px;">TItle (*)</label>
+                                            </span>
+                                        </div>
+                                        <div class="p-inputgroup">
+                                            <span class="p-float-label">
+                                              <input id="name" formControlName="name" type="text" pInputText/>
+                                              <label for="name">Name (*)</label>
+                                            </span>
+                                          </div>
+                                          <div class="p-inputgroup">
+                                            <span class="p-float-label">
+                                              <input id="name" formControlName="surname" type="text" pInputText/>
+                                              <label for="name">Surname (*)</label>
+                                            </span>
+                                          </div>
+                                          <div class="p-inputgroup">
+                                            <span class="p-float-label">
+                                              <input id="name" formControlName="midname" type="text" pInputText/>
+                                              <label for="name">Middle Name</label>
+                                            </span>
+                                          </div>
+                                          <div class="p-inputgroup">
+                                            <span class="p-float-label">
+                                              <input id="name" formControlName="cellnumber" type="text" pInputText/>
+                                              <label for="name">Cell Number (*)</label>
+                                            </span>
+                                          </div>
+                                          <div class="p-inputgroup">
+                                            <span class="p-float-label">
+                                              <input id="name" formControlName="telnumber" type="text" pInputText/>
+                                              <label for="name">Telephone Number (*)</label>
+                                            </span>
+                                          </div>
+                                          <div class="p-inputgroup">
+                                            <span class="p-float-label">
+                                              <input id="name" formControlName="primeemail" type="text" pInputText/>
+                                              <label for="name">Primary Email Address (*)</label>
+                                            </span>
+                                          </div>
+                                          <div class="p-inputgroup">
+                                            <span class="p-float-label">
+                                              <input id="name" formControlName="secondemail" type="text" pInputText/>
+                                              <label for="name">Secondary Email Address (*)</label>
+                                            </span>
+                                          </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="col-12 lg:col-6">
+                                    <h1>DETAILS</h1>
+                                    <div class="forms">
+                                        <form [formGroup]="LearnerdetailsnFormGroupd2">
+
+                                        <div class="calendar">
+                                            <span class="p-float-label">
+                                            <p-calendar id="button" formControlName="personalBirthday" [(ngModel)]="birthdate" [showIcon]="true" appendTo="body"></p-calendar>
+                                            <label for="birthdate" style="font-size:12px;">Date of Birth (*)</label>
+                                            </span>
+                                        </div>
+                                       </form>
+                                        <div class="field">
+                                            <span class="p-float-label">
+                                                <p-dropdown id="ultimat" [options]="dropdownOptions4" [(ngModel)]="selectDropdownOptions2" [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}"></p-dropdown>
+                                               <label for="ultimat" style="font-size:12px;">Gender  (*)</label>
+                                            </span>
+                                        </div>
+                                        <div class="field">
+                                            <span class="p-float-label">
+                                                <p-dropdown id="ultimat" [options]="dropdownOptions5" [(ngModel)]="selectDropdownOptions2" [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}"></p-dropdown>
+                                               <label for="ultimat" style="font-size:12px;">Equity/Race (*)</label>
+                                            </span>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>Do you have any disability?</label>
+                                            <div class="col-12">
+                                                <div class="">
+                                                    <div class="field-radiobutton">
+                                                        <p-radioButton name="city" value="Chicago" [(ngModel)]="valRadioqual1" id="city1"></p-radioButton>
+                                                        <label for="city1">Yes</label>
+                                                    </div>
+                                                </div>
+                                                <div class="">
+                                                    <div class="field-radiobutton">
+                                                        <p-radioButton name="city" value="Los Angeles" [(ngModel)]="valRadioqual1"  id="city2"></p-radioButton>
+                                                        <label for="city2">No</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                          </div>
+                                        <div class="field">
+                                            <span class="p-float-label">
+                                                <p-dropdown id="ultimat" [options]="disabilitystatus" optionLabel="description" optionValue="id"  [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}">'
+                                                </p-dropdown>
+                                               <label for="ultimat" style="font-size:12px;">Disability Type (*)</label>
+                                            </span>
+                                        </div>
+                                        <div class="field">
+                                            <span class="p-float-label">
+                                                <p-dropdown id="ultimat" [options]="disabilityrating" optionLabel="description" optionValue="id"  [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}"></p-dropdown>
+                                               <label for="ultimat" style="font-size:12px;">Disability Level (*)</label>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </p-accordionTab>
+                            <p-accordionTab header="Languages">
+                                <div class="col-12">
+                                    <div class="forms">
+                                        <h1>LANGUAGES</h1>
+                                        <div class="field">
+                                            <span class="p-float-label">
+                                                <p-dropdown id="ultimat" [options]="langlook" optionLabel="description" optionValue="id" [(ngModel)]="selectDropdownOptions2" [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}"></p-dropdown>
+                                               <label for="ultimat" style="font-size:12px;">Languages (*)</label>
+                                            </span>
+                                        </div>
+                                        <div class="field-checkbox">
+                                            <p-checkbox name="group1" value="New York" id="ny"></p-checkbox>
+                                            <label for="ny">Home Language</label>
+                                        </div>
+                                        <div class="field-checkbox">
+                                            <p-checkbox name="group1" value="New York" id="nys"></p-checkbox>
+                                            <label for="nys">Read</label>
+                                        </div>
+                                        <div class="field-checkbox">
+                                            <p-checkbox name="group1" value="New York" id="nyss"></p-checkbox>
+                                            <label for="nyss">Write</label>
+                                        </div>
+                                        <div class="field-checkbox">
+                                            <p-checkbox name="group1" value="New York" id="nysss"></p-checkbox>
+                                            <label for="nysss">Speak</label>
+                                        </div>
+                                    </div>
+                                    <div class="forms">
+                                        <h5>Languages</h5>
+                                        <p-table  rowGroupMode="subheader" groupRowsBy="representative.name" sortField="representative.name" sortMode="single" responsiveLayout="scroll" [scrollable]="true" scrollHeight="200px">
+                                            <ng-template pTemplate="header">
+                                                <tr>
+                                                    <th>Language</th>
+                                                    <th>Home Language</th>
+                                                    <th>Read</th>
+                                                    <th>Write</th>
+                                                    <th>Speak</th>
+                                                </tr>
+                                            </ng-template>
+                                            <ng-template pTemplate="body" let-customer let-rowIndex="rowIndex">
+
+                                            </ng-template>
+                                        </p-table>
+                                    </div>
+                                </div>
+                            </p-accordionTab>
+                            <p-accordionTab header="Learner Qualification">
+                                <div class="col-12">
+                                    <h1>LEARNER QUALIFICATION</h1>
+                                    <br>
+                                    <div class="forms">
+                                      <div class="col-12">
+                                        <label>Were you employed by your employer before concluding this form (*)</label>
+                                        <div class="col-12">
+                                            <div class="">
+                                                <div class="field-radiobutton">
+                                                    <p-radioButton name="city" value="Chicago" [(ngModel)]="valRadioqual1" id="city1"></p-radioButton>
+                                                    <label for="city1">Yes</label>
+                                                </div>
+                                            </div>
+                                            <div class="">
+                                                <div class="field-radiobutton">
+                                                    <p-radioButton name="city" value="Los Angeles" [(ngModel)]="valRadioqual1"  id="city2"></p-radioButton>
+                                                    <label for="city2">No</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                      </div>
+                                      <div class="field">
+                                        <span class="p-float-label">
+                                            <p-dropdown id="ultimat" [options]="dropdownOptions10" optionLabel="label" optionValue="valRadioqual1" [(ngModel)]="selectDropdownOptions22" [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}"></p-dropdown>
+
+                                           <label for="ultimat" style="font-size:12px;">Education level (*)</label>
+                                        </span>
+                                    </div>
+                                    <div class="field">
+                                        <span class="p-float-label">
+                                            <p-dropdown id="ultimat" [options]="prevschools" optionLabel="officialInstitutionName" optionValue="id" [(ngModel)]="selectDropdownOptions2" [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}"></p-dropdown>
+                                           <label for="ultimat" style="font-size:12px;">Last school attended Type (*)</label>
+                                        </span>
+                                    </div>
+                                    <form [formGroup]="QualificationFormGroupd">
+                                      <div class="calendar">
+                                        <span class="p-float-label">
+                                          <p-calendar id="button" formControlName="quallastschooldateyear" [(ngModel)]="birthdate"  [showIcon]="true" appendTo="body"></p-calendar>
+                                          <label for="birthdate" style="font-size:12px;">Last school year date (*)</label>
+                                        </span>
+                                      </div>
+                                    </form>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <br>
+                                    <div class="forms">
+                                        <div class="col-12">
+                                            <label>Were you party to a workplace-based learning program agreement at any time in the past before concluding this agreement? (*)</label>
+                                            <div class="col-12">
+                                                <div class="">
+                                                    <div class="field-radiobutton">
+                                                        <p-radioButton name="city" value="Chicago" [(ngModel)]="valRadioqual2" id="city1"></p-radioButton>
+                                                        <label for="city1">Yes</label>
+                                                    </div>
+                                                </div>
+                                                <div class="">
+                                                    <div class="field-radiobutton">
+                                                        <p-radioButton name="city" value="Los Angeles" [(ngModel)]="valRadioqual2"  id="city2"></p-radioButton>
+                                                        <label for="city2">No</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                         </div>
+                                         <div class="field">
+                                            <span class="p-float-label">
+                                                <p-dropdown id="ultimat" [options]="tvetfetqualification" optionLabel="description" optionValue="id" [(ngModel)]="selectDropdownOptions23" [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}"></p-dropdown>
+                                               <label for="ultimat" style="font-size:12px;">TVET/FET Qualification (*)</label>
+                                            </span>
+                                        </div>
+                                        <div class="field">
+                                            <span class="p-float-label">
+                                                <p-dropdown id="ultimat" [options]="ofocodes" optionLabel="ofoCode1" optionValue="id" [(ngModel)]="selectDropdownOptions24" [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}"></p-dropdown>
+                                               <label for="ultimat" style="font-size:12px;">OFO code (*)</label>
+                                            </span>
+                                        </div>
+                                         <div class="col-12">
+                                            <label>TVET Lecture (*)</label>
+                                            <div class="col-12">
+                                                <div class="">
+                                                    <div class="field-radiobutton">
+                                                        <p-radioButton name="city" value="Chicago" [(ngModel)]="valRadioqual3" id="city1"></p-radioButton>
+                                                        <label for="city1">Yes</label>
+                                                    </div>
+                                                </div>
+                                                <div class="">
+                                                    <div class="field-radiobutton">
+                                                        <p-radioButton name="city" value="Los Angeles" [(ngModel)]="valRadioqual3"  id="city2"></p-radioButton>
+                                                        <label for="city2">No</label>
+                                                    </div>
+                                                </div>
+                                              </div>
+                                         </div>
+                                    </div>
+                                </div>
+                            </p-accordionTab>
+                            <p-accordionTab header="Next Of Kin">
+                                <div class="col-12 lg:col-6">
+                                    <h1>NEXT OF KIN</h1>
+                                    <div class="forms">
+                                        <form [formGroup]="NextOfKinFormGroupd">
+                                        <div class="p-inputgroup">
+                                          <span class="p-float-label">
+                                            <input id="name" formControlName="nextofkin" type="text" pInputText/>
+                                            <label for="name">Next Of Kin Name (*)</label>
+                                          </span>
+                                        </div>
+                                        <div class="p-inputgroup">
+                                            <span class="p-float-label">
+                                              <input id="name" formControlName="nextofkinlastname" type="text" pInputText/>
+                                              <label for="name">Next Of Kin Last Name (*)</label>
+                                            </span>
+                                          </div>
+                                          <div class="p-inputgroup">
+                                            <span class="p-float-label">
+                                              <input id="name" formControlName="nextofkincelphone" type="text" pInputText/>
+                                              <label for="name">Cell Phone (*)</label>
+                                            </span>
+                                          </div>
+                                          <div class="p-inputgroup">
+                                            <span class="p-float-label">
+                                              <input id="name" formControlName="nextofkinemailaddress" type="text" pInputText/>
+                                              <label for="name">Email Address (*)</label>
+                                            </span>
+                                          </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </p-accordionTab>
+                            <p-accordionTab header="Home Address">
+                                <div class="col-12">
+                                    <h1>HOME ADDRESS</h1>
+                                    <div class="forms">
+                                        <form [formGroup]="HomeAddressFormGroupd">
+                                        <div class="p-inputgroup">
+                                          <span class="p-float-label">
+                                            <input id="name" formControlName="Address" type="text" pInputText/>
+                                            <label for="name">Address 1 (*)</label>
+                                          </span>
+                                        </div>
+                                        <div class="p-inputgroup">
+                                            <span class="p-float-label">
+                                              <input id="name"formControlName="Address1"  type="text" pInputText/>
+                                              <label for="name">Address 2 (*)</label>
+                                            </span>
+                                          </div>
+                                          <div class="p-inputgroup">
+                                            <span class="p-float-label">
+                                              <input id="name" formControlName="Address2" type="text" pInputText/>
+                                              <label for="name">Address 3</label>
+                                            </span>
+                                          </div>
+                                          <div class="p-inputgroup">
+                                            <span class="p-float-label">
+                                              <input id="name" formControlName="Postalcode" type="text" pInputText/>
+                                              <label for="name">Postal Code (*)</label>
+                                            </span>
+                                          </div>
+                                          <div class="field">
+                                            <span class="p-float-label">
+                                                <p-dropdown id="ultimat" [options]="statshome" optionLabel="description" optionValue="id"  [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}"></p-dropdown>
+                                               <label for="ultimat" style="font-size:12px;">Stats SA Area Code (*)</label>
+                                            </span>
+                                        </div>
+                                    </form>
+                                    </div>
+                                </div>
+                                <div class="col-12 lg:col-6">
+                                    <br>
+                                    <div class="forms">
+                                        <div class="field">
+                                            <span class="p-float-label">
+                                                <p-dropdown id="ultimat" [options]="provinces" optionLabel="provinceDesc" optionValue="id"  [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}"></p-dropdown>
+                                               <label for="ultimat" style="font-size:12px;">Pronvince  (*)</label>
+                                            </span>
+                                        </div>
+                                        <div class="field">
+                                            <span class="p-float-label">
+                                                <p-dropdown id="ultimat" [options]="municipalities" optionLabel="municipalityDesc" optionValue="id"  [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}"></p-dropdown>
+                                               <label for="ultimat" style="font-size:12px;">Municipality  (*)</label>
+                                            </span>
+                                        </div>
+                                        <div class="field">
+                                            <span class="p-float-label">
+                                                <p-dropdown id="ultimat" [options]="municipalities" optionLabel="code" optionValue="id"  [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}"></p-dropdown>
+                                               <label for="ultimat" style="font-size:12px;">Distritrict  (*)</label>
+                                            </span>
+                                        </div>
+                                        <div class="field">
+                                            <span class="p-float-label">
+                                                <p-dropdown id="ultimat" [options]="towns" optionLabel="description" optionValue="id"  [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}"></p-dropdown>
+                                               <label for="ultimat" style="font-size:12px;">Town  (*)</label>
+                                            </span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </p-accordionTab>
+                            <p-accordionTab header="Postal Address">
+                                <div class="col-12 lg:col-6">
+                                    <h1>POSTAL ADDRESS</h1>
+                                    <div class="forms">
+                                        <form [formGroup]="PostalAddressFormGroupd">
+                                        <div class="p-inputgroup">
+                                          <span class="p-float-label">
+                                            <input id="name" formControlName="Postal" type="text" pInputText/>
+                                            <label for="name">Address 1 (*)</label>
+                                          </span>
+                                        </div>
+                                        <div class="p-inputgroup">
+                                            <span class="p-float-label">
+                                              <input id="name" formControlName="Postal1" type="text" pInputText/>
+                                              <label for="name">Address 2 (*)</label>
+                                            </span>
+                                          </div>
+                                          <div class="p-inputgroup">
+                                            <span class="p-float-label">
+                                              <input id="name" formControlName="Postal2" type="text" pInputText/>
+                                              <label for="name">Address 3</label>
+                                            </span>
+                                          </div>
+                                          <div class="p-inputgroup">
+                                            <span class="p-float-label">
+                                              <input id="name" type="text" formControlName="Postal3" pInputText/>
+                                              <label for="name">Postal Code (*)</label>
+                                            </span>
+                                          </div>
+                                          <div class="field">
+                                            <span class="p-float-label">
+                                                <p-dropdown id="ultimat" [options]="statshome" optionLabel="description" optionValue="id" [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}"></p-dropdown>
+                                               <label for="ultimat" style="font-size:12px;">Stats SA Area Code (*)</label>
+                                            </span>
+                                        </div>
+                                    </form>
+                                    </div>
+                                </div>
+                                <div class="col-12 lg:col-6">
+                                    <br>
+                                    <div class="forms">
+                                        <div class="field">
+                                            <span class="p-float-label">
+                                                <p-dropdown id="ultimat" [options]="pprovinces" optionLabel="provinceDesc" optionValue="id"  [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}"></p-dropdown>
+                                               <label for="ultimat" style="font-size:12px;">Pronvince  (*)</label>
+                                            </span>
+                                        </div>
+                                        <div class="field">
+                                            <span class="p-float-label">
+                                                <p-dropdown id="ultimat" [options]="pmunicipalities" optionLabel="municipalityDesc" optionValue="id" [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}"></p-dropdown>
+                                               <label for="ultimat" style="font-size:12px;">Municipality  (*)</label>
+                                            </span>
+                                        </div>
+                                        <div class="field">
+                                            <span class="p-float-label">
+                                                <p-dropdown id="ultimat" [options]="pmunicipalities" optionLabel="code" optionValue="id" [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}"></p-dropdown>
+                                               <label for="ultimat" style="font-size:12px;">Distritrict  (*)</label>
+                                            </span>
+                                        </div>
+                                        <div class="field">
+                                            <span class="p-float-label">
+                                                <p-dropdown id="ultimat" [options]="ptowns" optionLabel="description" optionValue="id" [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}"></p-dropdown>
+                                               <label for="ultimat" style="font-size:12px;">Town  (*)</label>
+                                            </span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </p-accordionTab>
+                        </p-accordion>
+                        <div class="col-12">
+                            <div id="Learn_html"></div>
+                            <br>
+                            <button pButton pRipple class="continue-button"  type="button" label="Submit Learner Details" (click)="submitLeanerDetails()"></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="wizard-card-content languages" [ngClass]="{'active-content': activeTab === 'languages'}">
+                    <div class="grid">
+
+                        <div class="col-12">
+                            <div id="lang_html"></div>
+                            <br>
+                            <button pButton pRipple class="continue-button" [disabled]="isDisabledLan"  type="button" label="Submit Language" (click)="submitlanguage()"></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="wizard-card-content learnqual" [ngClass]="{'active-content': activeTab === 'learnqual'}">
+                    <div class="grid">
+
+                        <div class="col-12">
+                            <div id="qualification_html"></div>
+                            <br>
+                            <button pButton pRipple class="continue-button" [disabled]="isDisabledqual"  type="button" label="Submit Qualification" (click)="submitQualification()"></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="wizard-card-content nextofkin" [ngClass]="{'active-content': activeTab === 'nextofkin'}">
+                    <div class="grid">
+
+                        <div class="col-12">
+                            <div id="kin_html"></div>
+                            <br>
+                            <button pButton pRipple class="continue-button"  [disabled]="NextOfKinFormGroupd.invalid"   type="button" label="Submit Next of Kin" (click)="submitnextofkin()"></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="wizard-card-content homeaddress" [ngClass]="{'active-content': activeTab === 'homeaddress'}">
+                    <div class="grid">
+
+                        <div class="col-12">
+                            <div id="home_html"></div>
+                            <br>
+                            <button pButton pRipple class="continue-button"    type="button" label="Submit Home Adrress" (click)="submitHomeAdrress()"></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="wizard-card-content postaladdress" [ngClass]="{'active-content': activeTab === 'postaladdress'}">
+                    <div class="grid">
+
+                        <div class="col-12">
+                            <div id="post_html"></div>
+                            <br>
+                            <button pButton pRipple class="continue-button"   [disabled]="PostalAddressFormGroupd.invalid"   type="button" label="Submit Postal Adrress" (click)="submitPostalAdrress()"></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="wizard-card-content employmentstatus" [ngClass]="{'active-content': activeTab === 'employmentstatus'}">
+                    <div class="grid">
+                        <div class="col-12 lg:col-6">
+                            <h1>EMPLOYMENT STATUS</h1>
+                            <br/>
+                            <label>Employment status (*)</label>
+                            <div class="forms">
+                                <br/>
+                                <div class="">
+                                    <div class="field-radiobutton">
+                                        <p-radioButton name="city" value="Chicago" [(ngModel)]="valRadio" id="city1"></p-radioButton>
+                                        <label for="city1">Employed</label>
+                                    </div>
+                                </div>
+                                <div class="">
+                                    <div class="field-radiobutton">
+                                        <p-radioButton name="city" value="Los Angeles" [(ngModel)]="valRadio"  id="city2"></p-radioButton>
+                                        <label for="city2">Unemployed</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 lg:col-6">
+                            <h1>CONTRACT OF EMPLOYEMENT</h1>
+                            <br/>
+                            <div class="col-12">
+                                <label>Is the learner's contract of employment specific to the purpose of aggreement? (*)</label>
+                              <div class="col-12">
+                                <div class="">
+                                    <div class="field-radiobutton">
+                                        <p-radioButton name="city" value="Chicago" [(ngModel)]="valRadios" id="city1"></p-radioButton>
+                                        <label for="city1">Yes</label>
+                                    </div>
+                                </div>
+                                <div class="">
+                                    <div class="field-radiobutton">
+                                        <p-radioButton name="city" value="Los Angeles" [(ngModel)]="valRadios"  id="city2"></p-radioButton>
+                                        <label for="city2">No</label>
+                                    </div>
+                                </div>
+				              </div>
+                            </div>
+                            <div class="col-12">
+                                <label>Does the learner have a copy of the contract of employment? (*)</label>
+                              <div class="col-12">
+                                <div class="">
+                                    <div class="field-radiobutton">
+                                        <p-radioButton name="city" value="Chicago" [(ngModel)]="valRadioss" id="city1"></p-radioButton>
+                                        <label for="city1">Yes</label>
+                                    </div>
+                                </div>
+                                <div class="">
+                                    <div class="field-radiobutton">
+                                        <p-radioButton name="city" value="Los Angeles" [(ngModel)]="valRadioss"  id="city2"></p-radioButton>
+                                        <label for="city2">No</label>
+                                    </div>
+                                </div>
+				              </div>
+                            </div>
+                        </div>
+                        <div class="grid">
+                    </div>
+                        <div class="col-12">
+                            <div id="empstatus_html"></div>
+                            <br>
+                            <button pButton pRipple class="continue-button" [disabled]="isDisabledempstatus"  type="button" label="Submit Employement Status" (click)="submitEmployementStatus()"></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="wizard-card-content contofemployemnent" [ngClass]="{'active-content': activeTab === 'contofemployemnent'}">
+                    <div class="grid">
+
+
+                        <div class="col-12">
+                            <div id="ContractofEmployment_html"></div>
+                            <br>
+                            <button pButton pRipple class="continue-button" [disabled]="isDisableContract"  type="button" label="Submit Contract of Employment" (click)="submitContractofEmployment()"></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="wizard-card-content employerdetails" [ngClass]="{'active-content': activeTab === 'employerdetails'}">
+                    <div class="grid">
+                    <p-accordion>
+                        <p-accordionTab header="Employer Details">
+                                <div class="col-12">
+                                    <form [formGroup]="EmployerFormGroup">
+                                    <div class="forms">
+                                        <div class="p-inputgroup">
+                                            <span class="p-float-label">
+                                              <input id="name"  formControlName="employername" type="text" pInputText/>
+                                              <label for="name">Employer name (*)</label>
+                                            </span>
+                                          </div>
+                                          <div class="p-inputgroup">
+                                              <span class="p-float-label">
+                                                <input id="name" formControlName="trainingname" type="text" pInputText/>
+                                                <label for="name">Trading Name (*)</label>
+                                              </span>
+                                            </div>
+                                            <div class="p-inputgroup">
+                                              <span class="p-float-label">
+                                                <input id="name" formControlName="emptemail" type="text" pInputText/>
+                                                <label for="name">Email Address (*)</label>
+                                              </span>
+                                            </div>
+                                            <div class="p-inputgroup">
+                                              <span class="p-float-label">
+                                                <input id="name" formControlName="emptelnumber" type="text" pInputText/>
+                                                <label for="name">Telephone Number (*)</label>
+                                              </span>
+                                            </div>
+                                            <div class="p-inputgroup">
+                                              <span class="p-float-label">
+                                                <input id="name" formControlName="empfaxnumber" type="text" pInputText/>
+                                                <label for="name">Fax Number (*)</label>
+                                              </span>
+                                            </div>
+                                    </div>
+                                </form>
+                                </div>
+                                <div class="col-12">
+                                    <form [formGroup]="EmployerFormGroup">
+                                    <div class="forms">
+                                        <div class="p-inputgroup">
+                                            <span class="p-float-label">
+                                              <input id="name" formControlName="emregnumber" type="text" pInputText/>
+                                              <label for="name">Employer Registration Number (*)</label>
+                                            </span>
+                                          </div>
+                                        <div class="p-inputgroup">
+                                            <span class="p-float-label">
+                                              <input id="name" formControlName="levynumber" type="text" pInputText/>
+                                              <label for="name">Levy Number (*)</label>
+                                            </span>
+                                          </div>
+                                          <div class="p-inputgroup">
+                                              <span class="p-float-label">
+                                                <input id="name" formControlName="numofemployee" type="text" pInputText/>
+                                                <label for="name">Number of Employee (*)</label>
+                                              </span>
+                                            </div>
+                                            <div class="p-inputgroup">
+                                              <span class="p-float-label">
+                                                <input id="name" formControlName="siccode" type="text" pInputText/>
+                                                <label for="name">SIC Code (*)</label>
+                                              </span>
+                                            </div>
+                                            <div class="field">
+                                                <span class="p-float-label">
+                                                    <p-dropdown id="ultimat" [options]="dropdownOptions3" [(ngModel)]="selectDropdownOptions2" [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}"></p-dropdown>
+                                                   <label for="ultimat" style="font-size:12px;">Organization Type (*)</label>
+                                                </span>
+                                            </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </p-accordionTab>
+                        <p-accordionTab header="Employer Contact Person">
+                                <div class="col-12">
+                                    <h1>EMPLOYER CONTACT PERSON</h1>
+                                    <form [formGroup]="personofcontacFormGroup">
+                                    <div class="forms">
+                                        <div class="field">
+                                            <span class="p-float-label">
+                                                <p-dropdown id="ultimat" [options]="dropdownOptions3" [(ngModel)]="selectDropdownOptions2" [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}"></p-dropdown>
+                                               <label for="ultimat" style="font-size:12px;">TItle (*)</label>
+                                            </span>
+                                        </div>
+                                        <div class="p-inputgroup">
+                                            <span class="p-float-label">
+                                              <input id="name"  formControlName="personname" type="text" pInputText/>
+                                              <label for="name">First Name (*)</label>
+                                            </span>
+                                          </div>
+                                          <div class="p-inputgroup">
+                                              <span class="p-float-label">
+                                                <input id="name" formControlName="personlastname" type="text" pInputText/>
+                                                <label for="name">Last Name (*)</label>
+                                              </span>
+                                            </div>
+                                            <div class="p-inputgroup">
+                                              <span class="p-float-label">
+                                                <input id="name" formControlName="personidnumber" type="text" pInputText/>
+                                                <label for="name">RSA Identification Number (*)</label>
+                                              </span>
+                                            </div>
+                                            <div class="p-inputgroup">
+                                              <span class="p-float-label">
+                                                <input id="name" formControlName="personemail" type="text" pInputText/>
+                                                <label for="name">Email Address (*)</label>
+                                              </span>
+                                            </div>
+
+                                    </div>
+                                </form>
+                                </div>
+                                <div class="col-12">
+                                    <br>
+                                    <form [formGroup]="personofcontacFormGroup">
+                                    <div class="forms">
+                                        <div class="p-inputgroup">
+                                            <span class="p-float-label">
+                                              <input id="name" formControlName="personcellnumber" type="text" pInputText/>
+                                              <label for="name">Cell Number (*)</label>
+                                            </span>
+                                          </div>
+                                          <div class="p-inputgroup">
+                                            <span class="p-float-label">
+                                              <input id="name" formControlName="persontelnumber" type="text" pInputText/>
+                                              <label for="name">Tel Number (*)</label>
+                                            </span>
+                                          </div>
+                                        <div class="p-inputgroup">
+                                            <span class="p-float-label">
+                                              <input id="name" formControlName="persontaxnumber" type="text" pInputText/>
+                                              <label for="name">Fax Number (*)</label>
+                                            </span>
+                                          </div>
+                                          <div class="p-inputgroup">
+                                              <span class="p-float-label">
+                                                <input id="name" formControlName="pDesignation" type="text" pInputText/>
+                                                <label for="name">Designation </label>
+                                              </span>
+                                            </div>
+
+                                    </div>
+                                </form>
+                                </div>
+                        </p-accordionTab>
+                        <p-accordionTab header="Employer Physical Address">
+                                <div class="col-12">
+                                    <h1>PHYSICAL ADDRESS</h1>
+                                    <div class="forms">
+                                        <form [formGroup]="EmployerphysicaladdressFormGroupd">
+                                        <div class="p-inputgroup">
+                                          <span class="p-float-label">
+                                            <input id="name" formControlName="eAddress" type="text" pInputText/>
+                                            <label for="name">Address 1 (*)</label>
+                                          </span>
+                                        </div>
+                                        <div class="p-inputgroup">
+                                            <span class="p-float-label">
+                                              <input id="name" formControlName="eAddress1" type="text" pInputText/>
+                                              <label for="name">Address 2 (*)</label>
+                                            </span>
+                                          </div>
+                                          <div class="p-inputgroup">
+                                            <span class="p-float-label">
+                                              <input id="name" formControlName="eAddress2"  type="text" pInputText/>
+                                              <label for="name">Address 3</label>
+                                            </span>
+                                          </div>
+                                          <div class="p-inputgroup">
+                                            <span class="p-float-label">
+                                              <input id="name" formControlName="ePostalcode"  type="text" pInputText/>
+                                              <label for="name">Postal Code (*)</label>
+                                            </span>
+                                          </div>
+                                        </form>
+                                          <div class="field">
+                                            <span class="p-float-label">
+                                                <p-dropdown id="ultimat"  [options]="statshome" optionLabel="description" optionValue="id" [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}"></p-dropdown>
+                                               <label for="ultimat" style="font-size:12px;">Stats SA Area Code (*)</label>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-12">
+                                    <br>
+                                    <div class="forms">
+                                        <div class="field">
+                                            <span class="p-float-label">
+                                                <p-dropdown id="ultimat" [options]="physicalprovinces" optionLabel="provinceDesc" optionValue="id"  [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}"></p-dropdown>
+                                               <label for="ultimat" style="font-size:12px;">Pronvince  (*)</label>
+                                            </span>
+                                        </div>
+                                        <div class="field">
+                                            <span class="p-float-label">
+                                                <p-dropdown id="ultimat"[options]="physicalmunicipalities" optionLabel="municipalityDesc" optionValue="id"   [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}"></p-dropdown>
+                                               <label for="ultimat" style="font-size:12px;">Municipality  (*)</label>
+                                            </span>
+                                        </div>
+                                        <div class="field">
+                                            <span class="p-float-label">
+                                                <p-dropdown id="ultimat" [options]="physicalmunicipalities" optionLabel="code" optionValue="id"   [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}"></p-dropdown>
+                                               <label for="ultimat" style="font-size:12px;">Distritrict  (*)</label>
+                                            </span>
+                                        </div>
+                                        <div class="field">
+                                            <span class="p-float-label">
+                                                <p-dropdown id="ultimat" [options]="physicaltowns" optionLabel="description" optionValue="id"  [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}"></p-dropdown>
+                                               <label for="ultimat" style="font-size:12px;">Town  (*)</label>
+                                            </span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                        </p-accordionTab>
+                        <p-accordionTab header="Employer Postal Address">
+
+                                <div class="col-12">
+                                    <h1>POSTAL ADDRESS</h1>
+                                    <div class="forms">
+                                        <form [formGroup]="EmployerPostaladdressFormGroupd">
+                                        <div class="p-inputgroup">
+                                          <span class="p-float-label">
+                                            <input id="name"  formControlName="epAddress" type="text" pInputText/>
+                                            <label for="name">Address 1 (*)</label>
+                                          </span>
+                                        </div>
+                                        <div class="p-inputgroup">
+                                            <span class="p-float-label">
+                                              <input id="name" formControlName="epAddress1" type="text" pInputText/>
+                                              <label for="name">Address 2 (*)</label>
+                                            </span>
+                                          </div>
+                                          <div class="p-inputgroup">
+                                            <span class="p-float-label">
+                                              <input id="name" formControlName="epAddress2" type="text" pInputText/>
+                                              <label for="name">Address 3</label>
+                                            </span>
+                                          </div>
+                                          <div class="p-inputgroup">
+                                            <span class="p-float-label">
+                                              <input id="name" formControlName="epPostalcode" type="text" pInputText/>
+                                              <label for="name">Postal Code (*)</label>
+                                            </span>
+                                          </div>
+                                        </form>
+                                          <div class="field">
+                                            <span class="p-float-label">
+                                                <p-dropdown id="ultimat" optionValue="id"  [options]="statshome" optionLabel="description" optionValue="id" [(ngModel)]="selectDropdownOptions2" [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}"></p-dropdown>
+                                               <label for="ultimat" style="font-size:12px;">Stats SA Area Code (*)</label>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <br>
+                                    <div class="forms">
+                                        <div class="field">
+                                            <span class="p-float-label">
+                                                <p-dropdown id="ultimat" [options]="empostalprovinces" optionValue="id" optionLabel="provinceDesc" [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}"></p-dropdown>
+                                               <label for="ultimat" style="font-size:12px;">Pronvince  (*)</label>
+                                            </span>
+                                        </div>
+                                        <div class="field">
+                                            <span class="p-float-label">
+                                                <p-dropdown id="ultimat" [options]="empostalmunicipalities" optionValue="id" optionLabel="municipalityDesc" [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}"></p-dropdown>
+                                               <label for="ultimat" style="font-size:12px;">Municipality  (*)</label>
+                                            </span>
+                                        </div>
+                                        <div class="field">
+                                            <span class="p-float-label">
+                                                <p-dropdown id="ultimat" [options]="empostalmunicipalities" optionValue="id"  optionLabel="code" [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}"></p-dropdown>
+                                               <label for="ultimat" style="font-size:12px;">Distritrict  (*)</label>
+                                            </span>
+                                        </div>
+                                        <div class="field">
+                                            <span class="p-float-label">
+                                                <p-dropdown id="ultimat" [options]="empostaltowns" optionValue="id" optionLabel="description" [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}"></p-dropdown>
+                                               <label for="ultimat" style="font-size:12px;">Town  (*)</label>
+                                            </span>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                        </p-accordionTab>
+                    </p-accordion>
+
+                        <div class="col-12">
+                            <div id="employerdet_html"></div>
+                            <br>
+                            <button pButton pRipple class="continue-button" [disabled]="isDisabledemdet"  type="button" label="Submit Employer Details" (click)="submitEmployerDetails()"></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="wizard-card-content employercontperson" [ngClass]="{'active-content': activeTab === 'employercontperson'}">
+                    <div class="grid">
+
+                        <div class="col-12">
+                            <div id="ContactPerson_html"></div>
+                            <br>
+                            <button pButton pRipple class="continue-button"  type="button" label="Submit Employer Contact Person" (click)="submitEmployerContactPerson()"></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="wizard-card-content empphysicaladdress" [ngClass]="{'active-content': activeTab === 'empphysicaladdress'}">
+                    <div class="grid">
+                        <div class="col-12">
+                            <div id="employerphysicaladdress_html"></div>
+                            <br>
+                            <button pButton pRipple class="continue-button" [disabled]="isDisabledempphysical"  type="button" label="Submit Employer Physical Adrress" (click)="submitEmployerContactPerson()"></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="wizard-card-content empostaladdress" [ngClass]="{'active-content': activeTab === 'empostaladdress'}">
+                    <div class="grid">
+                        <div class="col-12 lg:col-6">
+                            <h1>POSTAL ADDRESS</h1>
+                            <div class="forms">
+                                <form [formGroup]="EmployerPostaladdressFormGroupd">
+                                <div class="p-inputgroup">
+                                  <span class="p-float-label">
+                                    <input id="name"  formControlName="epAddress" type="text" pInputText/>
+                                    <label for="name">Address 1 (*)</label>
+                                  </span>
+                                </div>
+                                <div class="p-inputgroup">
+                                    <span class="p-float-label">
+                                      <input id="name" formControlName="epAddress1" type="text" pInputText/>
+                                      <label for="name">Address 2 (*)</label>
+                                    </span>
+                                  </div>
+                                  <div class="p-inputgroup">
+                                    <span class="p-float-label">
+                                      <input id="name" formControlName="epAddress2" type="text" pInputText/>
+                                      <label for="name">Address 3</label>
+                                    </span>
+                                  </div>
+                                  <div class="p-inputgroup">
+                                    <span class="p-float-label">
+                                      <input id="name" formControlName="epPostalcode" type="text" pInputText/>
+                                      <label for="name">Postal Code (*)</label>
+                                    </span>
+                                  </div>
+                                </form>
+                                  <div class="field">
+                                    <span class="p-float-label">
+                                        <p-dropdown id="ultimat" optionValue="id"  [options]="statshome" optionLabel="description" optionValue="id" [(ngModel)]="selectDropdownOptions2" [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}"></p-dropdown>
+                                       <label for="ultimat" style="font-size:12px;">Stats SA Area Code (*)</label>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 lg:col-6">
+                            <br>
+                            <div class="forms">
+                                <div class="field">
+                                    <span class="p-float-label">
+                                        <p-dropdown id="ultimat" [options]="empostalprovinces" optionValue="id" optionLabel="provinceDesc" [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}"></p-dropdown>
+                                       <label for="ultimat" style="font-size:12px;">Pronvince  (*)</label>
+                                    </span>
+                                </div>
+                                <div class="field">
+                                    <span class="p-float-label">
+                                        <p-dropdown id="ultimat" [options]="empostalmunicipalities" optionValue="id" optionLabel="municipalityDesc" [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}"></p-dropdown>
+                                       <label for="ultimat" style="font-size:12px;">Municipality  (*)</label>
+                                    </span>
+                                </div>
+                                <div class="field">
+                                    <span class="p-float-label">
+                                        <p-dropdown id="ultimat" [options]="empostalmunicipalities" optionValue="id"  optionLabel="code" [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}"></p-dropdown>
+                                       <label for="ultimat" style="font-size:12px;">Distritrict  (*)</label>
+                                    </span>
+                                </div>
+                                <div class="field">
+                                    <span class="p-float-label">
+                                        <p-dropdown id="ultimat" [options]="empostaltowns" optionValue="id" optionLabel="description" [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}"></p-dropdown>
+                                       <label for="ultimat" style="font-size:12px;">Town  (*)</label>
+                                    </span>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div id="employerpostaladdress_html"></div>
+                            <br>
+                            <button pButton pRipple class="continue-button" [disabled]="isDisabledemppostal"  type="button" label="Submit Employer Postal Adrress" (click)="submitEmployerPostalAdrress()"></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="wizard-card-content provdetails" [ngClass]="{'active-content': activeTab === 'provdetails'}">
+                    <div class="grid">
+                        <div class="col-12 lg:col-6">
+                            <h1>PROVIDER DETAILS</h1>
+                            <form [formGroup]="ProviDetailsFormGroup">
+                            <div class="forms">
+                                <div class="p-inputgroup">
+                                    <span class="p-float-label">
+                                      <input id="name" formControlName="lprovidername" type="text" pInputText/>
+                                      <label for="name">Provider name (*)</label>
+                                    </span>
+                                  </div>
+                                  <div class="p-inputgroup">
+                                      <span class="p-float-label">
+                                        <input id="name" formControlName="lfirstname" type="text" pInputText/>
+                                        <label for="name">Contact Person First Name (*)</label>
+                                      </span>
+                                    </div>
+                                    <div class="p-inputgroup">
+                                      <span class="p-float-label">
+                                        <input id="name" formControlName="llastname" type="text" pInputText/>
+                                        <label for="name">Contact Person Last Name (*)</label>
+                                      </span>
+                                    </div>
+                                    <div class="p-inputgroup">
+                                      <span class="p-float-label">
+                                        <input id="name" formControlName="lemail" type="text" pInputText/>
+                                        <label for="name">Contact Person Email (*)</label>
+                                      </span>
+                                    </div>
+                                    <div class="p-inputgroup">
+                                        <span class="p-float-label">
+                                          <input id="name" formControlName="lcellnumber" type="text" pInputText/>
+                                          <label for="name">Cell Number (*)</label>
+                                        </span>
+                                      </div>
+                                      <div class="p-inputgroup">
+                                        <span class="p-float-label">
+                                          <input id="name" formControlName="ltellnumber" type="text" pInputText/>
+                                          <label for="name">Tel Number (*)</label>
+                                        </span>
+                                    </div>
+                                    <div class="p-inputgroup">
+                                        <span class="p-float-label">
+                                          <input id="name" formControlName="lfaxnumber"  type="text" pInputText/>
+                                          <label for="name">Fax Number (*)</label>
+                                        </span>
+                                      </div>
+                            </div>
+                        </form>
+                        </div>
+                        <div class="col-12 lg:col-6">
+                            <br>
+                            <form [formGroup]="ProviDetailsFormGroup">
+                            <div class="forms">
+                                <div class="p-inputgroup">
+                                    <span class="p-float-label">
+                                      <input id="name" formControlName="lsiccode" type="text" pInputText/>
+                                      <label for="name">SIC Code (*)</label>
+                                    </span>
+                                </div>
+                                <div class="calendar">
+                                   <span class="p-float-label">
+                                    <p-calendar id="button" formControlName="lreviewdate" [(ngModel)]="birthdate" [showIcon]="true" appendTo="body"></p-calendar>
+                                   <label for="button">Review Date (*)</label>
+                                   </span>
+                                </div>
+                                  <div class="p-inputgroup">
+                                    <span class="p-float-label">
+                                      <input id="name"  formControlName="laccnumber"  type="text" pInputText/>
+                                      <label for="name">Accreditation Number (*)</label>
+                                    </span>
+                                  </div>
+                                  <div class="field">
+                                    <span class="p-float-label">
+                                        <p-dropdown id="ultimat" formControlName="lregistereat" [options]="dropdownOptions14"  [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}"></p-dropdown>
+                                       <label for="ultimat" style="font-size:12px;">SETA Registered AT  (*)</label>
+                                    </span>
+                                </div>
+                                <div class="field">
+                                    <span class="p-float-label">
+                                        <p-dropdown id="ultimat" [options]="dropdownOptions15"  optionValue="value" optionLabel="label"  [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}"></p-dropdown>
+                                       <label for="ultimat" style="font-size:12px;">Accreditation Status (*)</label>
+                                    </span>
+                                </div>
+                                <div class="field">
+                                    <span class="p-float-label">
+                                        <p-dropdown id="ultimat" [options]="dropdownOptions16" optionValue="value" optionLabel="label" [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}"></p-dropdown>
+                                       <label for="ultimat" style="font-size:12px;">AccreditationType (*)</label>
+                                    </span>
+                                </div>
+                            </div>
+                        </form>
+                        </div>
+                        <div class="col-12">
+                            <div id="providerdetails_html"></div>
+                            <br>
+                            <button pButton pRipple class="continue-button" [disabled]="isDisabledprovider"  type="button" label="Submit Provider Details" (click)="submitProviderDetails()"></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="wizard-card-content learnprogram" [ngClass]="{'active-content': activeTab === 'learnprogram'}">
+                    <div class="grid">
+                        <div class="col-12 lg:col-6">
+                            <h1>LEARNING PROGRAM</h1>
+                            <form [formGroup]="LearnerqualificationFormGroupd">
+                            <div class="forms">
+                                <div class="field">
+                                    <span class="p-float-label">
+                                        <p-dropdown id="ultimat" [options]="dropdownOptions18"  optionValue="value" optionLabel="label" [autoDisplayFirst]="false"  [style]="{'margin-bottom':'0px'}"></p-dropdown>
+                                       <label for="ultimat" style="font-size:12px;">Program Type (*)</label>
+                                    </span>
+                                </div>
+                                <div class="field">
+                                    <span class="p-float-label">
+                                        <p-dropdown id="ultimat" [options]="dropdownOptions15"  optionValue="value" optionLabel="label" [autoDisplayFirst]="false"  [style]="{'margin-bottom':'0px'}"></p-dropdown>
+                                       <label for="ultimat" style="font-size:12px;">Pivotal/Non-pivotal training (*)</label>
+                                    </span>
+                                </div>
+                                  <div class="calendar">
+                                    <span class="p-float-label">
+                                      <p-calendar id="button"  formControlName="coomencedate"  [(ngModel)]="birthdate" [showIcon]="true" appendTo="body"></p-calendar>
+                                      <label for="button">Enrolment Date (*)</label>
+                                     </span>
+                                  </div>
+                                  <br/>
+                                  <div class="col-12 lg:col-6">
+                                  <div class="forms">
+                                    <label>NQF Aligned? (*)</label>
+
+                                  <div class="col-12">
+                                    <div class="">
+                                        <div class="field-radiobutton">
+                                            <p-radioButton name="city" value="Chicago" [(ngModel)]="valRadionqf1" id="city1"></p-radioButton>
+                                            <label for="city1">Yes</label>
+                                        </div>
+                                    </div>
+                                    <div class="">
+                                        <div class="field-radiobutton">
+                                            <p-radioButton name="city" value="Los Angeles" [(ngModel)]="valRadionqf1"  id="city2"></p-radioButton>
+                                            <label for="city2">No</label>
+                                        </div>
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                            </div>
+                        </form>
+                        </div>
+                        <div class="col-12 lg:col-6">
+                            <br>
+                            <div class="forms">
+                                <form [formGroup]="LearnerqualificationFormGroupd">
+                                <div class="field">
+                                    <span class="p-float-label">
+                                        <p-dropdown id="ultimat" [options]="learnership"  optionValue="id" optionLabel="description"  [(ngModel)]="selectedLearningprogram" (onChange)="onChanges()" [autoDisplayFirst]="false"  [style]="{'margin-bottom':'0px'}"></p-dropdown>
+                                       <label for="ultimat" style="font-size:12px;">Learnership Qualification (*)</label>
+                                    </span>
+                                </div>
+                                <div class="p-inputgroup">
+                                    <span class="p-float-label">
+                                      <input id="name" formControlName="saqaid" [(ngModel)]="qaulificationidmod"  disabled  type="text" pInputText/>
+                                      <label for="name">SAQA ID (*)</label>
+                                    </span>
+                                  </div>
+                                  <div class="calendar">
+                                    <span class="p-float-label">
+                                      <p-calendar id="button" formControlName="completedate" [(ngModel)]="birthdate" [showIcon]="true" appendTo="body"></p-calendar>
+                                      <label for="button">Completion Date (*)</label>
+                                     </span>
+                                  </div>
+                                  <div class="col-12 lg:col-6">
+                                  <br/>
+                                  <div class="forms">
+                                    <label>Is the learner merseta funded? (*)</label>
+
+                                  <div class="col-12">
+                                    <div class="">
+                                        <div class="field-radiobutton">
+                                            <p-radioButton name="city" value="Chicago" [(ngModel)]="valRadionqf2" id="city1"></p-radioButton>
+                                            <label for="city1">Yes</label>
+                                        </div>
+                                    </div>
+                                    <div class="">
+                                        <div class="field-radiobutton">
+                                            <p-radioButton name="city" value="Los Angeles" [(ngModel)]="valRadionqf2"  id="city2"></p-radioButton>
+                                            <label for="city2">No</label>
+                                        </div>
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                        </form>
+                          </div>
+
+                        </div>
+                        <div class="col-12">
+                            <div id="learnqualification_html"></div>
+                            <br>
+                            <button pButton pRipple class="continue-button"  type="button" label="Submit Learnership Details" (click)="submiLearnershipQualification()"></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="wizard-card-content appdocuments" [ngClass]="{'active-content': activeTab === 'appdocuments'}">
+                    <div class="grid">
+                        <div class="col-12 lg:col-6">
+                            <div class="forms">
+                                <div class="col-12">
+                                    <div class="card">
+                                        <label>Id Document (*)</label>
+                                        <p-fileUpload name="demo[]" url="./upload.php" (onUpload)="onUpload($event)"
+                                                      multiple="multiple" accept="image/*" maxFileSize="1000000">
+                                            <ng-template pTemplate="content">
+                                                <ul *ngIf="uploadedFiles.length">
+                                                    <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                                                </ul>
+                                            </ng-template>
+                                        </p-fileUpload>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="card">
+                                        <label>Copy Of The Contract Of Employment (*)</label>
+                                        <p-fileUpload name="demo[]" url="./upload.php" (onUpload)="onUpload($event)"
+                                                      multiple="multiple" accept="image/*" maxFileSize="1000000">
+                                            <ng-template pTemplate="content">
+                                                <ul *ngIf="uploadedFiles.length">
+                                                    <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                                                </ul>
+                                            </ng-template>
+                                        </p-fileUpload>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="card">
+                                        <label>Confirmation of Employment Status (*)</label>
+                                        <p-fileUpload name="demo[]" url="./upload.php" (onUpload)="onUpload($event)"
+                                                      multiple="multiple" accept="image/*" maxFileSize="1000000">
+                                            <ng-template pTemplate="content">
+                                                <ul *ngIf="uploadedFiles.length">
+                                                    <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                                                </ul>
+                                            </ng-template>
+                                        </p-fileUpload>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 lg:col-6">
+                            <div class="forms">
+                                <div class="col-12">
+                                    <div class="card">
+                                        <label>Highest Qualification (*)</label>
+                                        <p-fileUpload name="demo[]" url="./upload.php" (onUpload)="onUpload($event)"
+                                                      multiple="multiple" accept="image/*" maxFileSize="1000000">
+                                            <ng-template pTemplate="content">
+                                                <ul *ngIf="uploadedFiles.length">
+                                                    <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                                                </ul>
+                                            </ng-template>
+                                        </p-fileUpload>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="card">
+                                        <label>Work Permit and Study Permit (*)</label>
+                                        <p-fileUpload name="demo[]" url="./upload.php" (onUpload)="onUpload($event)"
+                                                      multiple="multiple" accept="image/*" maxFileSize="1000000">
+                                            <ng-template pTemplate="content">
+                                                <ul *ngIf="uploadedFiles.length">
+                                                    <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                                                </ul>
+                                            </ng-template>
+                                        </p-fileUpload>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="card">
+                                        <label>Other Documents (*)</label>
+                                        <p-fileUpload name="demo[]" url="./upload.php" (onUpload)="onUpload($event)"
+                                                      multiple="multiple" accept="image/*" maxFileSize="1000000">
+                                            <ng-template pTemplate="content">
+                                                <ul *ngIf="uploadedFiles.length">
+                                                    <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                                                </ul>
+                                            </ng-template>
+                                        </p-fileUpload>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

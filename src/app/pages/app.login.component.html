@@ -1,0 +1,55 @@
+<div class="pages-body login-page flex flex-column">
+
+
+    <div class="align-self-center mt-auto mb-auto" style="width:400px;">
+        <div class="pages-panel card flex flex-column" style="height:600px;">
+            <div class="text-center mb-auto">
+                <img src="assets/layout/images/logomer.png" alt="Image" style="width:200px;height:200px;" class="mb-3">
+            </div>
+
+            <div class="pages-detail mb-6 px-6">Please sign-in</div>
+
+                <!--<form [formGroup]="loginForm" class="row g-3">-->
+            <div class="input-panel flex flex-column px-3">
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon">
+                        <i class="pi pi-envelope"></i>
+                    </span>
+                    <span class="p-float-label">
+                        <input type="text" id="email" pInputText>
+                        <label for="email">Email</label>
+                    </span>
+                   <!--  <div class="col-md-12" style="color:red"
+                    *ngIf="loginForm.get('personemail').hasError('required')">
+                    Email Address is <strong>required</strong>
+                  </div>
+                  <div class="col-md-12" style="color:red" *ngIf="  loginForm.get('email').hasError('email') ||
+                  loginForm.get('email').hasError('pattern')
+                                      ">
+                    <strong>Invalid</strong> Email Address
+                  </div>-->
+                </div>
+
+                <div class="p-inputgroup mt-3 mb-6">
+                    <span class="p-inputgroup-addon">
+                        <i class="pi pi-lock"></i>
+                    </span>
+                    <span class="p-float-label">
+                        <input type="password" id="password" pInputText>
+                        <label for="password">Password</label>
+                    </span>
+                    <!-- <div class="col-md-12" style="color:red"
+                    *ngIf="loginForm.get('personemail').hasError('required')">
+                    Password is <strong>required</strong>
+                  </div>-->
+                </div>
+
+            </div>
+             <!--</form>-->
+
+            <div class="input-panel flex flex-column px-3">
+                <a href="#" routerLink="/forgot-password">Forgot Password?</a>
+            </div>
+        </div>
+    </div>
+</div>

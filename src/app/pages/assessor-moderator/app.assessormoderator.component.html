@@ -1,0 +1,70 @@
+<div class="grid" style="margin-top: 15px;">
+    <div style="width: 100%;">
+            <div class="card">
+                <h6>SDP(Providers)/Employers</h6>
+			<p-autoComplete [(ngModel)]="newselectedCountryAdvanced"  [suggestions]="filteredCountries" (completeMethod)="filterCountry($event)" (onSelect)="onSelectcompany($event)"  field="searchname" [style]="{'width':'700px'}" [dropdown]="true">
+               
+			</p-autoComplete>
+                 <h5></h5>
+                 <p-dropdown [options]="SearchedCompanyLearners" [(ngModel)]="selectedCountry" optionLabel="firstName" [filter]="true" filterBy="firstName" (onChange)="onSelectcompany2($event)"  [showClear]="true" placeholder="Filter By Learner">
+                    <ng-template let-country pTemplate="item">
+                        <div class="country-item">
+                            <div>{{country.firstName}}</div>
+                        </div>
+                    </ng-template>
+                </p-dropdown>
+                <div class="divider"></div>
+                <p-dropdown [options]="companyQualification" [(ngModel)]="selectedQualification" optionLabel="qualificationtitle" [filter]="true" filterBy="qualificationtitle" (onChange)="onSelectQualification($event)"  [showClear]="true" placeholder="Filter By Qualifications">
+                    <ng-template let-qual pTemplate="item">
+                        <div class="country-item">
+                            <div>{{qual.qualificationid}} {{qual.qualificationtitle}}</div>
+                        </div>
+                    </ng-template>
+                </p-dropdown>
+                <div class="divider"></div>
+                <p-dropdown [options]="AssessmentStatus" [(ngModel)]="selectedstatusid" optionLabel="label" optionValue="value" [filter]="true" filterBy="label" (onChange)="onSelectStatus($event)"  [showClear]="true" placeholder="Filter By Status">            
+                </p-dropdown>
+                <h5></h5>
+                <p-table [value]="SearchedCompanyLearners" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" responsiveLayout="scroll"
+                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Surname</th>
+                            <th>Id or passport number </th>
+                            <th>Email</th>
+                            <th>Assessment status</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-use>
+                        <tr>
+                            <td><a href="learnerdetails/{{use.id}}/{{compid}}" class="text-truncate h-100 d-flex align-items-center"><span class="p-text-Primary">{{use.id}}</span></a></td>
+                            <td>{{use.firstName}}</td>
+                            <td>{{use.lastName}}</td>
+                            <td>{{use.rsaId}}</td>
+                            <td>{{use.email}}</td>
+                            <td>{{use.assessmentstatus}}</td>
+                            <td>
+                                <button pButton pRipple [disabled]="disablefornoQualification" icon="pi pi-check-square" class="p-button-rounded  mr-2" (click)="viewleaner(use.id)" pTooltip="Generate Complete {{use.firstName}} Assessment"></button>
+                            </td>
+                            <td>
+                                <button pButton pRipple [disabled]="disablefornoQualification" icon="pi pi-history" class="p-button-rounded  mr-2" (click)="viewleaners(use.id)" pTooltip="Generate Progress {{use.firstName}} Assessment"></button>
+                            </td>
+                    </ng-template>
+                    <ng-template pTemplate="paginatorleft">
+                        <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+                    </ng-template>
+                    <ng-template pTemplate="paginatorright">
+                        <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+                    </ng-template>
+                </p-table>
+                <div class="col-12">
+                  <!-- <button pButton pRipple class="continue-button" [disabled]="disablefornoQualification" type="button" label="Generate Assessment Report" (click)="GenerateAssessment()"></button>
+                    <div class="divider"></div>--> 
+                    <button pButton pRipple class="continue-button" [disabled]="disablefornoQualification" type="button" label="Batch Moderation" (click)="BatchModeration()"></button>
+                </div>
+            </div>
+	</div>
+
+</div>

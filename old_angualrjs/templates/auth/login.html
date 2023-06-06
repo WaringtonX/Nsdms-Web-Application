@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <link rel="stylesheet" href="/static/css/theme-light.css">
+    <link rel="stylesheet" href="/static/css/layout-light.css">
+    <link rel="stylesheet" href="/static/css/primeng.min.css">
+    <link rel="stylesheet" href="/static/css/primeflex.min.css">
+    <!-- <link rel="stylesheet" href="/static/css/primeicons.css"> -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
+</head>
+<style>
+
+.bg {
+    /* The image used */
+    background-image: url("/static/images/login.png");
+
+    /* Full height */
+    height: 100%;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    .videoFrame{
+        width: 560px;
+        height: 300px;
+    }
+
+    .border{
+        border: 2px solid gray;
+        border-radius: 5px;
+    }
+
+    @media screen and (max-width: 960px) {
+        .videoFrame{
+            width: 300px;
+        }
+    }
+</style>
+<body class="bg">
+    <div ng-app="myApp" ng-controller="myCtrl" class="pages-body login-page flex flex-column">
+        <div class="align-self-center mt-auto mb-auto" style="width:400px;">
+            <div class="pages-panel card flex flex-column" style="height:600px; background-color: white;">
+                <div class="text-center mb-auto">
+                    <img src="/static/images/logomer.png" alt="Image" style="width:200px;height:200px;" class="mb-3">
+                </div>
+                <div class="pages-detail mb-6 px-6" style="color: gray;">Please sign-in</div>
+                <form class="row g-3">
+                <div class="input-panel flex flex-column px-3 mb-4">
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon">
+                            <i class="pi pi-envelope"></i>
+                        </span>
+                        <span class="p-float-label">
+                            <input ng-model="username" class="p-inputtext p-component p-element" type="text" id="email">
+                            <label for="email">Email</label>
+                        </span>
+                        
+                    </div>
+                    <br>
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon">
+                            <i class="pi pi-envelope"></i>
+                        </span>
+                        <span class="p-float-label">
+                            <input ng-model="password" class="p-inputtext p-component p-element" type="password">
+                            <label for="email">Password</label>
+                        </span>
+                        
+                    </div>
+                </div>
+                </form>
+                <button class="p-element p-ripple mr-2 mb-2 p-button p-component" ng-click="btn_auth()" style="text-align: center;" >Login</button>
+                <div class="">
+                    <a href="/forgot-pw" style="color: gray;">Forgot Password?</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+if ( window.history.replaceState ) { window.history.replaceState(null, null, window.location.href) }
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function ($scope, $http) {
+    $scope.username = ''
+    $scope.password = ''
+
+    $scope.btn_auth = function(){
+
+        if($scope.username.length < 5){
+            alert('No Valid Email.')
+            return;
+        }else if($scope.password.length < 2){
+            alert('Password To Shot.')
+            return;
+        }else{console.log('')}
+
+        let payload = {
+            'fn': 'authUser',
+            'params': {
+                'email': $scope.username,
+                'password': $scope.password
+            }
+        }
+
+        $http({method:'POST',url:'/NSDNS-AUTH-API', data:JSON.stringify(payload),
+        headers:{'Content-Type': 'application/json'}}).then(
+        function (_response) {
+            if(_response.data.Result == 'SUCCESS'){
+                alert(_response.data.Message)
+                window.location.replace('/dashboard')
+            }else{
+                alert(_response.data.Message)
+            }
+        });
+    }
+
+});
+</script>
+<script>
+    app.config(function ($interpolateProvider) {
+    $interpolateProvider.startSymbol('{[');
+    $interpolateProvider.endSymbol(']}');
+});
+</script>

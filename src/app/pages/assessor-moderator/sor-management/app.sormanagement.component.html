@@ -1,0 +1,41 @@
+<div class="grid" style="margin-top: 15px;">
+    <p><span class="p-text-Primary" style="font-size: 13px;" id="userdetails"></span>
+        <span class="p-text-Warning" style="font-size: 13px;" id="applicationstatus"></span>
+        <span class="p-text-Primary" style="font-size: 13px;" id="assessmenttype"></span>
+   </p>
+</div>
+
+<div class="grid" style="margin-top: 15px;">
+    <div class="card" style="width:100%;">
+        <h6>SOR Management</h6>
+        <div class="field col-12 md:col-12">
+            <p-table class="mat-card-header" [value]="learners"  responsiveLayout="scroll">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="background-color:#a1865b;color:#fff;">
+                            <p-checkbox name="group1" value="Yes" [(ngModel)]="selectedAll" inputId="ny" (onChange)="onsSelectAllUnit()"></p-checkbox>
+                            <label for="ny"></label></th>
+                        <th style="background-color:#a1865b;color:#fff;">Name</th>
+                        <th style="background-color:#a1865b;color:#fff;">Surname</th>
+                        <th style="background-color:#a1865b;color:#fff;">ID Number</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-learn>
+                    <tr>
+                        <td><p-checkbox name="group1" [value]="learn.id" inputId="ny" (onChange)="onSelectedSingleList(learn.id)"></p-checkbox></td>
+                        <td>{{learn.firstName}}</td>
+                        <td>{{learn.lastName}}</td>
+                        <td>{{learn.email}}</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+        <p-messages [value]="msgs"></p-messages>
+        <div class="col-12">
+            <div class="grid">
+                <p-toast key="tst" [baseZIndex]="99999"></p-toast>
+                   <button pButton pRipple class="continue-button" type="button" label="Generate SOR"  (click)="genSOR()"></button> 
+            </div>
+        </div>
+    </div>
+</div>

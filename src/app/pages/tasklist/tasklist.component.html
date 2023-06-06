@@ -1,0 +1,263 @@
+
+<div class="grid" style="margin-top: 15px;" >
+    <div style="width: 100%;">
+
+        <div class="col-12">
+            <div class="card">
+                <h5>Task Pool</h5>
+                <p-table #dt1 [value]="systemtasksdetails" dataKey="id" [rows]="10" [showCurrentPageReport]="true"
+                [rowsPerPageOptions]="[10,25,50]" styleClass="p-datatable-customers p-datatable-gridlines"
+                [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                [globalFilterFields]="['taskStatus']">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>
+                            <div class="p-d-flex p-jc-between p-ai-center">
+                                Task Process Name
+                            </div>
+                        </th>
+                        <th>
+                            <div class="p-d-flex p-jc-between p-ai-center">
+                                Task Description
+                            </div>
+                        </th>
+                        <th>
+                            <div class="p-d-flex p-jc-between p-ai-center">
+                                Status
+                                <p-columnFilter type="text" field="status" display="menu"></p-columnFilter>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="p-d-flex p-jc-between p-ai-center">
+                                Due Date
+                            </div>
+                        </th>
+                        <th style="width: 8rem">
+                            <div class="p-d-flex p-jc-between p-ai-center">
+                                View
+                            </div>
+                        </th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-tasks>
+                    <tr>
+                        <td>
+                            {{tasks.prossname}}
+                        </td>
+                        <td>
+                            {{tasks.description}}
+                        </td>
+                        <td>
+                            {{tasks.taskStatus}}
+                        </td>
+                        <td>
+                            {{tasks.dueDate | date: 'dd/MM/yyyy'}}
+                        </td>
+                        <td>
+                            <button pButton pRipple icon="pi pi-arrow-right" class="p-button-rounded  mr-2" (click)="showBasicDialog(tasks.id)" pTooltip="View Task"></button>
+                        </td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="emptymessage">
+                    <tr>
+                        <td colspan="7">No Tasks found.</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+            
+            </div>
+        </div>
+        <p-toast key="tst" [baseZIndex]="99999"></p-toast>
+        <p-dialog header="Schedule a site visit" [(visible)]="displayBasic" [style]="{width: '50vw'}" [maximizable]="true"
+        [draggable]="false" [resizable]="false">
+            <p>Select a date for an onsite visit</p>
+            <div class="p-fluid grid">
+                <div class="field col-12 md:col-6">
+                    <label htmlFor="ultimat" style="font-size:12px;">Sites (*)</label>
+                    <p-dropdown id="ultimat"  [(ngModel)]="selectedsites"  [options]="companysite" optionLabel="companyName" [filter]="true" optionValue="id" [autoDisplayFirst]="false" [style]="{'margin-bottom':'5px','width':'100%'}" (onChange)="onChangeSite()">
+                    </p-dropdown>          
+                    
+                </div>
+                <div class="field col-12 md:col-6">
+                    <label htmlFor="name" style="font-size:12px;">Site Visit Date (*)</label>
+                    <p-calendar id="button" aria-describedby="name-help" [(ngModel)]="sitevisitdate" (ngModelChange)="modelChanged($event)" dateFormat="dd/mm/yy"  appendTo="body"></p-calendar>
+                    <small id="name-help" class="ng-dirty ng-invalid p-error" *ngIf="isdateselected">date is required.</small>
+                </div>
+            </div>
+        <ng-template pTemplate="footer">
+            <p-button icon="pi pi-check" (click)="subnitsidtedate()" label="Ok" styleClass="p-button-text"></p-button>
+        </ng-template>
+       </p-dialog>
+
+       <div class="col-12">
+        <div class="card">
+            <h5>My Tasks</h5>
+            <p-table #dt1 [value]="usertasksdetailstsort" dataKey="id" [rows]="10" [showCurrentPageReport]="true"
+            [rowsPerPageOptions]="[10,25,50]" styleClass="p-datatable-customers p-datatable-gridlines"
+            [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+            [globalFilterFields]="['taskStatus']">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>
+                        <div class="p-d-flex p-jc-between p-ai-center">
+                            Task Process Name
+                        </div>
+                    </th>
+                    <th>
+                        <div class="p-d-flex p-jc-between p-ai-center">
+                            Task Description
+                        </div>
+                    </th>
+                    <th>
+                        <div class="p-d-flex p-jc-between p-ai-center">
+                            Status
+                            <p-columnFilter type="text" field="status" display="menu"></p-columnFilter>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="p-d-flex p-jc-between p-ai-center">
+                            Due Date
+                        </div>
+                    </th>
+                    <th style="width: 8rem">
+                        <div class="p-d-flex p-jc-between p-ai-center">
+                            View
+                        </div>
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-tasks>
+                <tr>
+                    <td>
+                        {{tasks.prossname}}
+                    </td>
+                    <td>
+                        {{tasks.description}}
+                    </td>
+                    <td>
+                        {{tasks.taskStatus}}
+                    </td>
+                    <td>
+                        {{tasks.dueDate | date: 'dd/MM/yyyy'}}
+                    </td>
+                    <td>
+                        <button pButton pRipple icon="pi pi-arrow-right" class="p-button-rounded  mr-2" (click)="showBasicDialogMyTask(tasks.id)" pTooltip="View Task"></button>
+                    </td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="emptymessage">
+                <tr>
+                    <td colspan="7">No Tasks found.</td>
+                </tr>
+            </ng-template>
+        </p-table>
+        
+        </div>
+    </div>
+
+       <!-- <div class="card">
+            <h6>Employer Learners That Need Recommendation</h6>
+
+            <h5></h5>
+            <div class="p-fluid grid">
+                <p-autoComplete class="field col-12 md:col-2" [(ngModel)]="selectedCountryAdvanced"  [suggestions]="filteredCountries" (completeMethod)="filterCountry($event)" (onSelect)="onSelectcompany($event)"  field="companyName"  [dropdown]="true">
+                </p-autoComplete>
+
+                <p-dropdown class="field col-12 md:col-2" [options]="filteredCountries" [(ngModel)]="selectedCountryAdvanced" optionLabel="levyNumber" [filter]="true" filterBy="levyNumber" (onChange)="onSelectcompany($event)"  [showClear]="true" placeholder="SDL Number">
+                    <ng-template let-country pTemplate="item">
+                        <div class="country-item">
+                            <div>{{country.levyNumber}}</div>
+                        </div>
+                    </ng-template>
+                </p-dropdown>
+    
+                <p-dropdown class="field col-12 md:col-2" [options]="filteredCountries" [(ngModel)]="selectedCountryAdvanced" optionLabel="accreditationNumber" [filter]="true" filterBy="accreditationNumber" (onChange)="onSelectcompany($event)"  [showClear]="true" placeholder="Accreditation">
+                    <ng-template let-country pTemplate="item">
+                        <div class="country-item">
+                            <div>{{country.accreditationNumber}}</div>
+                        </div>
+                    </ng-template>
+                </p-dropdown>
+                <div class="field col-12 md:col-2">
+                    <p-dropdown [options]="seaarchedusers" [(ngModel)]="selectedCountry" optionLabel="firstName" [filter]="true" filterBy="firstName" (onChange)="onSelectcompany2($event)"  [showClear]="true" placeholder="Learner">
+                        <ng-template let-country pTemplate="item">
+                            <div class="country-item">
+                                <div>{{country.firstName}} {{country.lastName}}</div>
+                            </div>
+                        </ng-template>
+                    </p-dropdown>
+                </div>
+                <div class="field col-12 md:col-2">
+                    <p-dropdown [options]="seaarchedUsersFiltered" [(ngModel)]="selectedCountry" optionLabel="selectedCountry" [filter]="true" filterBy="status" (onChange)="onSelectcompany2($event)"  [showClear]="true" placeholder="Status Test">
+                        <ng-template let-country pTemplate="item">
+                            <div class="country-item">
+                                <div>{{country.status}}</div>
+                            </div>
+                        </ng-template>
+                    </p-dropdown>
+                </div>
+                <div class="field col-12 md:col-2">
+                    <p-dropdown [options]="learner_achievement_status" [(ngModel)]="selectedLearner_achievement_status" optionLabel="description" [filter]="true" filterBy="description" (onChange)="onSelectlearner_achievement_status($event)"  [showClear]="true" placeholder="Status">
+                        <ng-template let-learner pTemplate="item">
+                            <div class="country-item">
+                                <div>{{learner.description}}</div>
+                            </div>
+                        </ng-template>
+                    </p-dropdown>
+                </div>
+
+                <div class="field col-12 md:col-2">
+                    <p-dropdown [options]="region" [(ngModel)]="selectedRegion" optionLabel="description" [filter]="true" filterBy="description" (onChange)="onSelectRegion($event)"  [showClear]="true" placeholder="Region">
+                        <ng-template let-country pTemplate="item">
+                            <div class="country-item">
+                                <div>{{country.description}}</div>
+                            </div>
+                        </ng-template>
+                    </p-dropdown>
+                </div>
+            </div>
+            <p-table [value]="seaarchedusers" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" responsiveLayout="scroll"
+            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Name</th>
+                    <th>Surname</th>
+                    <th>Id or passport number </th>
+                    <th>Email</th>
+                    <th>Program Type</th>
+                   <th>Program Title</th>
+                    <th>Employer Name</th>
+                    <th>SDL Number</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-use>
+                        <tr>
+                            <td>{{use.firstName}}</td>
+                            <td>{{use.lastName}}</td>
+                            <td>{{use.rsaIdNumber}}</td>
+                            <td>{{use.email}}</td>
+                            <td>Learnership</td>
+                           <td>{{selectedCountryAdvanced}}</td>
+                            <td>{{selectedCountryAdvanced.companyName}} </td>
+                            <td>{{selectedCountryAdvanced.levyNumber}}</td>
+                                <td>
+                                    <button pButton pRipple icon="pi pi-thumbs-up" class="p-button-rounded  mr-2"
+                                    (click)="recomendapprove(use.id)"
+                                    pTooltip="{{use.firstName}}'s Recomandation and Approval"></button>
+                                </td>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="paginatorleft">
+                            <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+                        </ng-template>
+                        <ng-template pTemplate="paginatorright">
+                            <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+                        </ng-template>
+                    </p-table>
+                    <div class="progress-spinner" *ngIf="loaderService.isLoader | async">
+                        <p-progressSpinner [style]="{width: '50px', height: '50px'}" styleClass="custom-spinner" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"></p-progressSpinner>
+                    </div>
+        </div> -->
+    </div>
+</div> 
+

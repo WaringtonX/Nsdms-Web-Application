@@ -1,0 +1,237 @@
+<div class="grid" style="margin-top: 15px;">
+    <p><span class="p-text-Primary" style="font-size: 13px;" id="userdetails"></span>
+        <span class="p-text-Primary" style="font-size: 13px;">Application Status : </span>
+        <span class="p-text-Warning" style="font-size: 13px;" id="applicationstatus"></span>
+        <span class="p-text-Warning" style="font-size: 13px;" id="assessmenttype"></span>
+   </p>
+</div>
+<div class="grid" style="margin-top: 15px;">
+<div class="card">
+                    <h6>Learner Assessment</h6>
+                    <div class="card">
+                        <div class="col-12">
+                            <div class="forms">
+                                <h6>Qualification</h6>
+                             <div class="p-fluid grid">
+                                <div class="field col-12 md:col-3">
+                                    <label htmlFor="name" style="font-size:12px;">Learning/Skills Program Name (*)</label>
+                                    <input id="name" disabled [(ngModel)]="lprogram" type="text" pInputText/>
+                                </div>
+                                <div class="field col-12 md:col-3">
+                                    <label htmlFor="name" style="font-size:12px;">Qualification (*)</label>
+                                    <input id="name" disabled [(ngModel)]="lqualificaion" type="text" pInputText/>
+                                </div>
+                                <div class="field col-12 md:col-3">
+                                    <label htmlFor="name" style="font-size:12px;">Required Credits (*)</label>
+                                    <input id="name" disabled [(ngModel)]="reqcredits" type="text" pInputText/>
+                                </div>
+                                <div class="field col-12 md:col-3"> 
+                                    <label htmlFor="name" style="font-size:12px;">Total Credits Archieved (*)</label>
+                                    <input id="name" disabled [(ngModel)]="totcredits" type="text" pInputText/>
+                                </div>
+                             </div>
+                            </div>
+                         </div>
+                         <div class="field col-12 md:col-6">
+                            <p-table class="mat-card-header" [value]="credittables"  responsiveLayout="scroll">
+                                <ng-template pTemplate="header">
+                                    <tr>
+                                        <th style="background-color:#a1865b;color:#fff;"> </th>
+                                        <th style="background-color:#a1865b;color:#fff;">Credits Required</th>
+                                        <th style="background-color:#a1865b;color:#fff;">Current Credits</th>
+                                    </tr>
+                                </ng-template>
+                                <ng-template pTemplate="body" let-totcred>
+                                    <tr>
+                                        <td>{{totcred.tittle}}</td>
+                                        <td>{{totcred.value}}</td>
+                                        <td>{{totcred.currentcredits}}</td>
+                                    </tr>
+                                </ng-template>
+                            </p-table>
+                        </div>
+                    </div>
+                <div class="card">
+                    <div class="col-12">
+                        <div class="forms">
+                            <h6>Providers</h6>
+                         <div class="p-fluid grid">
+                            <div class="field col-12 md:col-6">
+                                  <label htmlFor="name" style="font-size:12px;">Provider Name (*)</label>
+                                  <input id="name" disabled [(ngModel)]="providerName" type="text" pInputText/>
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <label htmlFor="name" style="font-size:12px;">Accreditation Number (*)</label>
+                                <input id="name" disabled [(ngModel)]="accNumber" type="text" pInputText/>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="col-12">
+                        <div class="forms">
+                            <h6>Assessors and Moderators</h6>
+                            <div class="grid">
+                                <div class="col-12 md:col-3">
+                                    <div class="field-radiobutton">
+                                        <p-radioButton name="city" value="assessor" [disabled]="isDisabledall" [(ngModel)]="currentview" id="assessor" (ngModelChange)="onChangedtype()"></p-radioButton>
+                                        <label for="city1">Assessors</label>
+                                    </div>
+                                </div>
+                                <div class="col-12 md:col-3">
+                                    <div class="field-radiobutton">
+                                        <p-radioButton name="city" value="moderator" [disabled]="isDisabledall" [(ngModel)]="currentview" id="moderator" (ngModelChange)="onChangedtype()"></p-radioButton>
+                                        <label for="city2">Moderator</label>
+                                    </div>
+                                </div>
+                            </div>
+                        <div *ngIf="currentview == myassossor">
+                            <div class="p-fluid grid">
+                                <div class="field col-12 md:col-3">
+                                    <label htmlFor="ultimat" style="font-size:12px;">Assesor's (*)</label>
+                                    <p-dropdown id="ultimat"  [(ngModel)]="selectuserTittle"  [options]="assessorsearchlist" optionLabel="assessorname" [filter]="true" optionValue="id" [autoDisplayFirst]="false" [style]="{'margin-bottom':'5px','width':'100%'}" (onChange)="onChangeTittle()">
+                                    </p-dropdown>                                
+                                </div>
+                                <div class="field col-12 md:col-3">
+                                    <label htmlFor="name" style="font-size:12px;">Assesor (Full Names) (*)</label>
+                                    <input id="name" disabled [(ngModel)]="namesurname" type="text" pInputText/>
+                              </div>
+                              <div class="field col-12 md:col-3">
+                                  <label htmlFor="name" style="font-size:12px;">Email (*)</label>
+                                  <input id="name" disabled [(ngModel)]="leamil" type="text" pInputText/>
+                             </div>
+                             <!-- <div class="field col-12 md:col-3">
+                                    <label htmlFor="name" style="font-size:12px;">ID Number (*)</label>
+                                    <input id="name" disabled [(ngModel)]="idenumber" type="text" pInputText/>
+                              </div> -->
+                              <div class="field col-12 md:col-3">
+                                 <label htmlFor="name" style="font-size:12px;">Assessment Date (*)</label>
+                                 <p-calendar id="button" [(ngModel)]="allassessordate" dateFormat="dd/mm/yy"  appendTo="body"></p-calendar>
+                             </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="grid">
+                                    <button pButton pRipple class="continue-button" type="button" label="Apply Selected"  (click)="onCheckSelectedAssessor()"></button> 
+                                    <div class="divider"></div>
+                                    <button pButton pRipple class="continue-button" type="button" label="Remove Selected"  (click)="onCheckSelectedAssessorRemoved()"></button> 
+                                </div>
+                              </div>
+                        </div>
+                         <div *ngIf="currentview == mymoderator">
+                            <div class="p-fluid grid">                      
+                                <div class="field col-12 md:col-3">
+                                    <label htmlFor="ultimat" style="font-size:12px;">Modarator's (*)</label>
+                                    <p-dropdown id="ultimat"  [(ngModel)]="selectuserTittlem"  [options]="moderatorsearchlist" optionLabel="modatorssorname" [filter]="true" optionValue="id" [autoDisplayFirst]="false" [style]="{'margin-bottom':'5px','width':'100%'}" (onChange)="onChangeTittles()">
+                                    </p-dropdown>                                
+                                </div>
+                                <div class="field col-12 md:col-3">
+                                      <label htmlFor="name" style="font-size:12px;">Moderator (Full Names) (*)</label>
+                                      <input id="name" disabled [(ngModel)]="mnamesurname" type="text" pInputText/>
+                                </div>
+                                <div class="field col-12 md:col-3">
+                                    <label htmlFor="name" style="font-size:12px;">Email (*)</label>
+                                    <input id="name" disabled [(ngModel)]="mleamil" type="text" pInputText/>
+                              </div>
+                                <div class="field col-12 md:col-3">
+                                    <label htmlFor="name" style="font-size:12px;">Moderation Date (*)</label>
+                                    <p-calendar id="button" [(ngModel)]="allmoderatordate" dateFormat="dd/mm/yy"  appendTo="body"></p-calendar>
+                               </div>
+                              </div>
+                              <div class="col-12">
+                                <div class="grid">
+                                    <button pButton pRipple class="continue-button" type="button" label="Apply Selected"  (click)="onCheckSelectedModarator()"></button> 
+                                    <div class="divider"></div>
+                                    <button pButton pRipple class="continue-button" type="button" label="Remove Selected"  (click)="onCheckSelectedModaratorRemoved()"></button> 
+                                </div>
+                              </div>
+                         </div>
+
+                        </div>
+                    </div>
+                </div>
+                    <div class="col-12 md:col-12">
+                        <h6>Unit Standards</h6>
+                    </div>
+                    <p-table [value]="unitstandards" [showCurrentPageReport]="true" responsiveLayout="scroll">
+                    <ng-template pTemplate="header">
+                        <tr>
+                           
+                            <th style="background-color:#a1865b;color:#fff;">US ID</th>
+                            <th style="background-color:#a1865b;color:#fff;">US Title</th>
+                            <th style="background-color:#a1865b;color:#fff;">Type</th>
+                            <th style="background-color:#a1865b;color:#fff;">Credits</th>
+                            <th style="background-color:#a1865b;color:#fff;">Assessor</th>
+                            <th style="background-color:#a1865b;color:#fff;">Date Assessed</th>
+                            <th style="background-color:#a1865b;color:#fff;">Moderator</th>
+                            <th style="background-color:#a1865b;color:#fff;">Date Moderated</th>
+                            <th style="background-color:#a1865b;color:#fff;">
+                                <p-checkbox name="group1" value="Yes" [disabled]="isDisabledall" [(ngModel)]="selectedAll" inputId="ny" (onChange)="onsSelectAllUnit()"></p-checkbox>
+                                <label for="ny">Select</label></th>
+                            <th style="background-color:#a1865b;color:#fff;">
+                                <p-checkbox name="group1" value="Yes" [disabled]="isDisabledall"  [(ngModel)]="selectedcompintent" inputId="ny" (onChange)="onsSelectAll()"></p-checkbox>
+                                <label for="ny">Competent</label>
+                            </th>
+                            <th style="background-color:#a1865b;color:#fff;">C</th>
+                            <th style="background-color:#a1865b;color:#fff;">NYC</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-un>
+                        <tr>
+                            <td><span class="p-text-Primary">{{un.unitstandardid}}</span></td>
+                            <td>{{un.unitStdTitle}}</td>
+                            <td>{{un.usqualTypeDescription}}</td>
+                            <td>{{un.unitstdnumberofcredits}}</td>
+                            <td>
+                                <p-dropdown id="ultimat" [disabled]="isDisabledall" [(ngModel)]="un.assessoruid"  [options]="assessorsearchlists" optionLabel="assessorname" [filter]="true" optionValue="id" [autoDisplayFirst]="false" [style]="{'margin-bottom':'5px','width':'100%'}" (onChange)="onChangeAssessor(country.firstName)">
+                                </p-dropdown>             
+                            </td>
+                            <td><p-calendar id="button" [disabled]="isDisabledall"  [(ngModel)]="un.assessordateuid" dateFormat="dd/mm/yy"  appendTo="body"></p-calendar></td>
+                            <td>
+                                <p-dropdown id="ultimat"  [disabled]="isDisabledall" [(ngModel)]="un.moderatoruid"  [options]="moderatorsearchlists" optionLabel="modatorssorname" [filter]="true" optionValue="id" [autoDisplayFirst]="false" [style]="{'margin-bottom':'5px','width':'100%'}" (onChange)="onChangeTittle()">
+                                </p-dropdown>             
+                            </td>
+                            <td><p-calendar id="button" [disabled]="isDisabledall" [(ngModel)]="un.moderatoruidate" dateFormat="dd/mm/yy"  appendTo="body"></p-calendar></td>
+                            <td><p-checkbox name="group1" [disabled]="isDisabledchecked" [value]="un.index" [(ngModel)]="un.indexname" inputId="ny" (onChange)="onSelectedSingleList(un.index)"></p-checkbox></td>
+                            <td><p-checkbox name="group1" value="Yes" disabled [(ngModel)]="selectedcompintent" inputId="ny" ></p-checkbox></td>
+                            <td>
+                                <p-radioButton name="city1" [disabled]="isDisabled" value="C" [(ngModel)]="un.id" id="city4" (ngModelChange)="onChangedCorNYC(un.index)"></p-radioButton>
+                            </td>
+                            <td>
+                                <p-radioButton name="city2" [disabled]="isDisabled" value="NYC" [(ngModel)]="un.id" id="city4" (ngModelChange)="onChangedCorNYC(un.index)"></p-radioButton>
+                            </td>
+                        </tr> 
+                    </ng-template>
+                </p-table>
+               <!-- <div class="col-12 lg:col-12">
+                    <div class="forms">
+                        <div class="col-12">
+                            <div class="card">
+                                <label>Upload Assessment Document (*)</label>
+                                <p-fileUpload name="myfile[]"  maxFileSize="1000000" [customUpload]="true" (uploadHandler)="myUploaderotherdocs($event)">
+                                    <ng-template pTemplate="content">
+                                        <div *ngIf="uploadedFiles != null">
+                                            <div *ngFor="let file of uploadedFiles">
+                                                <button pButton pRipple icon="pi pi-eye" class="p-button-rounded  mr-2" (click)="ViewDocument()" pTooltip="View {{file.name}}"></button>
+                                            </div>
+                                        </div>
+                                    </ng-template>
+                                </p-fileUpload>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+                <br/>
+                <br/>
+                <br/>
+                <p-messages [value]="msgs"></p-messages>
+                <div class="col-12">
+                    <div class="grid">
+                        <p-toast key="tst" [baseZIndex]="99999"></p-toast>
+                           <button pButton pRipple class="continue-button" type="button" label="Back"  (click)="goBack()"></button> 
+                            <div class="divider"></div>
+                            <button pButton pRipple class="continue-button" [disabled]="isDisabledButton" (click)="CompleteAssessment()" label="Success" type="button" label="Complete Assessment"></button> 
+                    </div>
+                </div>
+</div>
+</div>

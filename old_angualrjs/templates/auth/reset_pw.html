@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset Password</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <link rel="stylesheet" href="/static/css/theme-light.css">
+    <link rel="stylesheet" href="/static/css/layout-dark.css">
+    <link rel="stylesheet" href="/static/css/primeng.min.css">
+    <link rel="stylesheet" href="/static/css/primeflex.min.css">
+    <link rel="stylesheet" href="/static/css/primeicons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<style>
+    .bg {
+        /* The image used */
+        background-image: url("/static/images/login.png");
+    
+        /* Full height */
+        height: 100%;
+    
+        /* Center and scale the image nicely */
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        }
+    
+        html {
+            scroll-behavior: smooth;
+        }
+    
+        .videoFrame{
+            width: 560px;
+            height: 300px;
+        }
+    
+        .border{
+            border: 2px solid gray;
+            border-radius: 5px;
+        }
+    
+        @media screen and (max-width: 960px) {
+            .videoFrame{
+                width: 300px;
+            }
+        }
+</style>
+<body class="bg">
+    <div ng-app="myApp" ng-controller="myCtrl" class="pages-body login-page flex flex-column">
+        <div class="align-self-center mt-auto mb-auto" style="width:400px;">
+            <div class="pages-panel card flex flex-column" style="height:600px; background-color: white;">
+                <div class="text-center mb-auto">
+                    <img src="/static/images/logomer.png" alt="Image" style="width:200px;height:200px;" class="mb-3">
+                </div>
+                <div class="pages-detail mb-6 px-6">Password Change</div>
+                <form class="row g-3">
+                <div class="input-panel flex flex-column px-3">
+                    <div class="p-inputgroup">
+                        <span class="p-float-label">
+                            <input ng-model="tmp_pw" class="p-inputtext p-component p-element" type="password" id="oldPassword">
+                            <label for="oldPassword">Temporary Password</label>
+                        </span>
+                    </div>
+                    <br>
+                </div>
+                <div class="input-panel flex flex-column px-3">
+                    <div class="p-inputgroup">
+                        <span class="p-float-label">
+                            <input ng-model="otp" class="p-inputtext p-component p-element" type="text" id="otp" >
+                            <label for="otp">OTP</label>    
+                        </span>
+                    </div>
+                    <br>
+                </div>
+                <div class="input-panel flex flex-column px-3">
+                    <div class="p-inputgroup">
+                        <span class="p-float-label">
+                            <input ng-model="new_pw" class="p-inputtext p-component p-element" type="password" id="newPassword">
+                            <label for="newPassword">New Password</label>   
+                        </span>
+                    </div>
+                    <br>
+                </div>
+                </form>
+                <div ng-if="errorMessage"><b>{{ errorMessage }}</b></div>
+                <BR>
+                <button ng-click="reset_pw()" class="p-element p-ripple mr-2 mb-2 p-button p-component">Change Password</button>
+                <div class="input-panel flex flex-column px-3">
+                    <a href="/login" routerLink="/login" style="color: gray;">Cancel</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+if ( window.history.replaceState ) { window.history.replaceState(null, null, window.location.href) }
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function ($scope, $http) {
+    $scope.new_pw = ''
+    $scope.tmp_pw = ''
+    $scope.otp = ''
+
+    $scope.reset_pw = function(){
+
+        if($scope.new_pw.length < 2){
+            alert('New Pw Cannot Be Shorter Than 2 Char')
+            return;
+        }
+        if($scope.tmp_pw.length < 2){
+            alert('TMP PW Cannot Be Shorter Than 2 Char')
+            return;
+        }
+        if($scope.otp.length < 2){
+            alert('OTP Cannot Be Shorter Than 2 Char')
+            return;
+        }
+
+        let payload = {
+            'fn': 'resetPw',
+            'params': {
+                'new_pw': $scope.new_pw,
+                'tmp_pw': $scope.tmp_pw,
+                'otp': $scope.otp
+            }
+        }
+
+        $http({method:'POST',url:'/NSDNS-AUTH-API', data:JSON.stringify(payload),
+        headers:{'Content-Type': 'application/json'}}).then(
+        function (_response) {
+            if(_response.data.Result == 'OK'){
+                window.location.replace('/login')
+            }else{
+                alert(_response.data.Message)
+            }
+        });
+    }
+});
+</script>
+<script>
+    app.config(function ($interpolateProvider) {
+    $interpolateProvider.startSymbol('{[');
+    $interpolateProvider.endSymbol(']}');
+});
+</script>

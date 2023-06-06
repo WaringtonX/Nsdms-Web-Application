@@ -1,0 +1,106 @@
+<div class="grid" style="margin-top: 15px;">
+    <p><span class="p-text-Primary" style="font-size: 13px;" id="qualifcationdetails"></span></p>
+</div>
+
+<div class="grid" style="margin-top: 15px;width:100%;">
+    <div class="card" style="width:100%;">
+        <h6>Batch Moderation</h6>
+        <div class="card">
+            <div class="col-12">
+                    <div class="field col-12 md:col-6">
+                      <p-dropdown [options]="SearchedView" [(ngModel)]="selectedlearner" optionLabel="firstName" [filter]="true" filterBy="firstName" (onChange)="onSelectLearner($event)"  [showClear]="true" placeholder="Filter By Learner">
+                       <ng-template let-country pTemplate="item">
+                           <div class="country-item">
+                               <div>{{country.firstName}} {{country.lastName}}</div>
+                           </div>
+                         </ng-template>
+                      </p-dropdown>
+                    </div> 
+                <div class="field col-12 md:col-12">
+                    <p-table class="mat-card-header" [value]="SearchedView"  responsiveLayout="scroll">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th style="background-color:#a1865b;color:#fff;">
+                                    <p-checkbox name="group1" value="Yes" [(ngModel)]="selectedAll" inputId="ny" (onChange)="onsSelectAllUnit()"></p-checkbox>
+                                    <label for="ny">All</label></th>
+                                <th style="background-color:#a1865b;color:#fff;">First Names</th>
+                                <th style="background-color:#a1865b;color:#fff;">Last Names</th>
+                                <th style="background-color:#a1865b;color:#fff;">Id or Passport Number</th>
+                                <th style="background-color:#a1865b;color:#fff;">Email </th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-usr>
+                            <tr>
+                                <td><p-checkbox name="group1" [value]="usr.id" [disabled]="isDisabledall" [(ngModel)]="usr.uniqueidentifier" inputId="ny" (onChange)="onSelectedSingleList(usr.id)"></p-checkbox></td>
+                                <td>{{usr.firstName}}</td>
+                                <td>{{usr.lastName}}</td>
+                                <td>{{usr.rsaIdNumber}}</td>
+                                <td>{{usr.email}}</td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+            </div>
+        </div>
+        <br/>
+        <p-messages [value]="msgs"></p-messages>
+        <div class="col-12">
+            <div class="grid">
+                <p-toast key="tst" [baseZIndex]="99999"></p-toast>
+                   <button pButton pRipple class="continue-button" type="button" label="Generate batch"  (click)="extmoderation()"></button> 
+            </div>
+        </div>
+        <br/>
+        <div class="card">
+            <h6>Batch List</h6>
+            <div class="forms">
+                <div class="field col-12 md:col-6">
+                    <p-dropdown id="ultimat"  [(ngModel)]="selectedbatch"  [options]="BatchList" optionLabel="BatchName" [filter]="true" optionValue="id" [autoDisplayFirst]="false" [style]="{'margin-bottom':'5px','width':'500px'}" (onChange)="onChangeBatch()">
+                    </p-dropdown>  
+                 </div>           
+            </div>
+            <div class="col-12">
+                <div class="field col-12 md:col-12">
+                    <h6>Internal Moderators</h6>
+                    <p-table class="mat-card-header" [value]="foundmodlist"  responsiveLayout="scroll">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th style="background-color:#a1865b;color:#fff;">Id</th>
+                                <th style="background-color:#a1865b;color:#fff;">First Name</th>
+                                <th style="background-color:#a1865b;color:#fff;">Last Name</th>
+                                <th style="background-color:#a1865b;color:#fff;">Email</th>
+                                <th style="background-color:#a1865b;color:#fff;">Attachment</th>
+                                <th style="background-color:#a1865b;color:#fff;">View</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-objval>
+                            <tr>
+                                <td><span class="p-text-Primary">{{objval.userId}}</span></td>
+                                <td>{{objval.firstName}}</td>
+                                <td>{{objval.lastName}}</td>
+                                <td>{{objval.email}}</td>
+                                <td><p-fileUpload name="myfile[]"  maxFileSize="1000000" [customUpload]="true" (uploadHandler)="myUploaderWBLdocs($event,objval.userId)"></p-fileUpload></td>
+                                <td><button pButton pRipple icon="pi pi-eye" class="p-button-rounded  mr-2" (click)="viewDocument(objval.userId,objval.userId)" pTooltip="View {{objval.firstName}} Details"></button></td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+            </div>
+           <!--<div class="forms">
+                <div class="p-fluid grid">
+                    <div class="field col-12 md:col-6">
+                        <label htmlFor="name" style="font-size:12px;">Sample Size(*)</label>
+                        <input id="name"  [(ngModel)]="samesize" type="text" pInputText/>
+                    </div>
+                 </div>   
+            </div>--> 
+            <p-messages [value]="msgss"></p-messages>
+            <div class="col-12">
+                <div class="grid">
+                    <p-toast key="tst" [baseZIndex]="99999"></p-toast>
+                       <button pButton pRipple class="continue-button" type="button" label="Submit for external moderation" (click)="SubmitExternal()"></button> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

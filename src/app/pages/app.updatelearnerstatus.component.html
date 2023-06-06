@@ -1,0 +1,48 @@
+<div class="grid" style="margin-top: 15px;">
+    <div class="col-12">
+    <div class="card">
+        <h5>Update Learner Status</h5>
+
+
+       <form [formGroup]="updatestatusForm" class="signup-forms">
+                    <div class="col-12">
+
+
+                        <div class="col-12">
+                            <label for="ultimat" class="col-12">Status (*)</label>
+
+                            <p-dropdown id="ultimat" class="col-12" formControlName="Status" [options]="dropdownOptions3" ></p-dropdown>
+                        </div>
+
+                    </div>
+
+                    <div class="col-12">
+
+
+                            <label for="ultimat" class="col-12">Reason (*)</label>
+
+                            <p-dropdown id="ultimat"   *ngIf="updatestatusForm.get('Status').value === 'Withdraw'" class="col-6" formControlName="Reason" [options]="dropdownOptions4"  ></p-dropdown>
+                            <p-dropdown id="ultimat" *ngIf="updatestatusForm.get('Status').value !== 'Withdraw'" class="col-6" formControlName="Reason" [options]="dropdownOptions5"   ></p-dropdown>
+
+
+                    </div>
+                    <div  *ngIf="updatestatusForm.get('Reason').value === 'Other – Please specify'" class="col-12">
+                   <!--  <div   class="col-12">-->
+
+                        <label for="ultimat" class="col-12">Specify Reason (*)</label>
+                        <textarea inputId="textarea" class="col-12" formControlName="SpecifyReason" rows="3" cols="30" pInputTextarea></textarea>
+
+
+                </div>
+
+
+
+
+
+
+        <button pButton pRipple class="continue-button" type="button"  label="Update"></button>
+    </form>
+        </div>
+
+    </div>
+</div>

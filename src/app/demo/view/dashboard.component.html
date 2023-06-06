@@ -1,0 +1,23 @@
+<div class="grid dashboard" style="margin-top: 15px;">
+
+    <div class="col-12 md:col-6 lg:col-3">
+        <div class="card overview-box flex flex-column pt-2">
+            <div class="flex align-items-center muted-text">
+                <i class="pi pi-id-card"></i>
+                <div class="divider"></div>
+                <h6 class="m-0" >Total Tasks</h6>
+                <div>
+                    <button pButton pRipple type="button" icon="pi pi-ellipsis-h" class="p-button-rounded p-button-text p-button-plain" (click)="menu1.toggle($event)"></button>
+                    <p-menu #menu1 [popup]="true" [model]="[{label: 'Update', icon: 'pi pi-fw pi-refresh'},{label: 'Edit', icon: 'pi pi-fw pi-pencil'}]"></p-menu>
+                </div>
+            </div>
+            <div class="flex justify-content-between mt-3 flex-wrap">
+                <div class="flex flex-column" style="width: 80px">
+                    <span class="mb-1 fs-xlarge" id="numberoftasks"></span>
+                    <span class="overview-status p-1 teal-bgcolor fs-small">0 Completed</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

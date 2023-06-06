@@ -1,0 +1,71 @@
+<div class="grid" style="margin-top: 15px;">
+    <p><span class="p-text-Primary" style="font-size: 13px;" id="userdetails"></span>
+        <span class="p-text-Warning" style="font-size: 13px;" id="applicationstatus"></span>
+        <span class="p-text-Primary" style="font-size: 13px;" id="assessmenttype"></span>
+   </p>
+</div>
+
+<div class="grid" style="margin-top: 15px;">
+    <div class="card" style="width:100%;">
+        <h5>Rejection Reasons</h5>
+        <p-listbox [options]="myreasons" [(ngModel)]="selectedreason" optionLabel="name"></p-listbox>
+
+        <h6>Learners</h6>
+        <div class="field col-12 md:col-12">
+            <p-table class="mat-card-header" [value]="learners"  responsiveLayout="scroll">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="background-color:#a1865b;color:#fff;">
+                            <p-checkbox name="group1" value="Yes" [(ngModel)]="selectedAll" inputId="ny" (onChange)="onsSelectAllUnit()"></p-checkbox>
+                            <label for="ny"></label></th>
+                        <th style="background-color:#a1865b;color:#fff;">Name</th>
+                        <th style="background-color:#a1865b;color:#fff;">Surname</th>
+                        <th style="background-color:#a1865b;color:#fff;">ID Number</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-learn>
+                    <tr>
+                        <td><p-checkbox name="group1" [value]="learn.id" inputId="ny" (onChange)="onSelectedSingleList(learn.id)"></p-checkbox></td>
+                        <td>{{learn.firstName}}</td>
+                        <td>{{learn.lastName}}</td>
+                        <td>{{learn.rsaIdNumber}}</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+        <p-messages [value]="msgs"></p-messages>
+        <div class="col-12">
+            <div class="grid">
+                <p-toast key="tst" [baseZIndex]="99999"></p-toast>
+                   <button pButton pRipple class="continue-button" type="button" label="Remove Learner" (click)="removelearner()"></button> 
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="field col-12 md:col-12">
+                <h6>Internal Moderators</h6>
+                <p-table class="mat-card-header" [value]="foundmodlist"  responsiveLayout="scroll">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th style="background-color:#a1865b;color:#fff;">Id</th>
+                            <th style="background-color:#a1865b;color:#fff;">First Name</th>
+                            <th style="background-color:#a1865b;color:#fff;">Last Name</th>
+                            <th style="background-color:#a1865b;color:#fff;">Email</th>
+                            <th style="background-color:#a1865b;color:#fff;">Attachment</th>
+                            <th style="background-color:#a1865b;color:#fff;">View</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-objval>
+                        <tr>
+                            <td><span class="p-text-Primary">{{objval.userId}}</span></td>
+                            <td>{{objval.firstName}}</td>
+                            <td>{{objval.lastName}}</td>
+                            <td>{{objval.email}}</td>
+                            <td><p-fileUpload name="myfile[]"  maxFileSize="1000000" [customUpload]="true" (uploadHandler)="myUploaderWBLdocs($event,objval.userId)"></p-fileUpload></td>
+                            <td><button pButton pRipple icon="pi pi-eye" class="p-button-rounded  mr-2" (click)="viewDocument(objval.userId,objval.userId)" pTooltip="View {{objval.firstName}} Details"></button></td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+    </div>
+</div>

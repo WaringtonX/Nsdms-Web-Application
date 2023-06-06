@@ -1,0 +1,275 @@
+<div class="grid" style="margin-top: 15px;">
+
+    <p><span class="p-text-Primary" style="font-size: 13px;" id="userdetails"></span>
+
+        <span class="p-text-Primary" style="font-size: 13px;">Application Status : </span>
+
+        <span class="p-text-Warning" style="font-size: 13px;" id="applicationstatus"></span>
+
+    </p>
+
+</div>
+<div class="grid" style="margin-top: 15px;">
+    <div class="card">
+        <h5>Learner Information</h5>
+        <p-tabView styleClass="tabview-custom">
+            <!-- <h5>Test Uno</h5> -->
+            <p-tabPanel>
+                <ng-template pTemplate="header">
+                    <i class="pi pi-Learneruser"></i>
+                    <span>Learner Details</span>
+                </ng-template>
+                <div class="p-fluid grid">
+
+                    <div class="field col-12 md:col-4">
+                        <span class="p-float-label">
+
+                            <p-dropdown [options]="TitleList" optionLabel="label" [(ngModel)]="Title">
+                            </p-dropdown>
+                            <label for="inputtext">Title (*)</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" pInputText [(ngModel)]="Learneruser.firstName">
+                            <label for="inputtext">First Name (*)</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" pInputText [(ngModel)]="Learneruser.lastName">
+                            <label for="inputtext">Last Name (*)</label>
+                        </span>
+                    </div>
+
+                    <div class="field col-12 md:col-4">
+                        <span class="p-float-label">
+
+                            <p-dropdown [options]="NationalityList" optionLabel="label" optionValue="value"
+                                [(ngModel)]="Learneruser.nationalityId">
+                            </p-dropdown>
+                            <label for="inputtext">Nationality (*)</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" pInputText [(ngModel)]="Learneruser.rsaIdNumber">
+                            <label for="inputtext">Identification Number (*)</label>
+
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <span class="p-float-label">
+                        <input type="date" id="inputtext" pInputText [(ngModel)]="Learneruser.dateOfBirth">
+                        <label for="birthdate">Date of Birth({{Learneruser.dateOfBirth}}) (*)</label>
+                          </span>
+                    </div>
+
+                    <div class="field col-12 md:col-4">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" pInputText [(ngModel)]="Learneruser.email">
+                            <label for="inputtext">Email (*)</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <span class="p-float-label">
+                            <input type="text" id="inputtext" pInputText [(ngModel)]="Learneruser.cellNumber">
+                            <label for="inputtext">Cell Number (*)</label>
+                        </span>
+                    </div>
+
+                    <div class="field col-12 md:col-4">
+                        <span class="p-float-label">
+
+                            <p-dropdown [options]="GenderList" optionLabel="label" optionValue="value"
+                                [(ngModel)]="Learneruser.genderId">
+                            </p-dropdown>
+                            <label for="inputtext">Gender (*)</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-4">
+
+                        <label for="inputtext">Do you have any disability? (*)</label> <br>
+                        <p-radioButton name="disabledId" value="1" label="No" [(ngModel)]="Learneruser.disability">
+                        </p-radioButton>
+                        <p-radioButton name="disabledId" value="0" label="Yes" [(ngModel)]="Learneruser.disability">
+                        </p-radioButton>
+
+
+                    </div>
+
+                    <div class="field" *ngIf="Learneruser.disability === '0'">
+                        <span class="p-float-label">
+                            <p-dropdown id="ultimat" [options]="disabilitystatus" optionLabel="description"
+                                optionValue="id" [style]="{'margin-bottom':'5px'}">'
+                            </p-dropdown>
+                            <label for="ultimat" style="font-size:12px;">Disability Type (*)</label>
+                        </span>
+                    </div>
+                    <div class="field" *ngIf="Learneruser.disability === '0'">
+                        <span class="p-float-label">
+                            <p-dropdown id="ultimat" [options]="disabilityrating" optionLabel="description"
+                                optionValue="id" [style]="{'margin-bottom':'5px'}"></p-dropdown>
+                            <label for="ultimat" style="font-size:12px;">Disability Level (*)</label>
+                        </span>
+                    </div>
+
+                </div>
+                <p-accordion>
+                    <p-accordionTab header="Languages" [selected]="false">
+                        <p-table [value]="" responsiveLayout="scroll">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th>Language</th>
+                                    <th>Home Language</th>
+                                    <th>Read</th>
+                                    <th>Write</th>
+                                    <th>Speak</th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-product>
+                                <tr>
+                                    <td>Tsonga</td>
+                                    <td>Yes</td>
+                                    <td>Yes</td>
+                                    <td>No</td>
+                                    <td>Yes</td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                    </p-accordionTab>
+                    <p-accordionTab header="Home Address">
+                        <div class="p-fluid grid">
+                            <div class="field col-12 md:col-4">
+                                <span class="p-float-label">
+                                    <input type="text" id="inputtext" pInputText
+                                        [(ngModel)]="Learnerhomeaddress.addressLine1">
+                                    <label for="inputtext">Address 1 (*)</label>
+                                </span>
+                            </div>
+                            <div class="field col-12 md:col-4">
+                                <span class="p-float-label">
+                                    <input type="text" id="inputtext" pInputText
+                                        [(ngModel)]="Learnerhomeaddress.addressLine2">
+                                    <label fsor="inputtext">Address 2 (*)</label>
+                                </span>
+                            </div>
+                            <div class="field col-12 md:col-4">
+                                <span class="p-float-label">
+                                    <input type="text" id="inputtext" pInputText
+                                        [(ngModel)]="Learnerhomeaddress.addressLine3">
+                                    <label for="inputtext">Address 3 (*)</label>
+                                </span>
+                            </div>
+                            <div class="field col-12 md:col-4">
+                                <span class="p-float-label">
+                                    <input type="text" id="inputtext" pInputText
+                                        [(ngModel)]="Learnerhomeaddress.postcode">
+                                    <label for="inputtext">Postal Code (*)</label>
+                                </span>
+                            </div>
+                            <!--   <div class="field col-12 md:col-4">
+                                <span class="p-float-label">
+                                    <input type="text" id="inputtext"  pInputText [(ngModel)]="Learnerhomeaddress">
+                                    <label for="inputtext">Stats SA Area Code (*)</label>
+                                </span>
+                            </div>
+                            <div class="field col-12 md:col-4">
+                                <span class="p-float-label">
+                                    <input type="text" id="inputtext"  pInputText [(ngModel)]="Pronvince">
+                                    <label for="inputtext">Pronvince (*)</label>
+                                </span>
+                            </div>
+                            <div class="field col-12 md:col-4">
+                                <span class="p-float-label">
+                                    <input type="text" id="inputtext"  pInputText [(ngModel)]="Municipality">
+                                    <label for="inputtext">Municipality (*)</label>
+                                </span>
+                            </div>
+                            <div class="field col-12 md:col-4">
+                                <span class="p-float-label">
+                                    <input type="text" id="inputtext"  pInputText [(ngModel)]="Distritrict">
+                                    <label for="inputtext">Distritrict (*)</label>
+                                </span>
+                            </div>
+                            <div class="field col-12 md:col-4">
+                                <span class="p-float-label">
+                                    <input type="text" id="inputtext"  pInputText [(ngModel)]="Town">
+                                    <label for="inputtext">Town (*)</label>
+                                </span>
+                            </div>-->
+                        </div>
+                    </p-accordionTab>
+                    <p-accordionTab header="Postal Address">
+                        <div class="p-fluid grid">
+                            <div class="field col-12 md:col-4">
+                                <span class="p-float-label">
+                                    <input type="text" id="inputtext" pInputText
+                                        [(ngModel)]="Learnerpostaladdress.addressLine1">
+                                    <label for="inputtext">Address 1 (*)</label>
+                                </span>
+                            </div>
+                            <div class="field col-12 md:col-4">
+                                <span class="p-float-label">
+                                    <input type="text" id="inputtext" pInputText
+                                        [(ngModel)]="Learnerpostaladdress.addressLine2">
+                                    <label fsor="inputtext">Address 2 (*)</label>
+                                </span>
+                            </div>
+                            <div class="field col-12 md:col-4">
+                                <span class="p-float-label">
+                                    <input type="text" id="inputtext" pInputText
+                                        [(ngModel)]="Learnerpostaladdress.addressLine3">
+                                    <label for="inputtext">Address 3 (*)</label>
+                                </span>
+                            </div>
+                            <div class="field col-12 md:col-4">
+                                <span class="p-float-label">
+                                    <input type="text" id="inputtext" pInputText
+                                        [(ngModel)]="Learnerpostaladdress.postcode">
+                                    <label for="inputtext">Postal Code (*)</label>
+                                </span>
+                            </div>
+                            <!-- <div class="field col-12 md:col-4">
+                                <span class="p-float-label">
+                                    <input type="text" id="inputtext"  pInputText [(ngModel)]="pArea">
+                                    <label for="inputtext">Stats SA Area Code (*)</label>
+                                </span>
+                            </div>
+                            <div class="field col-12 md:col-4">
+                                <span class="p-float-label">
+                                    <input type="text" id="inputtext"  pInputText [(ngModel)]="pPronvince">
+                                    <label for="inputtext">Pronvince (*)</label>
+                                </span>
+                            </div>
+                            <div class="field col-12 md:col-4">
+                                <span class="p-float-label">
+                                    <input type="text" id="inputtext"  pInputText [(ngModel)]="pMunicipality">
+                                    <label for="inputtext">Municipality (*)</label>
+                                </span>
+                            </div>
+                            <div class="field col-12 md:col-4">
+                                <span class="p-float-label">
+                                    <input type="text" id="inputtext"  pInputText [(ngModel)]="pDistritrict">
+                                    <label for="inputtext">Distritrict (*)</label>
+                                </span>
+                            </div>
+                            <div class="field col-12 md:col-4">
+                                <span class="p-float-label">
+                                    <input type="text" id="inputtext"  pInputText [(ngModel)]="pTown">
+                                    <label for="inputtext">Town (*)</label>
+                                </span>
+                            </div>  -->
+                        </div>
+                    </p-accordionTab>
+                </p-accordion>
+                <button (click)="UpdateLearnerdetails()" pButton pRipple class="continue-button" type="button"
+                    label="Update"></button>
+            </p-tabPanel>
+
+           
+
+        </p-tabView>
+
+    </div>
+</div>

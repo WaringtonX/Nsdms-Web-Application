@@ -1,0 +1,1159 @@
+{% extends "base/base.html" %}
+{% block contents %}
+<div class="grid" style="margin-top: 15px;">
+    <p><span class="p-text-Primary" style="font-size: 13px;" id="userdetails"></span>
+        <span class="p-text-Primary" style="font-size: 13px;">Application</span>
+        <span class="p-text-Warning" style="font-size: 13px;" id="appinfomation"></span>
+   </p>
+</div>
+<div class="grid" style="margin-top: 5px;">
+    <div class="card">
+        <h6>New Learner Learnership Application</h6>
+        <p-tabView [activeIndex]="index">
+            <p-tabPanel header="Nationality">
+                <div class="grid">
+                    <div class="col-12 lg:col-6">
+                        <h6>Nationality</h6>
+                     <div class="p-fluid grid">
+                            <div class="field col-12">
+                                <span class="p-float-label">
+                                    <p-dropdown id="idnation" optionLabel="label" optionValue="value" aria-describedby="username-help" required [ngClass]="{'ng-invalid ng-dirty' :  !selectDropdownOptionsNationality}"  [options]="dropdownOptions2" [(ngModel)]="selectDropdownOptionsNationality" [autoDisplayFirst]="false" (onChange)="onChange()"></p-dropdown>                                
+                                    <label for="idnation">Nationality (*)</label>
+                                     <small id="username-help" class="ng-dirty ng-invalid p-error" *ngIf="!selectDropdownOptionsNationality">Nationality is required.</small>
+                                </span> 
+                            </div>
+                                <div class="field col-12">
+                                   <span class="p-float-label">
+                                      <p-inputNumber  id="name" [maxlength]="13" [useGrouping]="false" aria-describedby="nation-help" [(ngModel)]="Identificationid"  required [ngClass]="{'ng-invalid ng-dirty' :  !Identificationid}" type="text" ></p-inputNumber>
+                                      <label for="name">Identification (*)</label>
+                                   </span>
+                                   <small id="nation-help" class="ng-dirty ng-invalid p-error" *ngIf="!Identificationid">Identification is required.</small>
+                                 </div>
+                    </div>
+                    </div>
+                    <div class="col-12">
+                        <div id="Nation_html"></div>
+                        <br>
+                        <button pButton pRipple class="continue-button" type="button" [disabled]="isDisabledNat" label="Submit Nationality" (click)="submitdetails()"></button>
+                    </div>
+                </div>
+            </p-tabPanel>
+            <p-tabPanel header="Learner Details">
+                <div class="grid">
+                    <p-accordion>
+                        <br>
+                        <p-accordionTab header="Learner Details">
+                            <div class="col-12">
+                                <h6>Learner Details</h6>
+                                <div class="forms">
+                                 <div class="p-fluid grid">
+                                    <div class="field col-12 md:col-4">
+                                        <span class="p-float-label">
+                                            <p-dropdown id="ultimat" aria-describedby="TItle-help" [(ngModel)]="selectuserTittle"  required [ngClass]="{'ng-invalid ng-dirty' :  !selectuserTittle}" [options]="dropdownOptions3" optionLabel="label" optionValue="value" [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px','width':'100%'}" (onChange)="onChangeTittle()"></p-dropdown>                                
+                                           <label for="ultimat" style="font-size:12px;">TItle (*)</label>
+                                           <small id="TItle-help" class="ng-dirty ng-invalid p-error" *ngIf="!selectuserTittle">TItle is required.</small>
+                                        </span>
+                                    </div>
+                                    <div class="field col-12 md:col-4">
+                                        <span class="p-float-label">
+                                          <input id="name" aria-describedby="name-help" [(ngModel)]="uname"  required [ngClass]="{'ng-invalid ng-dirty' :  !uname}" type="text" pInputText/>
+                                          <label for="name">Name (*)</label>
+                                          <small id="name-help" class="ng-dirty ng-invalid p-error" *ngIf="!uname">Name is required.</small>
+                                        </span>
+                                    </div>
+                                    <div class="field col-12 md:col-4">
+                                        <span class="p-float-label">
+                                          <input id="name" aria-describedby="surname-help" [(ngModel)]="surname"  required [ngClass]="{'ng-invalid ng-dirty' :  !surname}" type="text" pInputText/>
+                                          <label for="name">Surname (*)</label>
+                                          <small id="surname-help" class="ng-dirty ng-invalid p-error" *ngIf="!surname">Surname is required.</small>
+                                        </span>
+                                    </div>
+                                      <div class="field col-12 md:col-4">
+                                        <span class="p-float-label">
+                                          <input id="name" aria-describedby="midname-help" [(ngModel)]="midname"  required [ngClass]="{'ng-invalid ng-dirty' :  !midname}" type="text" pInputText/>
+                                          <label for="name">Middle Name (*)</label>
+                                          <small id="midname-help" class="ng-dirty ng-invalid p-error" *ngIf="!midname">Middle is required.</small>
+                                        </span>
+                                      </div>
+                                      <div class="field col-12 md:col-4">
+                                        <span class="p-float-label">
+                                          <p-inputNumber [maxlength]="10" [useGrouping]="false" id="name" aria-describedby="cellnumber-help" [(ngModel)]="cellnumber"  required [ngClass]="{'ng-invalid ng-dirty' :  !cellnumber}" type="text"></p-inputNumber>
+                                          <label for="name">Cell Number (*)</label>
+                                          <small id="cellnumber-help" class="ng-dirty ng-invalid p-error" *ngIf="!cellnumber">Cellnumber is required.</small>
+                                        </span>
+                                      </div>
+                                      <div class="field col-12 md:col-4">
+                                        <span class="p-float-label">
+                                          <p-inputNumber  [maxlength]="10" [useGrouping]="false" id="name"  aria-describedby="telnumber-help" [(ngModel)]="telnumber"  required [ngClass]="{'ng-invalid ng-dirty' :  !telnumber}" type="text"></p-inputNumber>
+                                          <label for="name">Telephone Number (*)</label>
+                                          <small id="telnumber-help" class="ng-dirty ng-invalid p-error" *ngIf="!telnumber">Telnumber is required.</small>
+                                        </span>
+                                      </div>
+                                      <div class="field col-12 md:col-4">
+                                        <span class="p-float-label">
+                                          <input id="name" aria-describedby="primeemail-help" [(ngModel)]="primeemail"  required [ngClass]="{'ng-invalid ng-dirty' :  !primeemail}" type="text" pInputText/>
+                                          <label for="name">Primary Email Address (*)</label>
+                                          <small id="primeemail-help" class="ng-dirty ng-invalid p-error" *ngIf="!primeemail">Primary Email Address is required.</small>
+                                        </span>
+                                      </div>
+                                      <div class="field col-12 md:col-4">
+                                        <span class="p-float-label">
+                                          <input id="name" aria-describedby="secondemail-help" [(ngModel)]="secondemail"  required [ngClass]="{'ng-invalid ng-dirty' :  !secondemail}" type="text" pInputText/>
+                                          <label for="name">Secondary Email Address (*)</label>
+                                          <small id="secondemail-help" class="ng-dirty ng-invalid p-error" *ngIf="!secondemail">Secondary Email Address is required.</small>
+                                        </span>
+                                      </div>
+                                      <div class="field col-12 md:col-4">
+                                        <span class="p-float-label">
+                                        <p-calendar id="button" aria-describedby="personalBirthday-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !personalBirthday}" [(ngModel)]="personalBirthday" [showIcon]="true" appendTo="body"></p-calendar>
+                                        <label for="birthdate">Date of Birth (*)</label>
+                                        <small id="personalBirthday-help" class="ng-dirty ng-invalid p-error" *ngIf="!personalBirthday">Date of Birth is required.</small>
+                                        </span>
+                                    </div> 
+                                    <div class="field col-12 md:col-4">
+                                        <span class="p-float-label">
+                                            <p-dropdown id="ultimat" [options]="dropdownOptions4" optionLabel="label" optionValue="value"  aria-describedby="gender-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !selectedgender}" [(ngModel)]="selectedgender" [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}" (onChange)="onChangegender()"></p-dropdown>                                
+                                           <label for="ultimat">Gender  (*)</label>
+                                           <small id="gender-help" class="ng-dirty ng-invalid p-error" *ngIf="!selectedgender">Gender is required.</small>
+                                        </span>
+                                    </div>
+                                    <div class="field col-12 md:col-4">
+                                        <span class="p-float-label">
+                                            <p-dropdown id="ultimat" [options]="dropdownOptions5" optionLabel="label" optionValue="value" aria-describedby="equity-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !selectedequity}" [(ngModel)]="selectedequity" [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}" (onChange)="onChangeequity()"></p-dropdown>                                
+                                           <label for="ultimat">Equity/Race (*)</label>
+                                           <small id="equity-help" class="ng-dirty ng-invalid p-error" *ngIf="!selectedequity">Equity/Race is required.</small>
+                                        </span>
+                                    </div>
+                                    <div class="field col-12 md:col-4">
+                                        <label>Do you have any disability?</label>
+                                        <div class="col-12">
+                                            <div class="">
+                                                <div class="field-radiobutton">
+                                                    <p-radioButton name="city" value="Yes" [(ngModel)]="checkeddisability"  id="city1" (ngModelChange)="onChangedCheckedDisbility()"></p-radioButton>
+                                                    <label for="city1">Yes</label>
+                                                </div>
+                                            </div>
+                                            <div class="">
+                                                <div class="field-radiobutton">
+                                                    <p-radioButton name="city" value="No" [(ngModel)]="checkeddisability"  id="city2" (ngModelChange)="onChangedCheckedDisbility()"></p-radioButton>
+                                                    <label for="city2">No</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="field col-12 md:col-4" [style.visibility]="isdisableview">
+                                        <span class="p-float-label">
+                                            <p-dropdown id="ultimat" [options]="disabilitystatus" optionLabel="description" optionValue="id" aria-describedby="dtype-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !selecteddisabilitytype}" [(ngModel)]="selecteddisabilitytype" [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}" (onChange)="onChangedisabilitytype()">
+                                            </p-dropdown>                             
+                                           <label for="ultimat">Disability Type (*)</label>
+                                           <small id="dtype-help" class="ng-dirty ng-invalid p-error" *ngIf="!selecteddisabilitytype">Disability Type is required.</small>
+                                        </span>
+                                    </div>
+                                    <div class="field col-12 md:col-4" [style.visibility]="isdisableview">
+                                        <span class="p-float-label">
+                                            <p-dropdown id="ultimat" [options]="disabilityrating" optionLabel="description" optionValue="id"  aria-describedby="dstatus-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !selecteddisabilitylevel}" [(ngModel)]="selecteddisabilitylevel" [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}" (onChange)="onChangedisabilitylevel()"></p-dropdown>                                
+                                           <label for="ultimat">Disability Level (*)</label>
+                                           <small id="dstatus-help" class="ng-dirty ng-invalid p-error" *ngIf="!selecteddisabilitylevel">Disability Level is required.</small>
+                                        </span>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </p-accordionTab>
+                        <p-accordionTab header="Languages">
+                            <div class="col-12">
+                                <div class="forms">
+                                    <h6>Languages</h6>
+                                    <div class="field">
+                                        <span class="p-float-label">
+                                            <p-dropdown id="ultimat" [options]="langlook" optionLabel="description" optionValue="id" aria-describedby="lang-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !selectedlanguage}" [(ngModel)]="selectedlanguage" [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px','width':'100%'}" (onChange)="onChangedLanguage()"></p-dropdown>                               
+                                           <label for="ultimat" style="font-size:12px;">Languages (*)</label>
+                                           <small id="lang-help" class="ng-dirty ng-invalid p-error" *ngIf="!selectedlanguage">Language is required.</small>
+                                        </span>
+                                    </div>
+                                    <div class="field-checkbox">
+                                        <p-checkbox name="group1"  [(ngModel)]="checkedhomelangauge" (ngModelChange)="modifycheckedhomelangauge()"  [binary]="true" inputId="binary"></p-checkbox>
+                                        <label for="ny">Home Language</label>
+                                    </div>
+                                    <div class="field-checkbox">
+                                        <p-checkbox name="group1" [(ngModel)]="checkedread" (ngModelChange)="modifycheckedread()" [binary]="true" inputId="binary"></p-checkbox>
+                                        <label for="nys">Read</label>
+                                    </div>
+                                    <div class="field-checkbox">
+                                        <p-checkbox name="group1" [(ngModel)]="checkedwrite" (ngModelChange)="modifycheckedwrite()" [binary]="true" inputId="binary"></p-checkbox>
+                                        <label for="nyss">Write</label>
+                                    </div>
+                                    <div class="field-checkbox">
+                                        <p-checkbox name="group1" [(ngModel)]="checkedspeak" (ngModelChange)="modifycheckedspeak()" [binary]="true" inputId="binary"></p-checkbox>
+                                        <label for="nysss">Speak</label>
+                                    </div>
+                                </div>
+                                <button pButton pRipple class="p-button-sm"  type="button" label="Add Language" (click)="Addlanguage()"></button>
+                                <div class="forms">
+                                    <h6>Language List</h6>
+                                    <p-table [value]="langauges" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" responsiveLayout="scroll"
+                                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]">
+                                    <ng-template pTemplate="header">
+                                        <tr>
+                                            <th>Language</th>
+                                            <th>Home Language</th>
+                                            <th>Read</th>
+                                            <th>Write</th>
+                                            <th>Speak</th>
+                                        </tr>
+                                    </ng-template>
+                                    <ng-template pTemplate="body" let-lang>
+                                        <tr>
+                                            <td><span class="p-text-Primary">{[lang.name]}</span></td>                     
+                                            <td>{[lang.homelanguage]}</td>
+                                            <td>{[lang.speak]}</td>
+                                            <td>{[lang.read]}</td>
+                                            <td>{[lang.write]}</td>
+                                        </tr>
+                                    </ng-template>
+                                    <ng-template pTemplate="paginatorleft">
+                                        <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+                                    </ng-template>
+                                    <ng-template pTemplate="paginatorright">
+                                        <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+                                    </ng-template>
+                                </p-table>
+                                </div>
+                            </div>
+                        </p-accordionTab>
+                        <p-accordionTab header="Learner Qualification">
+                            <div class="col-12">
+                                <h6>Learner Qualification</h6>
+                                <br>
+                                <div class="forms">
+                                <div class="p-fluid grid">
+                                  <div class="field col-12 md:col-4">
+                                    <label>Were you employed by your employer before concluding this form (*)</label>
+                                    <div class="col-12">
+                                        <div class="">
+                                            <div class="field-radiobutton">
+                                                <p-radioButton name="city" value="Yes" [(ngModel)]="checkedemployment" (ngModelChange)="modifyEmployed()" id="city1"></p-radioButton>
+                                                <label for="city1">Yes</label>
+                                            </div>
+                                        </div>
+                                        <div class="">
+                                            <div class="field-radiobutton">
+                                                <p-radioButton name="city" value="No" [(ngModel)]="checkedemployment" (ngModelChange)="modifyEmployed()"  id="city2"></p-radioButton>
+                                                <label for="city2">No</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                  </div>
+                                  <div class="field col-12 md:col-4">
+                                    <label>Were you party to a workplace-based learning program agreement at any time in the past before concluding this agreement? (*)</label>
+                                    <div class="col-12">
+                                        <div class="">
+                                            <div class="field-radiobutton">
+                                                <p-radioButton name="city" value="Yes" [(ngModel)]="checkedagreement" (ngModelChange)="modifyagreement()" id="city1"></p-radioButton>
+                                                <label for="city1">Yes</label>
+                                            </div>
+                                        </div>
+                                        <div class="">
+                                            <div class="field-radiobutton">
+                                                <p-radioButton name="city" value="No" [(ngModel)]="checkedagreement" (ngModelChange)="modifyagreement()"  id="city2"></p-radioButton>
+                                                <label for="city2">No</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                 </div>
+                                 <div class="field col-12 md:col-4">
+                                    <label>TVET Lecture (*)</label>
+                                    <div class="col-12">
+                                        <div class="">
+                                            <div class="field-radiobutton">
+                                                <p-radioButton name="city" value="Yes" [(ngModel)]="checkedtvetqual" (ngModelChange)="modifycheckedtvetqual()" id="city1"></p-radioButton>
+                                                <label for="city1">Yes</label>
+                                            </div>
+                                        </div>
+                                        <div class="">
+                                            <div class="field-radiobutton">
+                                                <p-radioButton name="city" value="No" [(ngModel)]="checkedtvetqual" (ngModelChange)="modifycheckedtvetqual()"  id="city2"></p-radioButton>
+                                                <label for="city2">No</label>
+                                            </div>
+                                        </div>
+                                      </div>
+                                 </div>
+                                </div>                             
+                                 <div class="p-fluid grid">
+                                   <div class="field col-12 md:col-4">
+                                    <span class="p-float-label">
+                                        <p-dropdown id="ultimat" [options]="dropdownOptions10" optionLabel="label"  optionValue="value" aria-describedby="Education-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !selectedqualificationlevel}" [(ngModel)]="selectedqualificationlevel" [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}" (onChange)="modifyqualificationlevel()"></p-dropdown>                             
+                                       <label for="ultimat" style="font-size:12px;">Education level (*)</label>
+                                       <small id="Education-help" class="ng-dirty ng-invalid p-error" *ngIf="!selectedqualificationlevel">Education Level is required.</small>
+                                    </span>
+                                  </div>
+                                  <div class="field col-12 md:col-4">
+                                    <span class="p-float-label">
+                                        <p-dropdown id="ultimat" [options]="prevschools" optionLabel="officialInstitutionName" optionValue="id" aria-describedby="Last-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !selectedschoolatended}" [(ngModel)]="selectedschoolatended" [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}" (onChange)="modifylastschoolattended()"></p-dropdown>                                
+                                       <label for="ultimat" style="font-size:12px;">Last school attended Type (*)</label>
+                                       <small id="Last-help" class="ng-dirty ng-invalid p-error" *ngIf="!selectedschoolatended">Last school attended Type is required.</small>
+                                    </span>
+                                  </div>
+                                  <div class="field col-12 md:col-4">
+                                    <span class="p-float-label">
+                                      <p-calendar id="button" [(ngModel)]="quallastschooldateyear" aria-describedby="school-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !quallastschooldateyear}" [showIcon]="true" appendTo="body"></p-calendar>
+                                      <label for="birthdate" style="font-size:12px;">Last school year date (*)</label>
+                                      <small id="school-help" class="ng-dirty ng-invalid p-error" *ngIf="!quallastschooldateyear">Last school year date is required.</small>
+                                    </span>
+                                   </div>   
+                                   <div class="field col-12 md:col-4">
+                                    <span class="p-float-label">
+                                        <p-dropdown id="ultimat" [options]="tvetfetqualification" optionLabel="description" optionValue="id" aria-describedby="TVET-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !selectedtvet}" [(ngModel)]="selectedtvet" [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}" (onChange)="modifyTvetqual()"></p-dropdown>                                
+                                       <label for="ultimat" style="font-size:12px;">TVET/FET Qualification (*)</label>
+                                       <small id="TVET-help" class="ng-dirty ng-invalid p-error" *ngIf="!selectedtvet">TVET/FET Qualification is required.</small>
+                                    </span>
+                                   </div>
+                                   <div class="field col-12 md:col-4">
+                                      <span class="p-float-label">
+                                        <p-dropdown id="ultimat" [options]="ofocodes" optionLabel="OfoCode1" optionValue="Id" aria-describedby="OFO-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !selectedofo}" [(ngModel)]="selectedofo" [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}" (onChange)="modifyOfocode()"></p-dropdown>                                
+                                        <label for="ultimat" style="font-size:12px;">OFO code (*)</label>
+                                        <small id="OFO-help" class="ng-dirty ng-invalid p-error" *ngIf="!selectedofo">OFO code is required.</small>
+                                       </span>
+                                    </div>
+                                  </div>
+                               </div>
+                            </div>
+                        </p-accordionTab>
+                        <p-accordionTab header="Next Of Kin">
+                            <div class="col-12">
+                                <h6>Next of kin</h6>
+                                <div class="forms">
+                                    <div class="p-fluid grid">
+                                    <div class="field col-12 md:col-6">
+                                      <span class="p-float-label">
+                                        <input id="name" aria-describedby="nextofkin-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !nextofkin}" [(ngModel)]="nextofkin" type="text" pInputText/>
+                                        <label for="name">Next Of Kin Name (*)</label>
+                                        <small id="nextofkin-help" class="ng-dirty ng-invalid p-error" *ngIf="!nextofkin">Next Of Kin Name is required.</small>
+                                      </span>
+                                    </div>
+                                    <div class="field col-12 md:col-6">
+                                        <span class="p-float-label">
+                                          <input id="name" aria-describedby="nextofkinlastname-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !nextofkinlastname}" [(ngModel)]="nextofkinlastname" type="text" pInputText/>
+                                          <label for="name">Next Of Kin Last Name (*)</label>
+                                          <small id="nextofkinlastname-help" class="ng-dirty ng-invalid p-error" *ngIf="!nextofkinlastname">Next Of Kin Last Name is required.</small>
+                                        </span>
+                                      </div>
+                                      <div class="field col-12 md:col-6">
+                                        <span class="p-float-label">
+                                          <p-inputNumber [maxlength]="10" [useGrouping]="false" id="name" aria-describedby="nextofkincelphone-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !nextofkincelphone}" [(ngModel)]="nextofkincelphone" type="text"></p-inputNumber>
+                                          <label for="name">Cell Phone (*)</label>
+                                          <small id="nextofkincelphone-help" class="ng-dirty ng-invalid p-error" *ngIf="!nextofkincelphone">Cell Phone is required.</small>
+                                        </span>
+                                      </div>
+                                      <div class="field col-12 md:col-6">
+                                        <span class="p-float-label">
+                                          <input id="name" aria-describedby="nextofkinemailaddress-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !nextofkinemailaddress}" [(ngModel)]="nextofkinemailaddress" type="text" pInputText/>
+                                          <label for="name">Email Address (*)</label>
+                                          <small id="nextofkinemailaddress-help" class="ng-dirty ng-invalid p-error" *ngIf="!nextofkinemailaddress">Email Address is required.</small>
+                                        </span>
+                                      </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </p-accordionTab>
+                        <p-accordionTab header="Home Address">
+                            <div class="col-12">
+                                <h6>Home Address</h6>
+                                <div class="forms">
+                                   <div class="p-fluid grid">
+                                    <div class="field col-12 md:col-4">
+                                      <span class="p-float-label">
+                                        <input id="name" aria-describedby="Address-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !Address}" [(ngModel)]="Address" type="text" pInputText/>
+                                        <label for="name">Address 1 (*)</label>
+                                        <small id="Address-help" class="ng-dirty ng-invalid p-error" *ngIf="!Address">Address 1 required.</small>
+                                      </span>
+                                    </div>
+                                    <div class="field col-12 md:col-4">
+                                        <span class="p-float-label">
+                                          <input id="name" aria-describedby="Address1-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !Address1}" [(ngModel)]="Address1" type="text" pInputText/>
+                                          <label for="name">Address 2 (*)</label>
+                                          <small id="Address1-help" class="ng-dirty ng-invalid p-error" *ngIf="!Address1">Address 2 is required.</small>
+                                        </span>
+                                      </div>
+                                      <div class="field col-12 md:col-4">
+                                        <span class="p-float-label">
+                                          <input id="name"  [(ngModel)]="Address2" type="text" pInputText/>
+                                          <label for="name">Address 3</label>
+                                        </span>
+                                      </div>
+                                      <div class="field col-12 md:col-4">
+                                        <span class="p-float-label">
+                                          <input id="name" aria-describedby="Postalcode-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !Postalcode}" [(ngModel)]="Postalcode" type="text" pInputText/>
+                                          <label for="name">Postal Code (*)</label>
+                                          <small id="Postalcode-help" class="ng-dirty ng-invalid p-error" *ngIf="!Postalcode">Postal Code is required.</small>
+                                        </span>
+                                      </div>
+                                      <div class="field col-12 md:col-4">
+                                        <span class="p-float-label">
+                                            <p-dropdown id="ultimat" [options]="statshome" optionLabel="description" optionValue="id" aria-describedby="Stats-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !selectedstathome}" [(ngModel)]="selectedstathome"  [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}" (onChange)="onChangedhomeStats()"></p-dropdown>                                
+                                           <label for="ultimat" style="font-size:12px;">Stats SA Area Code (*)</label>
+                                           <small id="Stats-help" class="ng-dirty ng-invalid p-error" *ngIf="!selectedstathome">Stats SA Area Code is required.</small>
+                                        </span>
+                                      </div>  
+                                      <div class="field col-12 md:col-4">
+                                        <span class="p-float-label">
+                                            <p-dropdown id="ultimat" [options]="provinces" optionLabel="provinceDesc" optionValue="id" aria-describedby="hprovinces-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !selectedPronvince}" [(ngModel)]="selectedPronvince"  [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}" (onChange)="onChangedhomeProvince()"></p-dropdown>                                
+                                           <label for="ultimat" style="font-size:12px;">Pronvince  (*)</label>
+                                           <small id="hprovinces-help" class="ng-dirty ng-invalid p-error" *ngIf="!selectedPronvince">Pronvince is required.</small>
+                                        </span>
+                                    </div> 
+                                    <div class="field col-12 md:col-4">
+                                        <span class="p-float-label">
+                                            <p-dropdown id="ultimat" [options]="municipalities" optionLabel="municipalityDesc" optionValue="id" aria-describedby="hmunicipalities-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !selectedHomeMuni}" [(ngModel)]="selectedHomeMuni"  [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}" (onChange)="onChangedhomeMuni()"></p-dropdown>                                
+                                           <label for="ultimat" style="font-size:12px;">Municipality  (*)</label>
+                                           <small id="hmunicipalities-help" class="ng-dirty ng-invalid p-error" *ngIf="!selectedHomeMuni">Municipality is required.</small>
+                                        </span>
+                                    </div>   
+                                    <div class="field col-12 md:col-4">
+                                        <span class="p-float-label">
+                                            <p-dropdown id="ultimat" [options]="municipalities" optionLabel="code" optionValue="id" aria-describedby="hhmunicipalities-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !selectedhomeDestrict}" [(ngModel)]="selectedhomeDestrict"  [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}" (onChange)="onChangedhomeDistrict()"></p-dropdown>                                
+                                           <label for="ultimat" style="font-size:12px;">Distritrict  (*)</label>
+                                           <small id="hhmunicipalities-help" class="ng-dirty ng-invalid p-error" *ngIf="!selectedhomeDestrict">Distritrict is required.</small>
+                                        </span>
+                                    </div>   
+                                    <div class="field col-12 md:col-4">
+                                        <span class="p-float-label">
+                                            <p-dropdown id="ultimat" [options]="towns" optionLabel="description" optionValue="id" aria-describedby="htowns-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !selectedHomeTown}" [(ngModel)]="selectedHomeTown"  [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}" (onChange)="onChangedhomeTown()"></p-dropdown>                                
+                                           <label for="ultimat" style="font-size:12px;">Town  (*)</label>
+                                           <small id="htowns-help" class="ng-dirty ng-invalid p-error" *ngIf="!selectedHomeTown">Town is required.</small>
+                                        </span>
+                                    </div>   
+                                </div>
+                                </div>
+                            </div>
+                        </p-accordionTab>
+                        <p-accordionTab header="Postal Address">
+                            <div class="col-12">
+                                <h6>Postal Address</h6>
+                                <div class="forms">
+                                   <div class="p-fluid grid">
+                                    <div class="field col-12 md:col-4">
+                                      <span class="p-float-label">
+                                        <input id="name" aria-describedby="Postal-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !Postal}" [(ngModel)]="Postal" type="text" pInputText/>
+                                        <label for="name">Address 1 (*)</label>
+                                        <small id="Postal-help" class="ng-dirty ng-invalid p-error" *ngIf="!Postal">Address 1 is required.</small>
+                                      </span>
+                                    </div>
+                                    <div class="field col-12 md:col-4">
+                                        <span class="p-float-label">
+                                          <input id="name" aria-describedby="Postal1-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !Postal1}" [(ngModel)]="Postal1" type="text" pInputText/>
+                                          <label for="name">Address 2 (*)</label>
+                                          <small id="Postal1-help" class="ng-dirty ng-invalid p-error" *ngIf="!Postal1">Address 2 is required.</small>
+                                        </span>
+                                      </div>
+                                      <div class="field col-12 md:col-4">
+                                        <span class="p-float-label">
+                                          <input id="name" [(ngModel)]="Postal2" type="text" pInputText/>
+                                          <label for="name">Address 3</label>
+                                        </span>
+                                      </div>
+                                      <div class="field col-12 md:col-4">
+                                        <span class="p-float-label">
+                                          <input id="name" aria-describedby="Postal3-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !Postal3}" [(ngModel)]="Postal3" type="text" pInputText/>
+                                          <label for="name">Postal Code (*)</label>
+                                          <small id="Postal3-help" class="ng-dirty ng-invalid p-error" *ngIf="!Postal3">Postal Code is required.</small>
+                                        </span>
+                                      </div>
+                                      <div class="field col-12 md:col-4">
+                                        <span class="p-float-label">
+                                            <p-dropdown id="ultimat" [options]="statshome" optionLabel="description" optionValue="id" aria-describedby="pStats-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !selectedstatpostal}" [(ngModel)]="selectedstatpostal" [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}" (onChange)="onChangedpostalStats()"></p-dropdown>                                
+                                           <label for="ultimat" style="font-size:12px;">Stats SA Area Code (*)</label>
+                                           <small id="pStats-help" class="ng-dirty ng-invalid p-error" *ngIf="!selectedstatpostal">Stats SA Area Code is required.</small>
+                                        </span>
+                                      </div> 
+                                      <div class="field col-12 md:col-4">
+                                        <span class="p-float-label">
+                                            <p-dropdown id="ultimat" [options]="pprovinces" optionLabel="provinceDesc" optionValue="id" aria-describedby="ppprovinces-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !selectedpostalPronvince}" [(ngModel)]="selectedpostalPronvince" [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}" (onChange)="onChangedpostalProvince()"></p-dropdown>                                
+                                           <label for="ultimat" style="font-size:12px;">Pronvince  (*)</label>
+                                           <small id="ppprovinces-help" class="ng-dirty ng-invalid p-error" *ngIf="!selectedpostalPronvince">Pronvince is required.</small>
+                                        </span>
+                                    </div>   
+                                    <div class="field col-12 md:col-4">
+                                        <span class="p-float-label">
+                                            <p-dropdown id="ultimat" [options]="pmunicipalities" optionLabel="municipalityDesc" optionValue="id" aria-describedby="pppmunicipalities-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !selectedpostalMuni}" [(ngModel)]="selectedpostalMuni" [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}" (onChange)="onChangedpostalMuni()"></p-dropdown>                                
+                                           <label for="ultimat" style="font-size:12px;">Municipality  (*)</label>
+                                           <small id="pppmunicipalities-help" class="ng-dirty ng-invalid p-error" *ngIf="!selectedpostalMuni">Municipality is required.</small>
+                                        </span>
+                                    </div>   
+                                    <div class="field col-12 md:col-4">
+                                        <span class="p-float-label">
+                                            <p-dropdown id="ultimat" [options]="pmunicipalities" optionLabel="code" optionValue="id" aria-describedby="pppppmunicipalities-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !selectedPostalDestrict}" [(ngModel)]="selectedPostalDestrict" [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}" (onChange)="onChangedpostalDistrict()"></p-dropdown>                                
+                                           <label for="ultimat" style="font-size:12px;">Distritrict  (*)</label>
+                                           <small id="pppppmunicipalities-help" class="ng-dirty ng-invalid p-error" *ngIf="!selectedPostalDestrict">Distritrict is required.</small>
+                                        </span>
+                                    </div>   
+                                    <div class="field col-12 md:col-4">
+                                        <span class="p-float-label">
+                                            <p-dropdown id="ultimat" [options]="ptowns" optionLabel="description" optionValue="id" aria-describedby="ppptowns-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !selectedpostalTown}" [(ngModel)]="selectedpostalTown" [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}" (onChange)="onChangedpostalTown()"></p-dropdown>                                
+                                           <label for="ultimat" style="font-size:12px;">Town  (*)</label>
+                                           <small id="ppptowns-help" class="ng-dirty ng-invalid p-error" *ngIf="!selectedpostalTown">Town is required.</small>
+                                        </span>
+                                    </div> 
+                                  </div>
+                                </div>
+                            </div>
+                        </p-accordionTab>
+                    </p-accordion>
+                    <div class="col-12">
+                        <div id="Learn_html"></div>
+                        <br>
+                        <button pButton pRipple class="continue-button"  type="button" label="Submit Learner Details" (click)="submitLeanerDetails()"></button>
+                    </div>
+                </div>
+            </p-tabPanel>
+            <p-tabPanel header="Employement Status">
+                <div class="grid">
+                    <div class="col-12">
+                        <h6>Employment Status</h6>
+                        <label>Employment status (*)</label>
+                        <div class="forms">
+                            <br/>
+                            <div class="">
+                                <div class="field-radiobutton">
+                                    <p-radioButton name="city" value="Yes" [(ngModel)]="checkedEmployment" (ngModelChange)="modifyEmployment()" id="city1"></p-radioButton>
+                                    <label for="city1">Employed</label>
+                                </div>
+                            </div>
+                            <div class="">
+                                <div class="field-radiobutton">
+                                    <p-radioButton name="city" value="No" [(ngModel)]="checkedEmployment" (ngModelChange)="modifyEmployment()" [(ngModel)]="valRadio"  id="city2"></p-radioButton>
+                                    <label for="city2">Unemployed</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <div class="col-12">
+                        <h6>Contract Of Employment</h6>
+                    <div class="p-fluid grid">
+                        <div class="field col-12 md:col-4">
+                            <label>Is the learner's contract of employment specific to the purpose of aggreement? (*)</label>
+                          <div class="col-12">
+                            <div class="">
+                                <div class="field-radiobutton">
+                                    <p-radioButton name="city" value="Yes" [(ngModel)]="checkedeContractofEmploymen" (ngModelChange)="modifyContractofEmploymen()" id="city1"></p-radioButton>
+                                    <label for="city1">Yes</label>
+                                </div>
+                            </div>
+                            <div class="">
+                                <div class="field-radiobutton">
+                                    <p-radioButton name="city" value="No" [(ngModel)]="checkedeContractofEmploymen" (ngModelChange)="modifyContractofEmploymen()"  id="city2"></p-radioButton>
+                                    <label for="city2">No</label>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <label>Does the learner have a copy of the contract of employment? (*)</label>
+                          <div class="col-12">
+                            <div class="">
+                                <div class="field-radiobutton">
+                                    <p-radioButton name="city" value="Yes" [(ngModel)]="checkecopyofcontract" (ngModelChange)="modifycopyofcontract()" id="city1"></p-radioButton>
+                                    <label for="city1">Yes</label>
+                                </div>
+                            </div>
+                            <div class="">
+                                <div class="field-radiobutton">
+                                    <p-radioButton name="city" value="No" [(ngModel)]="checkecopyofcontract" (ngModelChange)="modifycopyofcontract()"  id="city2"></p-radioButton>
+                                    <label for="city2">No</label>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="grid">
+                </div>
+                    <div class="col-12">
+                        <div id="empstatus_html"></div>
+                        <br>
+                        <button pButton pRipple class="continue-button" [disabled]="isDisabledempstatus"  type="button" label="Submit Employement Status" (click)="submitEmployementStatus()"></button>
+                    </div>
+                </div>
+            </p-tabPanel>
+            <p-tabPanel header="Employer Details">
+                <div class="grid">
+                    <p-accordion>
+                        <br>
+                        <p-accordionTab header="Employer Details">
+                                <div class="col-12">
+                                    <h6>Employer Details</h6>
+                                    <div class="forms">
+                                      <div class="p-fluid grid">
+                                        <div class="field col-12 md:col-4">
+                                            <span class="p-float-label">
+                                              <input id="name" aria-describedby="employername-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !employername}" [(ngModel)]="employername"  type="text" pInputText/>
+                                              <label for="name">Employer Name (*)</label>
+                                              <small id="employername-help" class="ng-dirty ng-invalid p-error" *ngIf="!employername">Employer Name is required.</small>
+                                            </span>
+                                          </div>
+                                          <div class="field col-12 md:col-4">
+                                              <span class="p-float-label">
+                                                <input id="name" aria-describedby="trainingname-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !trainingname}" [(ngModel)]="trainingname" type="text" pInputText/>
+                                                <label for="name">Trading Name (*)</label>
+                                                <small id="trainingname-help" class="ng-dirty ng-invalid p-error" *ngIf="!trainingname">Trading Name is required.</small>
+                                              </span>
+                                            </div>
+                                            <div class="field col-12 md:col-4">
+                                              <span class="p-float-label">
+                                                <input id="name" aria-describedby="emptemail-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !emptemail}" [(ngModel)]="emptemail" type="text" pInputText/>
+                                                <label for="name">Email Address (*)</label>
+                                                <small id="emptemail-help" class="ng-dirty ng-invalid p-error" *ngIf="!emptemail">Email Address is required.</small>
+                                              </span>
+                                            </div>
+                                            <div class="field col-12 md:col-4">
+                                              <span class="p-float-label">
+                                                <p-inputNumber [maxlength]="10" [useGrouping]="false" id="name" aria-describedby="emptelnumber-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !emptelnumber}" [(ngModel)]="emptelnumber" type="text"></p-inputNumber>
+                                                <label for="name">Telephone Number (*)</label>
+                                                <small id="emptelnumber-help" class="ng-dirty ng-invalid p-error" *ngIf="!emptelnumber">Telephone Number is required.</small>
+                                              </span>
+                                            </div>
+                                            <div class="field col-12 md:col-4">
+                                              <span class="p-float-label">
+                                                <p-inputNumber  [maxlength]="10" [useGrouping]="false" id="name" aria-describedby="empfaxnumber-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !empfaxnumber}" [(ngModel)]="empfaxnumber" type="text"></p-inputNumber>
+                                                <label for="name">Fax Number (*)</label>
+                                                <small id="empfaxnumber-help" class="ng-dirty ng-invalid p-error" *ngIf="!empfaxnumber">Fax Number is required.</small>
+                                              </span>
+                                            </div>
+                                            <div class="field col-12 md:col-4">
+                                                <span class="p-float-label">
+                                                  <input id="name" aria-describedby="emregnumber-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !emregnumber}" [(ngModel)]="emregnumber" type="text" pInputText/>
+                                                  <label for="name">Employer Registration Number (*)</label>
+                                                  <small id="emregnumber-help" class="ng-dirty ng-invalid p-error" *ngIf="!emregnumber">Employer Registration Number is required.</small>
+                                                </span>
+                                              </div>
+                                            <div class="field col-12 md:col-4">
+                                                <span class="p-float-label">
+                                                  <input id="name" aria-describedby="levynumber-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !levynumber}" [(ngModel)]="levynumber" type="text" pInputText/>
+                                                  <label for="name">Levy Number (*)</label>
+                                                  <small id="levynumber-help" class="ng-dirty ng-invalid p-error" *ngIf="!levynumber">Levy Number is required.</small>
+                                                </span>
+                                              </div>
+                                              <div class="field col-12 md:col-4">
+                                                  <span class="p-float-label">
+                                                    <input id="name" aria-describedby="numofemployee-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !numofemployee}" [(ngModel)]="numofemployee" type="text" pInputText/>
+                                                    <label for="name">Number of Employee (*)</label>
+                                                    <small id="numofemployee-help" class="ng-dirty ng-invalid p-error" *ngIf="!numofemployee">Number of Employee is required.</small>
+                                                  </span>
+                                                </div>
+                                                <div class="field col-12 md:col-4">
+                                                  <span class="p-float-label">
+                                                    <input id="name" aria-describedby="siccode-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !siccode}" [(ngModel)]="siccode" type="text" pInputText/>
+                                                    <label for="name">SIC Code (*)</label>
+                                                    <small id="siccode-help" class="ng-dirty ng-invalid p-error" *ngIf="!siccode">SIC Code is required.</small>
+                                                  </span>
+                                                </div>
+                                                <div class="field col-12 md:col-4">
+                                                    <span class="p-float-label">
+                                                        <p-dropdown id="ultimat" [options]="organizationtionns" aria-describedby="Organization-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !selectedorganization}" [(ngModel)]="selectedorganization" optionLabel="label" optionValue="value" [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}" (ngModelChange)="onChangeOrganization()"></p-dropdown>                                
+                                                       <label for="ultimat" style="font-size:12px;">Organization Type (*)</label>
+                                                       <small id="Organization-help" class="ng-dirty ng-invalid p-error" *ngIf="!selectedorganization">Organization Type is required.</small>
+                                                    </span>
+                                                </div>   
+                                            </div>
+                                    </div> 
+                                </div>
+                        </p-accordionTab>
+                        <p-accordionTab header="Employer Contact Person">
+                                <div class="col-12">
+                                    <h6>Employer Contact Person</h6>
+                                    <div class="forms">
+                                        <div class="p-fluid grid">
+                                        <div class="field col-12 md:col-4">
+                                            <span class="p-float-label">
+                                                <p-dropdown id="ultimat" [options]="dropdownOptions3" aria-describedby="eTItle-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !persontitle}" [(ngModel)]="persontitle" [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}" optionLabel="label" optionValue="value" [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}" (ngModelChange)="onChangePersontittle()"></p-dropdown>                                
+                                               <label for="ultimat" style="font-size:12px;">TItle (*)</label>
+                                               <small id="eTItle-help" class="ng-dirty ng-invalid p-error" *ngIf="!persontitle">TItle is required.</small>
+                                            </span>
+                                        </div>
+                                        <div class="field col-12 md:col-4">
+                                            <span class="p-float-label">
+                                              <input id="name" aria-describedby="personname-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !personname}" [(ngModel)]="personname" type="text" pInputText/>
+                                              <label for="name">First Name (*)</label>
+                                              <small id="personname-help" class="ng-dirty ng-invalid p-error" *ngIf="!personname">First Name is required.</small>
+                                            </span>
+                                          </div>
+                                          <div class="field col-12 md:col-4">
+                                              <span class="p-float-label">
+                                                <input id="name" aria-describedby="personlastname-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !personlastname}" [(ngModel)]="personlastname" type="text" pInputText/>
+                                                <label for="name">Last Name (*)</label>
+                                                <small id="personlastname-help" class="ng-dirty ng-invalid p-error" *ngIf="!personlastname">Last Name is required.</small>
+                                              </span>
+                                            </div>
+                                            <div class="field col-12 md:col-4">
+                                              <span class="p-float-label">
+                                                <input id="name" aria-describedby="personidnumber-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !personidnumber}" [(ngModel)]="personidnumber" type="text" pInputText/>
+                                                <label for="name">RSA Identification Number (*)</label>
+                                                <small id="personidnumber-help" class="ng-dirty ng-invalid p-error" *ngIf="!personidnumber">RSA Identification Number is required.</small>
+                                              </span>
+                                            </div>
+                                            <div class="field col-12 md:col-4">
+                                              <span class="p-float-label">
+                                                <input id="name" aria-describedby="personemail-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !personemail}" [(ngModel)]="personemail" type="text" pInputText/>
+                                                <label for="name">Email Address (*)</label>
+                                                <small id="personemail-help" class="ng-dirty ng-invalid p-error" *ngIf="!personemail">Email Address is required.</small>
+                                              </span>
+                                            </div>
+                                            <div class="field col-12 md:col-4">
+                                                <span class="p-float-label">
+                                                  <p-inputNumber [maxlength]="10" [useGrouping]="false" id="name" aria-describedby="personcellnumber-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !personcellnumber}" [(ngModel)]="personcellnumber" type="text"></p-inputNumber>
+                                                  <label for="name">Cell Number (*)</label>
+                                                  <small id="personcellnumber-help" class="ng-dirty ng-invalid p-error" *ngIf="!personcellnumber">Cell Number is required.</small>
+                                                </span>
+                                              </div>
+                                              <div class="field col-12 md:col-4">
+                                                <span class="p-float-label">
+                                                  <p-inputNumber [maxlength]="10" [useGrouping]="false" id="name" aria-describedby="persontelnumber-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !persontelnumber}" [(ngModel)]="persontelnumber" type="text"></p-inputNumber>
+                                                  <label for="name">Tel Number (*)</label>
+                                                  <small id="persontelnumber-help" class="ng-dirty ng-invalid p-error" *ngIf="!persontelnumber">Tel Number  is required.</small>
+                                                </span>
+                                              </div>
+                                            <div class="field col-12 md:col-4">
+                                                <span class="p-float-label">
+                                                  <p-inputNumber [maxlength]="10" [useGrouping]="false" id="name" aria-describedby="persontaxnumber-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !persontaxnumber}" [(ngModel)]="persontaxnumber" type="text"></p-inputNumber>
+                                                  <label for="name">Fax Number (*)</label>
+                                                  <small id="persontaxnumber-help" class="ng-dirty ng-invalid p-error" *ngIf="!persontaxnumber">Fax Number is required.</small>
+                                                </span>
+                                              </div>
+                                              <div class="field col-12 md:col-4">
+                                                  <span class="p-float-label">
+                                                    <input id="name" aria-describedby="pDesignation-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !pDesignation}" [(ngModel)]="pDesignation" type="text" pInputText/>
+                                                    <label for="name">Designation </label>
+                                                    <small id="pDesignation-help" class="ng-dirty ng-invalid p-error" *ngIf="!pDesignation">Designation is required.</small>
+                                                  </span>
+                                            </div> 
+                                        </div> 
+                                    </div>
+                                </div>
+                        </p-accordionTab>
+                        <p-accordionTab header="Employer Physical Address">
+                                <div class="col-12">
+                                    <h6>Physical Address</h6>
+                                    <div class="forms">
+                                        <div class="p-fluid grid">
+                                        <div class="field col-12 md:col-4">
+                                          <span class="p-float-label">
+                                            <input id="name" aria-describedby="eAddress-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !eAddress}" [(ngModel)]="eAddress" type="text" pInputText/>
+                                            <label for="name">Address 1 (*)</label>
+                                            <small id="eAddress-help" class="ng-dirty ng-invalid p-error" *ngIf="!eAddress">Address 1 is required.</small>
+                                          </span>
+                                        </div>
+                                        <div class="field col-12 md:col-4">
+                                            <span class="p-float-label">
+                                              <input id="name" aria-describedby="eAddress1-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !eAddress1}" [(ngModel)]="eAddress1" type="text" pInputText/>
+                                              <label for="name">Address 2 (*)</label>
+                                              <small id="eAddress1-help" class="ng-dirty ng-invalid p-error" *ngIf="!eAddress1">Address 2 is required.</small>
+                                            </span>
+                                          </div>
+                                          <div class="field col-12 md:col-4">
+                                            <span class="p-float-label">
+                                              <input id="name"[(ngModel)]="eAddress2" type="text" pInputText/>
+                                              <label for="name">Address 3</label>
+                                            </span>
+                                          </div>
+                                          <div class="field col-12 md:col-4">
+                                            <span class="p-float-label">
+                                              <input id="name" aria-describedby="ePostalcode-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !ePostalcode}" [(ngModel)]="ePostalcode"  type="text" pInputText/>
+                                              <label for="name">Postal Code (*)</label>
+                                              <small id="ePostalcode-help" class="ng-dirty ng-invalid p-error" *ngIf="!ePostalcode">Postal Code is required.</small>
+                                            </span>
+                                          </div>
+                                          <div class="field col-12 md:col-4">
+                                            <span class="p-float-label">
+                                                <p-dropdown id="ultimat" aria-describedby="eeStats-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !selectedphysical}" [(ngModel)]="selectedphysical"  [options]="statshome" optionLabel="description" optionValue="id" [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}" (ngModelChange)="onChangedPhyicalStats()"></p-dropdown>                                
+                                               <label for="ultimat" style="font-size:12px;">Stats SA Area Code (*)</label>
+                                               <small id="eeStats-help" class="ng-dirty ng-invalid p-error" *ngIf="!selectedphysical">Stats SA Area Code is required.</small>
+                                            </span>
+                                        </div>  
+                                        <div class="field col-12 md:col-4">
+                                            <span class="p-float-label">
+                                                <p-dropdown id="ultimat" aria-describedby="eePronvince-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !selectedePronvince}" [(ngModel)]="selectedePronvince" [options]="physicalprovinces" optionLabel="provinceDesc" optionValue="id"  [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}" (ngModelChange)="onChangedPhyicalProvince()"></p-dropdown>                                
+                                               <label for="ultimat" style="font-size:12px;">Pronvince  (*)</label>
+                                               <small id="eePronvince-help" class="ng-dirty ng-invalid p-error" *ngIf="!selectedePronvince">Pronvince is required.</small>
+                                            </span>
+                                        </div>   
+                                        <div class="field col-12 md:col-4">
+                                            <span class="p-float-label">
+                                                <p-dropdown id="ultimat" aria-describedby="eeMunicipality-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !selectedeHomeMuni}" [(ngModel)]="selectedeHomeMuni" [options]="physicalmunicipalities" optionLabel="municipalityDesc" optionValue="id"   [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}" (ngModelChange)="onChangedPhyicalMuni()"></p-dropdown>                                
+                                               <label for="ultimat" style="font-size:12px;">Municipality  (*)</label>
+                                               <small id="eeMunicipality-help" class="ng-dirty ng-invalid p-error" *ngIf="!selectedeHomeMuni">Municipality is required.</small>
+                                            </span>
+                                        </div>   
+                                        <div class="field col-12 md:col-4">
+                                            <span class="p-float-label">
+                                                <p-dropdown id="ultimat" [options]="physicalmunicipalities" aria-describedby="eeDistritrict-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !selectededistrict}" [(ngModel)]="selectededistrict" optionLabel="code" optionValue="id"   [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}" (ngModelChange)="onChangedPhyicalDistrict()"></p-dropdown>                                
+                                               <label for="ultimat" style="font-size:12px;">Distritrict  (*)</label>
+                                               <small id="eeDistritrict-help" class="ng-dirty ng-invalid p-error" *ngIf="!selectededistrict">Distritrict is required.</small>
+                                            </span>
+                                        </div>   
+                                        <div class="field col-12 md:col-4">
+                                            <span class="p-float-label">
+                                                <p-dropdown id="ultimat" aria-describedby="eeTown-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !selectedeHomeTown}" [(ngModel)]="selectedeHomeTown" [options]="physicaltowns" optionLabel="description" optionValue="id"  [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}" (ngModelChange)="onChangedPhyicalTown()"></p-dropdown>                                
+                                               <label for="ultimat" style="font-size:12px;">  (*)</label>
+                                               <small id="eeTown-help" class="ng-dirty ng-invalid p-error" *ngIf="!selectedeHomeTown">Town is required.</small>
+                                            </span>
+                                        </div>
+                                      </div> 
+                                 </div>
+                             </div>
+                        </p-accordionTab>
+                        <p-accordionTab header="Employer Postal Address">
+                                <div class="col-12">
+                                    <h6>Postal Address</h6>
+                                    <div class="forms">
+                                      <div class="p-fluid grid">
+                                        <div class="field col-12 md:col-4">
+                                          <span class="p-float-label">
+                                            <input id="name" aria-describedby="epAddress-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !epAddress}" [(ngModel)]="epAddress" type="text" pInputText/>
+                                            <label for="name">Address 1 (*)</label>
+                                            <small id="epAddress-help" class="ng-dirty ng-invalid p-error" *ngIf="!epAddress">Address 1 is required.</small>
+                                          </span>
+                                        </div>
+                                        <div class="field col-12 md:col-4">
+                                            <span class="p-float-label">
+                                              <input id="name" aria-describedby="epAddress1-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !epAddress1}" [(ngModel)]="epAddress1" type="text" pInputText/>
+                                              <label for="name">Address 2 (*)</label>
+                                              <small id="epAddress1-help" class="ng-dirty ng-invalid p-error" *ngIf="!epAddress1">Address 2 is required.</small>
+                                            </span>
+                                          </div>
+                                          <div class="field col-12 md:col-4">
+                                            <span class="p-float-label">
+                                              <input id="name" [(ngModel)]="epAddress2" type="text" pInputText/>
+                                              <label for="name">Address 3</label>
+                                            </span>
+                                          </div>
+                                          <div class="field col-12 md:col-4">
+                                            <span class="p-float-label">
+                                              <input id="name" aria-describedby="epPostalcode-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !epPostalcode}" [(ngModel)]="epPostalcode" type="text" pInputText/>
+                                              <label for="name">Postal Code (*)</label>
+                                              <small id="epPostalcode-help" class="ng-dirty ng-invalid p-error" *ngIf="!epPostalcode">Postal Code is required.</small>
+                                            </span>
+                                          </div>
+                                          <div class="field col-12 md:col-4">
+                                            <span class="p-float-label">
+                                                <p-dropdown id="ultimat" [options]="statshome" optionLabel="description" optionValue="id" aria-describedby="eepStats-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !selectedphysicalpostal}" [(ngModel)]="selectedphysicalpostal" [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}" (ngModelChange)="onChangedPhyicalposStats()"></p-dropdown>                                
+                                               <label for="ultimat" style="font-size:12px;">Stats SA Area Code (*)</label>
+                                               <small id="eepStats-help" class="ng-dirty ng-invalid p-error" *ngIf="!selectedphysicalpostal">Stats SA Area Code is required.</small>
+                                            </span>
+                                        </div> 
+                                        <div class="field col-12 md:col-4">
+                                            <span class="p-float-label">
+                                                <p-dropdown id="ultimat" [options]="empostalprovinces" optionValue="id" aria-describedby="eepPronvince-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !selectedepPronvince}" [(ngModel)]="selectedepPronvince" optionLabel="provinceDesc" [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}" (ngModelChange)="onChangedPhyicalposProvince()"></p-dropdown>                                
+                                               <label for="ultimat" style="font-size:12px;">Pronvince  (*)</label>
+                                               <small id="eepPronvince-help" class="ng-dirty ng-invalid p-error" *ngIf="!selectedepPronvince">Pronvince is required.</small>
+                                            </span>
+                                        </div>   
+                                        <div class="field col-12 md:col-4">
+                                            <span class="p-float-label">
+                                                <p-dropdown id="ultimat" [options]="empostalmunicipalities" optionValue="id"  aria-describedby="eepMunicipality-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !selectedepHomeMuni}" [(ngModel)]="selectedepHomeMuni" optionLabel="municipalityDesc" [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}" (ngModelChange)="onChangedPhyicalposMuni()"></p-dropdown>                                
+                                               <label for="ultimat" style="font-size:12px;">Municipality  (*)</label>
+                                               <small id="eepMunicipality-help" class="ng-dirty ng-invalid p-error" *ngIf="!selectedepHomeMuni">Municipality is required.</small>
+                                            </span>
+                                        </div>   
+                                        <div class="field col-12 md:col-4">
+                                            <span class="p-float-label">
+                                                <p-dropdown id="ultimat" [options]="empostalmunicipalities"  aria-describedby="eepDistritrict-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !selectedepdistrict}" [(ngModel)]="selectedepdistrict" optionLabel="code" [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}" (ngModelChange)="onChangedPhyicalposDistrict()"></p-dropdown>                                
+                                               <label for="ultimat" style="font-size:12px;">Distritrict  (*)</label>
+                                               <small id="eepDistritrict-help" class="ng-dirty ng-invalid p-error" *ngIf="!selectedepdistrict">Distritrict is required.</small>
+                                            </span>
+                                        </div>   
+                                        <div class="field col-12 md:col-4">
+                                            <span class="p-float-label">
+                                                <p-dropdown id="ultimat" [options]="empostaltowns" optionValue="id" aria-describedby="eepTown-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !selectedepHomeTown}" [(ngModel)]="selectedepHomeTown" optionLabel="description" [autoDisplayFirst]="false"  [style]="{'margin-bottom':'5px'}" (ngModelChange)="onChangedPhyicalposTown()"></p-dropdown>                                
+                                               <label for="ultimat" style="font-size:12px;">Town  (*)</label>
+                                               <small id="eepTown-help" class="ng-dirty ng-invalid p-error" *ngIf="!selectedepHomeTown">Town is required.</small>
+                                            </span>
+                                        </div>
+                                        </div>   
+                                    </div>
+                                </div>
+                        </p-accordionTab>
+                    </p-accordion>
+                        <div class="col-12">
+                            <div id="employerdet_html"></div>
+                            <br>
+                            <button pButton pRipple class="continue-button" [disabled]="isDisabledemdet"  type="button" label="Submit Employer Details" (click)="submitEmployerDetails()"></button>
+                        </div>
+                    </div>
+            </p-tabPanel>
+            <p-tabPanel header="Provider Details">
+                <div class="grid">
+                    <div class="col-12">
+                        <h6>Provider Details</h6>
+                        <div class="forms">
+                            <div class="p-fluid grid">
+                                <div class="field col-12 md:col-4">
+                                    <span class="p-float-label">
+                                    <p-dropdown [options]="companies" [(ngModel)]="selectedprovider" optionLabel="companyName" optionValue="id" aria-describedby="selectedprovider-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !selectedprovider}" [filter]="true" filterBy="companyName" (onChange)="onSelectcompany2($event)"  [autoDisplayFirst]="false"  [style]="{'margin-top':'5px'}" [showClear]="true">
+                                        <ng-template let-country pTemplate="item">
+                                            <div class="country-item">
+                                                <div>{[country.companyName]}</div>
+                                            </div>
+                                        </ng-template>
+                                    </p-dropdown>
+                                    <label for="name">Provider name (*)</label>
+                                    <small id="selectedprovider-help" class="ng-dirty ng-invalid p-error" *ngIf="!selectedprovider">Provider is required.</small>
+                                    </span>
+                                </div>
+                                <div class="field col-12 md:col-4">
+                                    <span class="p-float-label">
+                                        <input id="name" aria-describedby="lfirstname-help" disabled [(ngModel)]="lfirstname" type="text" pInputText/>
+                                        <label for="name">Contact Person First Name (*)</label>
+                                    </span>
+                                    </div>
+                                    <div class="field col-12 md:col-4">
+                                    <span class="p-float-label">
+                                        <input id="name" aria-describedby="llastname-help" disabled [(ngModel)]="llastname" type="text" pInputText/>
+                                        <label for="name">Contact Person Last Name (*)</label>
+                                    </span>
+                                    </div>
+                                    <div class="field col-12 md:col-4">
+                                    <span class="p-float-label">
+                                        <input id="name" aria-describedby="lemail-help" disabled [(ngModel)]="lemail" type="text" pInputText/>
+                                        <label for="name">Contact Person Email (*)</label>
+                                    </span>
+                                    </div>
+                                    <div class="field col-12 md:col-4">
+                                        <span class="p-float-label">
+                                        <input id="name" aria-describedby="lcellnumber-help" disabled [(ngModel)]="lcellnumber" type="text" pInputText/>
+                                        <label for="name">Cell Number (*)</label>
+                                        </span>
+                                    </div>
+                                    <div class="field col-12 md:col-4">
+                                        <span class="p-float-label">
+                                        <input id="name" aria-describedby="ltellnumber-help" disabled [(ngModel)]="ltellnumber" type="text" pInputText/>
+                                        <label for="name">Tel Number (*)</label>
+                                        </span>
+                                    </div>
+                                    <div class="field col-12 md:col-4">
+                                        <span class="p-float-label">
+                                        <input id="name" aria-describedby="lfaxnumber-help" disabled [(ngModel)]="lfaxnumber"  type="text" pInputText/>
+                                        <label for="name">Fax Number (*)</label>
+                                        </span>
+                                    </div>  
+                                    <div class="field col-12 md:col-4">
+                                        <span class="p-float-label">
+                                        <input id="name"  aria-describedby="lsiccode-help" disabled [(ngModel)]="lsiccode" type="text" pInputText/>
+                                        <label for="name">SIC Code (*)</label>
+                                        </span>
+                                    </div>
+                                    <div class="field col-12 md:col-4">
+                                    <span class="p-float-label">
+                                        <input id="name"  aria-describedby="laccnumber-help" disabled [(ngModel)]="lreviewdate"  type="text" pInputText/>
+                                    <label for="button">Review Date (*)</label>
+                                    </span>
+                                    </div>
+                                    <div class="field col-12 md:col-4">
+                                        <span class="p-float-label">
+                                        <input id="name"  aria-describedby="laccnumber-help" disabled [(ngModel)]="laccnumber"  type="text" pInputText/>
+                                        <label for="name">Accreditation Number (*)</label>
+                                        </span>
+                                    </div>
+                                    <div class="field col-12 md:col-4">
+                                        <span class="p-float-label">       
+                                            <input id="name"  aria-describedby="laccnumber-help" disabled [(ngModel)]="lregistereat"  type="text" pInputText/>                        
+                                        <label for="ultimat" style="font-size:12px;">SETA Registered AT  (*)</label>
+                                        </span>
+                                    </div>   
+                                    <div class="field col-12 md:col-4">
+                                        <span class="p-float-label">
+                                            <input id="name"  aria-describedby="laccnumber-help" disabled [(ngModel)]="laccredstatus"  type="text" pInputText/>                                                        
+                                        <label for="ultimat" style="font-size:12px;">Accreditation Status (*)</label>
+                                        </span>
+                                    </div>   
+                                    <div class="field col-12 md:col-4">
+                                        <span class="p-float-label">
+                                            <input id="name"  aria-describedby="laccnumber-help" disabled [(ngModel)]="laccredtyep"  type="text" pInputText/>                                                                                     
+                                        <label for="ultimat" style="font-size:12px;">AccreditationType (*)</label>
+                                        </span>
+                                    </div>
+                            </div> 
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div id="providerdetails_html"></div>
+                        <br>
+                        <button pButton pRipple class="continue-button" [disabled]="isDisabledprovider"  type="button" label="Submit Provider Details" (click)="submitProviderDetails()"></button>
+                    </div>
+                </div>
+            </p-tabPanel>
+            <p-tabPanel header="Learning Program">
+                <div class="grid">
+                    <div class="col-12">
+                        <h6>Learning Program</h6>
+                        <div class="forms">
+                            <div class="p-fluid grid">
+                              <div class="field col-12 md:col-4">
+                                <span class="p-float-label">
+                                    <p-dropdown id="ultimat" aria-describedby="progtype-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !selectedprogramtype}" [(ngModel)]="selectedprogramtype" [options]="dropdownOptions18" optionLabel="label" [autoDisplayFirst]="false"  [style]="{'margin-bottom':'0px'}" (ngModelChange)="onChangedProgram()"></p-dropdown>                                
+                                   <label for="ultimat" style="font-size:12px;">Program Type (*)</label>
+                                   <small id="progtype-help" class="ng-dirty ng-invalid p-error" *ngIf="!selectedprogramtype">Program Type is required.</small>
+                                </span>
+                              </div>     
+                              <div class="field col-12 md:col-4">
+                                <span class="p-float-label">
+                                    <p-dropdown id="ultimat" aria-describedby="lpivotal-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !selectedpivnon}" [(ngModel)]="selectedpivnon" [options]="pivotavnone"  optionValue="value" optionLabel="label" [autoDisplayFirst]="false"  [style]="{'margin-bottom':'0px'}" (ngModelChange)="onChangedPivotal()"></p-dropdown>                                
+                                   <label for="ultimat" style="font-size:12px;">Pivotal/Non-pivotal training (*)</label>
+                                   <small id="lpivotal-help" class="ng-dirty ng-invalid p-error" *ngIf="!selectedpivnon">Pivotal/Non-pivotal training is required.</small>
+                                </span>
+                              </div>     
+                              <div class="field col-12 md:col-4">
+                                <span class="p-float-label">
+                                  <p-calendar id="button" aria-describedby="coomencedate-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !coomencedate}" [(ngModel)]="coomencedate" [showIcon]="true" appendTo="body"></p-calendar>
+                                  <label for="button">Enrolment Date (*)</label>
+                                  <small id="coomencedate-help" class="ng-dirty ng-invalid p-error" *ngIf="!coomencedate">Enrolment Date is required.</small>
+                                 </span>    
+                              </div>
+                              <div class="field col-12 md:col-4">
+                                <span class="p-float-label">
+                                    <p-dropdown id="ultimat" [options]="learnership"  optionValue="id" optionLabel="description" aria-describedby="selectedLearningprogram-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !selectedlearnership}"  [(ngModel)]="selectedlearnership" [autoDisplayFirst]="false"  [style]="{'margin-bottom':'0px'}" (ngModelChange)="onChangedLearning()"></p-dropdown>                                
+                                   <label for="ultimat" style="font-size:12px;">Learnership Qualification (*)</label>
+                                   <small id="selectedLearningprogram-help" class="ng-dirty ng-invalid p-error" *ngIf="!selectedlearnership">Learnership Qualification is required.</small>
+                                </span>
+                            </div>     
+                            <div class="field col-12 md:col-4">
+                                <span class="p-float-label">
+                                  <input id="name" aria-describedby="saqaid-help" [(ngModel)]="saqaid" disabled  type="text" pInputText/>
+                                  <label for="name">SAQA ID (*)</label>
+                                </span>
+                              </div>
+                              <div class="field col-12 md:col-4">
+                                <span class="p-float-label">
+                                  <p-calendar id="button" aria-describedby="completedate-help"  required [ngClass]="{'ng-invalid ng-dirty' :  !completedate}" [(ngModel)]="completedate"  [showIcon]="true" appendTo="body"></p-calendar>
+                                  <label for="button">Completion Date (*)</label>
+                                  <small id="completedate-help" class="ng-dirty ng-invalid p-error" *ngIf="!completedate">Completion Date is required.</small>
+                                 </span>    
+                              </div>
+                              <div class="field col-12 md:col-4">
+                                <label>NQF Aligned? (*)</label>
+                                 <div class="col-12">
+                                    <div class="">
+                                      <div class="field-radiobutton">
+                                        <p-radioButton name="city" value="Yes" [(ngModel)]="checkednqlaligned" (ngModelChange)="modifyNqlaligned()" id="city1"></p-radioButton>
+                                        <label for="city1">Yes</label>
+                                     </div>
+                                   </div>
+                                   <div class="">
+                                    <div class="field-radiobutton">
+                                        <p-radioButton name="city" value="No" [(ngModel)]="checkednqlaligned" (ngModelChange)="modifyNqlaligned()" id="city2"></p-radioButton>
+                                        <label for="city2">No</label>
+                                    </div>
+                                   </div>
+                                  </div>
+                              </div>  
+                              <div class="field col-12 md:col-4">
+                                <label>Is the learner merseta funded? (*)</label>
+                                <div class="col-12">
+                                <div class="">
+                                    <div class="field-radiobutton">
+                                        <p-radioButton name="city" value="Yes" [(ngModel)]="checkedfunded" (ngModelChange)="modifyfunded()" id="city1"></p-radioButton>
+                                        <label for="city1">Yes</label>
+                                    </div>
+                                </div>
+                                <div class="">
+                                    <div class="field-radiobutton">
+                                        <p-radioButton name="city" value="No" [(ngModel)]="checkedfunded" (ngModelChange)="modifyfunded()" id="city2"></p-radioButton>
+                                        <label for="city2">No</label>
+                                    </div>
+                                </div>
+                              </div>
+                            </div> 
+                          </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div id="learnqualification_html"></div>
+                        <br>
+                        <button pButton pRipple class="continue-button"  type="button" label="Submit Learnership Details" (click)="submiLearnershipQualification()"></button>
+                    </div>
+                </div>
+            </p-tabPanel>
+            <p-tabPanel header="Application Documents">
+                <div class="grid">
+                    <div class="col-12 lg:col-6">
+                        <div class="forms">
+                            <div class="col-12">
+                                <div class="card">
+                                    <label>Id Document (*)</label>
+                                    <p-fileUpload name="myfile[]"  maxFileSize="1000000" [customUpload]="true" (uploadHandler)="myUploaderIDdocument($event)"></p-fileUpload>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 lg:col-6">
+                      <div class="forms">
+                          <div class="col-12">
+                              <div class="card">
+                                  <label>Copy Of The Contract Of Employment (*)</label>
+                                  <p-fileUpload name="myfile[]"  maxFileSize="1000000" [customUpload]="true" (uploadHandler)="myUploadercopyemployment($event)"></p-fileUpload>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-12 lg:col-6">
+                    <div class="forms">
+                        <div class="col-12">
+                            <div class="card">
+                                <label>Confirmation of Employment Status  (*)</label>
+                                <p-fileUpload name="myfile[]"  maxFileSize="1000000" [customUpload]="true" (uploadHandler)="myUploaderconfirmstatus($event)"></p-fileUpload>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 lg:col-6">
+                  <div class="forms">
+                      <div class="col-12">
+                          <div class="card">
+                              <label>Highest Qualification (*)</label>
+                              <p-fileUpload name="myfile[]"  maxFileSize="1000000" [customUpload]="true" (uploadHandler)="myUploaderhightestqualification($event)"></p-fileUpload>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-12 lg:col-6">
+                <div class="forms">
+                    <div class="col-12">
+                        <div class="card">
+                            <label>Work Permit and Study Permit (*)</label>
+                            <p-fileUpload name="myfile[]"  maxFileSize="1000000" [customUpload]="true" (uploadHandler)="myUploaderworkpermitstudy($event)"></p-fileUpload>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 lg:col-6">
+              <div class="forms">
+                  <div class="col-12">
+                      <div class="card">
+                          <label>Other Documents (*)</label>
+                          <p-fileUpload name="myfile[]"  maxFileSize="1000000" [customUpload]="true" (uploadHandler)="myUploaderotherdocs($event)"></p-fileUpload>
+                      </div>
+                  </div>
+              </div>
+          </div>
+                </div>
+                <div class="col-12">
+                    <div id="submitapplication_html"></div>
+                    <br>
+                    <button pButton pRipple class="continue-button"  type="button" label="submit" (click)="testupload()"></button>
+                </div>
+            </p-tabPanel>
+        </p-tabView>
+        <div class="col-12">
+            <button pButton pRipple class="continue-button"  type="button" label="Privious" (click)="openPrev()"></button>
+            <button pButton pRipple class="continue-button"  type="button" label="Next" (click)="openNext()"></button>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block js %}
+<script>
+if ( window.history.replaceState ) {window.history.replaceState( null, null, window.location.href );}
+NSDMS.controller('MainController', function($scope, $rootScope, $http, GetDataService){
+
+});
+</script>
+{% endblock %}

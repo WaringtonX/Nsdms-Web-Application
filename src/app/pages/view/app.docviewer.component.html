@@ -1,0 +1,12 @@
+<div class="grid" style="height:50px;">
+  <div style="padding-top:70px; padding-left:20px; position: absolute; z-index: 99999;">
+    <button pButton pRipple class="continue-button" type="button" label="Back" (click)="goback()"  ></button>
+  </div>
+  <div class="col md:col-12" style="height:100vh">
+    <ngx-doc-viewer
+      [url]="doc"
+      viewer="google"
+      style="width:100%;height:100%;"
+    ></ngx-doc-viewer>
+  </div>
+</div>
